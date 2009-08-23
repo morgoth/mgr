@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[polish]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{float}
+
+\input{pygments}
+
+\providecommand{\imref}[1]{Rys. \ref{#1}} % referencja do obrazka
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+\newfloat{listing}{thp}{lol}
+\floatname{listing}{Listing}
+
+\begin{document}
+\author{Wojciech Wnętrzak}
+\title{Opracowanie elastycznego systemu organizacji testów internetowych do
+zdalnej edukacji w oparciu o technologię Ruby on Rails}
+\date{\today}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Pierwszy rozdział}
+
+\end{document}
