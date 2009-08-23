@@ -34,6 +34,32 @@ zdalnej edukacji w oparciu o technologię Ruby on Rails}
 \maketitle
 \end{titlepage}
 
-\section{Pierwszy rozdział}
-
+\section{Odległość Levenshteina}
+Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
+treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
+studenta.\\
+Porównanie odbywa się na zasadzie przyrównywania kolejnych liter wzorca do otrzymanego
+rozwiązania. Pojawia się jednak problem z tzw. „literówkami”. Co w przypadku gdy student
+napisze dane słowo z dużej litery lub pomyli kolejność liter (często zdarzający się błąd)?
+W celu rozwiązania powyższej przeszkody, przyjąłem dwa uproszczenia, mianowicie przy
+porównaniu:
+\begin{itemize}
+  \item nie będzie brana pod uwagę wielkość liter
+  \item na każde 6 liter wzorca jest możliwy jeden błąd
+\end{itemize}
+Do realizacji drugiego podpunktu została użyta odległość Levenshteina, która docelowo
+oblicza wartość liczbową pomiędzy dwoma ciągami znaków, dzięki czemu jesteśmy w stanie
+ocenić jak bardzo różnią się od siebie porównywane napisy.\\
+Definicję można przedstawić w następujący sposób:\\
+Odległością pomiędzy dwoma napisami jest najmniejsza liczba działań prostych,
+przeprowadzających jeden napis w drugi, gdzie działaniem prostym nazwiemy:
+\begin{itemize}
+  \item wstawienie nowego znaku do napisu
+  \item usunięcie znaku z napisu
+  \item zamianę znaku w napisie na inny znak
+\end{itemize}
+Mając obliczoną odległość pomiędzy wzrocem a odpowiedzią, mierzymy długość wzorca i
+dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uznajemy odpowiedź
+za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz, gdzie
+zastosowany jest podobny mechanizm oceny.
 \end{document}
