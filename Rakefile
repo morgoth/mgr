@@ -8,7 +8,7 @@ ERB_SRC = FileList["**/*.rhtml"]
 HTML_SRC = FileList["**/*.html"]
 SVG_IMG =  FileList["**/*.svg"]
 
-CLEAN.include(%w(*.toc *.aux *.log *.lof *.bib *.bbl *.blg *.out *.snm *.vrb *.nav),
+CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
               RUBY_SRC.ext("tex"),
               ERB_SRC.ext("tex"),
               HTML_SRC.ext("tex"),
@@ -18,6 +18,10 @@ CLOBBER.include(%w(pdf dvi ps).collect { |e| SRC.ext(e) })
 
 def pdflatex(source)
   sh "pdflatex -interaction=nonstopmode #{source}"
+end
+
+def bibtex(source)
+  sh "bibtex #{source.ext("")}"
 end
 
 rule ".png" => ".svg" do |t|
@@ -37,6 +41,9 @@ rule ".tex" => ".html" do |t|
 end
 
 rule ".pdf" => ".tex" do |t|
+  pdflatex(t.source)
+  bibtex(t.source)
+  pdflatex(t.source)
   pdflatex(t.source)
 end
 
