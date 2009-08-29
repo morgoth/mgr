@@ -1,0 +1,1 @@
+['orange', 'apple', 'banana'].all? { |fruit| fruit.tasty? }

@@ -21,7 +21,7 @@
 %% Now actually use the newly defined style.
 \urlstyle{leo}
 
-\newfloat{listing}{thp}{lol}
+\newfloat{listing}{thpb}{lol}
 \floatname{listing}{Listing}
 
 \begin{document}
@@ -35,6 +35,29 @@ edukacji w oparciu o technologię Ruby on Rails}
 \maketitle
 \end{titlepage}
 
+\section{Technologie}
+\subsection{Ruby}
+\emph{Ruby} został stworzony w 1995 roku przez Yukihiro Matsumoto, znanego również
+pod pseudonimem Matz. Łączy on w sobie cechy kilku języków, między innymi: \emph{Lispa},
+\emph{Perla}, \emph{Pythona} czy \emph{Smalltalka}, z każdego wybierając to co najlepsze,
+w efekcie dając elastyczne narzędzie, o wielkich możliwościach.\\
+Jest to język skryptowy — aby spróbować jego możliwości wystarczy nam konsolowy
+interpreter, z poziomu którego wydajemy polecenia, otrzymując od razu wynik działania.\\
+\emph{Ruby} należy do grupy języków bardzo wysokiego programowania
+(\emph{VHLL})\footnote{VHLL — Very High-Level Programming Language (ang.)}.
+W bibliotece standardowej otrzymujemy szereg metod, dzięki którym bez zbytniego wysiłku,
+czasem nawet w jednej linijce, możemy napisać skrypt wykonujący złożone działania.\\
+Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tzw.
+„samokomentujący się kod”. Składnia jest bardzo zbliżona do języka naturalnego
+(angielskiego), dzięki czemu nawet osoba nie mająca nic wspólnego z programowaniem,
+powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie:
+\begin{listing}
+  \input{listing/selfcommenting}
+  \caption{Samokomentujący się kod}
+  \label{listing:selfcommenting}
+\end{listing}
+
+\clearpage
 \section{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
