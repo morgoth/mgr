@@ -42,13 +42,15 @@ pod pseudonimem Matz. Łączy on w sobie cechy kilku języków, między innymi: 
 \emph{Perla}, \emph{Pythona} czy \emph{Smalltalka}, z każdego wybierając to co najlepsze,
 w efekcie dając elastyczne narzędzie, o wielkich możliwościach.\\
 Jest to język skryptowy — aby spróbować jego możliwości wystarczy nam konsolowy
-interpreter, z poziomu którego wydajemy polecenia, otrzymując od razu wynik działania.\\
-\emph{Ruby} należy do grupy języków bardzo wysokiego programowania
+interpreter, z poziomu którego wydajemy polecenia, otrzymując od razu wynik działania.
+
+
+\emph{Ruby} należy do grupy języków bardzo wysokiego poziomu programowania
 (\emph{VHLL})\footnote{VHLL — Very High-Level Programming Language (ang.)}.
 W bibliotece standardowej otrzymujemy szereg metod, dzięki którym bez zbytniego wysiłku,
 czasem nawet w jednej linijce, możemy napisać skrypt wykonujący złożone działania.\\
 Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tzw.
-„samokomentujący się kod”. Składnia jest bardzo zbliżona do języka naturalnego
+,,samokomentujący się kod''. Składnia jest bardzo zbliżona do języka naturalnego
 (angielskiego), dzięki czemu nawet osoba nie mająca nic wspólnego z programowaniem,
 powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie:
 \begin{listing}
@@ -57,13 +59,34 @@ powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie:
   \label{listing:selfcommenting}
 \end{listing}
 
+
+Ciekawą własnością jest tzw. kacze typowanie\footnote{Duck typing (ang.)}, które polega na
+rozpoznaniu typu poprzez zachowanie obiektu a nie jego deklaracji. Przykładowo: jeśli mamy
+funkcję przyjmującą argument, to nie musimy określać jakiego on będzie typu, dzięki czemu
+możemy wywołać na nim metodę (jeśli takową posiada), odpowiednią dla klasy obiektu. Nazwa
+wzięła się z powiedzienia ,,Jeśli chodzi jak kaczka i kwacze jak kaczka, to musi być
+kaczką''\footnote{''If it walks like a duck and quacks like a duck, I would call it a duck''
+— James Whitcomb Riley (ang.)}\\
+Kolejną cechą, która jest jedną z najsilniejszych, jest metaprogramowanie. Nie tyle sama
+możliwość, co raczej przystępność i prostota jego użycia. Framework \emph{Ruby on Rails}
+korzysta bardzo często z jego dobrodziejstw, dając nam tzw. ,,magię railsów'', czyli
+między innymi dynamiczne findery, niemalże bezdeklaratywne asocjacje czy szereg innych
+metod o których więcej w kolejnym podrozdziale.\\
+
+Innymi, silnymi cechami \emph{Rubiego} są:
+\begin{itemize}
+  \item pełna obiektowość
+  \item otwarte klasy
+  \item domknięcia
+\end{itemize}
+
 \clearpage
 \section{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
 studenta.\\
 Porównanie odbywa się na zasadzie przyrównywania kolejnych liter wzorca do otrzymanego
-rozwiązania. Pojawia się jednak problem z tzw. „literówkami”. Co w przypadku gdy student
+rozwiązania. Pojawia się jednak problem z tzw. ,,literówkami''. Co w przypadku gdy student
 napisze dane słowo z dużej litery lub pomyli kolejność liter (często zdarzający się błąd)?
 W celu rozwiązania powyższej przeszkody, przyjąłem dwa uproszczenia, mianowicie przy
 porównaniu:
