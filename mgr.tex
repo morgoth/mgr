@@ -78,9 +78,95 @@ Ogólnie rzecz biorąc język \emph{Ruby} wraz ze swoimi otwartymi klasami, stwa
 programiście przestrzeń, w której może się skupić wyłącznie na postawionym problemie, nie
 martwiąc się o przeszkody techniczne, takie jak dostęp do modyfikacji metod z zewnętrznych
 bibliotek czy rozszerzanie klas o nowe funkcjonalności. Sposób pisania jest intuicyjny,
-działa tu zasada najmniejszego zaskoczenia, często powstające nowe biblioteki (gemy) trzymają
+działa tu zasada najmniejszego zaskoczenia. Często, powstające nowe biblioteki (gemy), trzymają
 się kilku ustalonych konwencji, dzięki czemu zgłębiając nowe funkcjonalności, odnajdujemy
 duże podobieństwa do już dobrze znanych nam metod, choćby z biblioteki standardowej.
+
+\clearpage
+\subsection{Ruby on Rails}
+Twórcą frameworka \emph{Ruby on Rails} jest David Heinemeier Hansson. Powstał on w 2003
+roku, obecnie rozwijany cały czas przez społeczność użytkowników i czuwającą nad
+spójnością kodu tzw. \emph{Core Team}. Jest to produkt wolnego
+oprogramowania\footnote{Open source (ang.)}, wypuszczony na licencji
+\emph{MIT}.\footnote{Licencja powstała w Massachusetts Institute of Technology}.\\
+Framework jest kompletnym narzędziem do tworzenia aplikacji internetowych z wykorzystaniem
+bazy danych. Opiera się na wzorcu projektowym model-widok-kontroler\footnote{MVC — Model View
+Controller (ang.)} i w całości jest napisany w języku \emph{Ruby}.
+
+
+Główną zasadą jaką kierują się twórcy, to tzw. konwencja nad
+konfiguracją\footnote{Convention over Configuration (ang.)}, dzięki której przy minimalnej
+ilości kodu, dostajemy ogromną funkcjonalność, co znacznie przyspiesza tworzenie
+aplikacji. Świetnym przykładem jest \emph{screencast}, na którym Ryan
+Bates\footnote{Ryan Bates — jeden z aktywistów Ruby on Rails, znany głównie jako autor
+darmowych, cotygodniowych screencastów \cite{ryan-bates}} tworzy w 15 minut szkielet
+systemu blogowego, uwzględniając takie dodatki jak dostępność poprzez kanał
+RSS\footnote{RSS — Really Simple Syndication (ang.)} czy reprezentacja zasobów w postaci
+\emph{XML}.\cite{blog-in-15-min}\\
+Kolejną zaletą takiego podejścia, jest przejrzystość kodu. Dopóki postępujemy zgodnie ze
+wskazówkami, nasz kod nie powinien być trudny do zrozumienia przez innego programistę
+również zajmującego się tą technologią.\\
+Drugą ideą składającą się na całość tzw. \emph{Rails way} jest zapobieganie powtarzaniu
+samego siebie\footnote{DRY — Don't Repeat Yourself (ang.)}. Jeśli w jakimś miejscu używamy
+tego samego fragmentu kodu (czasem wręcz przeklejonego), to znaczy że możemy to zrobić
+prościej. Pomoc przychodzi z samego języka \emph{Ruby}, w którym za pomocą mechanizmu
+tzw. \emph{Mixinów}, możemy dodawać do interesujących nas klas czy modułów gotowe zestawy
+metod, upraszczając w ten sposób strukturę kodu.
+
+Po wygenerowaniu szkieletu projektu, dostajemy strukturę katalogów, które między innymi
+oddzwierciedlają wykorzystanie wzorca \emph{MVC}. Pliki odpowiedzialne za interakcję z
+bazą danych oraz główną logikę aplikacji znajdują się w katalogu \emph{models}. Część
+generująca widoki, czyli dokumenty \emph{HTML} również mają swoje określone miejsce w
+katalogu \emph{views}, natomiast część obsługująca akcje użytkownika przesyłane do serwera
+oraz łącząca ze sobą poprzednio wymienione komponenty, jak nie trudno się domyślić, leży w
+katalogu \emph{controllers}. Wszystko to zapewnia nam odpowiednią separację kodu, dzięki
+czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
+
+
+\emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy — system
+paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
+osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
+\begin{itemize}
+  \item ActionMailer
+  \item ActionPack
+  \item ActiveRecord
+  \item ActiveResource
+  \item ActiveSupport
+\end{itemize}
+
+
+\emph{ActionMailer} odpowiada za obsługę usług pocztowych wychodzących i przychodzących z
+naszej aplikacji. Jako generator widoków może być używany \emph{ERb}\footnote{ERb —
+Embedded Ruby (ang.) — system szablonów umożliwiający zagnieżdżanie kodu Rubiego w
+dokumencie tekstowym}. Konfiguracja jest możliwa dla każdego środowiska — odpowiednio w
+środowisku produkcyjnym mamy możliowość wpisania danych rzeczywistych serwera pocztowego,
+natomiast w deweloperskim oraz testowym, możemy zastąpić ją wersją próbną, która nie
+będzie próbowała się łączyć z serwerem pozctowym, natomiast cały mechanizm i logika
+zostanie zachowana.
+
+
+\emph{ActionPack} jest odpowiedzialny za obłsugę kontrolerów oraz widoków. Przychodzące
+zapytanie z serwera jest wiązane z odpowiednią akcją kontrolera, przy pomocy tzw.
+\emph{Routingu}, który mapuje ścieżkę adresu na parametry przekazywane do aplikacji.
+Obecnie domyślny i preferowany sposób konstruowania ścieżek \emph{URL} jest zgodny z
+\emph{REST}.\footnote{REST — Representational State Transfer (ang.) — reprezentacja zasobu
+poprzez ,,czasowniki'' protokołu HTTP: GET, POST, PUT, DELETE (więcej na stronie~\pageref{sec:rest})}\\
+Wywołana akcja musi zwrócić odpowiedź, bądź to w postaci wyrenderowanego widoku,
+przekierowania czy też kodu błędu zgodnego z protokołem \emph{HTTP}. Ciekawym mechanizmem,
+którym dysponuje moduł \emph{ActionController} są filtry. Pozwalają one na wyzwolenie
+logiki przed lub po odwołaniu się do docelowej akcji. Często wykorzystywane są przy
+autentykacji, gdzie chcemy zabezpieczyć treść strony przed niepowołanymi osobami. W tym
+miejscu mamy też dostęp do ,,ciasteczek''\footnote{Cookies (ang.) — niewielkie informacje
+tekstowe przechowywane po stronie klienta} i sesji (rozwiązanie problemu bezstanowości
+protokołu \emph{HTTP}). W \emph{Ruby on Rails} sesja jest niczym innym jak tablicą
+asocjacyjną, do której możemy się odwoływać za pomocą kluczy (symboli). Sposób
+przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może być
+składowany zarówno w bazie danych jak i w ciasteczku.\\
+Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jes to plik o
+tej samej nazwie co akcja, znajdujący się w katalogu \emph{views} i podkatalogu
+odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy explicite).
+Rozszerzenie pliku składa się z nazwy żądanego formatu (html, js, xml, etc.) oraz systemu
+szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.html.haml}.
 
 \clearpage
 \section{Odległość Levenshteina}
