@@ -41,12 +41,12 @@ edukacji w oparciu o technologię Ruby on Rails}
 pod pseudonimem Matz. Łączy on w sobie cechy kilku języków, między innymi: \emph{Lispa},
 \emph{Perla}, \emph{Pythona} czy \emph{Smalltalka}, z każdego wybierając to co najlepsze,
 w efekcie dając elastyczne narzędzie, o wielkich możliwościach.\\
-Jest to język skryptowy — aby spróbować jego możliwości wystarczy nam konsolowy
+Jest to język skryptowy -- aby spróbować jego możliwości wystarczy nam konsolowy
 interpreter, z poziomu którego wydajemy polecenia, otrzymując od razu wynik działania.
 
 
 \emph{Ruby} należy do grupy języków bardzo wysokiego poziomu programowania
-(\emph{VHLL})\footnote{VHLL — Very High-Level Programming Language (ang.)}.
+(\emph{VHLL})\footnote{VHLL -- Very High-Level Programming Language (ang.)}.
 W bibliotece standardowej otrzymujemy szereg metod, dzięki którym bez zbytniego wysiłku,
 czasem nawet w jednej linijce, możemy napisać skrypt wykonujący złożone działania.\\
 Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tzw.
@@ -66,7 +66,7 @@ funkcję przyjmującą argument, to nie musimy określać jakiego on będzie typ
 możemy wywołać na nim metodę (jeśli takową posiada), odpowiednią dla klasy obiektu. Nazwa
 wzięła się z powiedzienia ,,Jeśli chodzi jak kaczka i kwacze jak kaczka, to musi być
 kaczką''\footnote{''If it walks like a duck and quacks like a duck, I would call it a duck''
-— James Whitcomb Riley (ang.)}
+-- James Whitcomb Riley (ang.)}
 
 
 Kolejną cechą, która jest jedną z najsilniejszych, jest metaprogramowanie. Nie tyle sama
@@ -88,9 +88,9 @@ Twórcą frameworka \emph{Ruby on Rails} jest David Heinemeier Hansson. Powstał
 roku, obecnie rozwijany cały czas przez społeczność użytkowników i czuwającą nad
 spójnością kodu tzw. \emph{Core Team}. Jest to produkt wolnego
 oprogramowania\footnote{Open source (ang.)}, wypuszczony na licencji
-\emph{MIT}.\footnote{Licencja powstała w Massachusetts Institute of Technology}.\\
+\emph{MIT}.\footnote{Licencja powstała w Massachusetts Institute of Technology}\\
 Framework jest kompletnym narzędziem do tworzenia aplikacji internetowych z wykorzystaniem
-bazy danych. Opiera się na wzorcu projektowym model-widok-kontroler\footnote{MVC — Model View
+bazy danych. Opiera się na wzorcu projektowym model-widok-kontroler\footnote{MVC -- Model View
 Controller (ang.)} i w całości jest napisany w języku \emph{Ruby}.
 
 
@@ -98,16 +98,16 @@ Główną zasadą jaką kierują się twórcy, to tzw. konwencja nad
 konfiguracją\footnote{Convention over Configuration (ang.)}, dzięki której przy minimalnej
 ilości kodu, dostajemy ogromną funkcjonalność, co znacznie przyspiesza tworzenie
 aplikacji. Świetnym przykładem jest \emph{screencast}, na którym Ryan
-Bates\footnote{Ryan Bates — jeden z aktywistów Ruby on Rails, znany głównie jako autor
+Bates\footnote{Ryan Bates -- jeden z aktywistów Ruby on Rails, znany głównie jako autor
 darmowych, cotygodniowych screencastów \cite{ryan-bates}} tworzy w 15 minut szkielet
 systemu blogowego, uwzględniając takie dodatki jak dostępność poprzez kanał
-RSS\footnote{RSS — Really Simple Syndication (ang.)} czy reprezentacja zasobów w postaci
+RSS\footnote{RSS -- Really Simple Syndication (ang.)} czy reprezentacja zasobów w postaci
 \emph{XML}.\cite{blog-in-15-min}\\
 Kolejną zaletą takiego podejścia, jest przejrzystość kodu. Dopóki postępujemy zgodnie ze
 wskazówkami, nasz kod nie powinien być trudny do zrozumienia przez innego programistę
 również zajmującego się tą technologią.\\
 Drugą ideą składającą się na całość tzw. \emph{Rails way} jest zapobieganie powtarzaniu
-samego siebie\footnote{DRY — Don't Repeat Yourself (ang.)}. Jeśli w jakimś miejscu używamy
+samego siebie\footnote{DRY -- Don't Repeat Yourself (ang.)}. Jeśli w jakimś miejscu używamy
 tego samego fragmentu kodu (czasem wręcz przeklejonego), to znaczy że możemy to zrobić
 prościej. Pomoc przychodzi z samego języka \emph{Ruby}, w którym za pomocą mechanizmu
 tzw. \emph{Mixinów}, możemy dodawać do interesujących nas klas czy modułów gotowe zestawy
@@ -124,7 +124,7 @@ katalogu \emph{controllers}. Wszystko to zapewnia nam odpowiednią separację ko
 czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
 
 
-\emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy — system
+\emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy -- system
 paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 \begin{itemize}
@@ -137,9 +137,9 @@ osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 
 
 \emph{ActionMailer} odpowiada za obsługę usług pocztowych wychodzących i przychodzących z
-naszej aplikacji. Jako generator widoków może być używany \emph{ERb}\footnote{ERb —
-Embedded Ruby (ang.) — system szablonów umożliwiający zagnieżdżanie kodu Rubiego w
-dokumencie tekstowym}. Konfiguracja jest możliwa dla każdego środowiska — odpowiednio w
+naszej aplikacji. Jako generator widoków może być używany \emph{ERb}\footnote{ERb --
+Embedded Ruby (ang.) -- system szablonów umożliwiający zagnieżdżanie kodu Rubiego w
+dokumencie tekstowym}. Konfiguracja jest możliwa dla każdego środowiska -- odpowiednio w
 środowisku produkcyjnym mamy możliowość wpisania danych rzeczywistych serwera pocztowego,
 natomiast w deweloperskim oraz testowym, możemy zastąpić ją wersją próbną, która nie
 będzie próbowała się łączyć z serwerem pozctowym, natomiast cały mechanizm i logika
@@ -150,17 +150,17 @@ zostanie zachowana.
 zapytanie z serwera jest wiązane z odpowiednią akcją kontrolera, przy pomocy tzw.
 \emph{Routingu}, który mapuje ścieżkę adresu na parametry przekazywane do aplikacji.
 Obecnie domyślny i preferowany sposób konstruowania ścieżek \emph{URL} jest zgodny z
-\emph{REST}.\footnote{REST — Representational State Transfer (ang.) — reprezentacja zasobu
+\emph{REST}.\footnote{REST -- Representational State Transfer (ang.) -- reprezentacja zasobu
 poprzez ,,czasowniki'' protokołu HTTP: GET, POST, PUT, DELETE (więcej na stronie~\pageref{sec:rest})}\\
 Wywołana akcja musi zwrócić odpowiedź, bądź to w postaci wyrenderowanego widoku,
 przekierowania czy też kodu błędu zgodnego z protokołem \emph{HTTP}. Ciekawym mechanizmem,
 którym dysponuje moduł \emph{ActionController} są filtry. Pozwalają one na wyzwolenie
 logiki przed lub po odwołaniu się do docelowej akcji. Często wykorzystywane są przy
 autentykacji, gdzie chcemy zabezpieczyć treść strony przed niepowołanymi osobami. W tym
-miejscu mamy też dostęp do ,,ciasteczek''\footnote{Cookies (ang.) — niewielkie informacje
+miejscu mamy też dostęp do ,,ciasteczek''\footnote{Cookies (ang.) -- niewielkie informacje
 tekstowe przechowywane po stronie klienta} i sesji (rozwiązanie problemu bezstanowości
 protokołu \emph{HTTP}). W \emph{Ruby on Rails} sesja jest niczym innym jak tablicą
-asocjacyjną, do której możemy się odwoływać za pomocą kluczy (symboli). Sposób
+asocjacyjną, do której możemy się odwoływać za pomocą kluczy. Sposób
 przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może być
 składowany zarówno w bazie danych jak i w ciasteczku.\\
 Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jes to plik o
@@ -171,7 +171,7 @@ szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.
 
 
 \emph{ActiveRecord} działa jako domyślne mapowanie
-obiektowo-relacyjne\footnote{ORM — Object-Relational Mapping (ang.)},
+obiektowo-relacyjne\footnote{ORM -- Object-Relational Mapping (ang.)},
 czyli odzworowanie logiki powiązanych ze sobą modeli na bazę danych.
 Nazwa została wzięta z książki Martina Fowlera\cite{martin-fowler}, która
 właśnie opisuje powyższe zagadnienie. Moduł ten nie jest ściśle związany z żadną
@@ -192,10 +192,10 @@ czystego \emph{SQLa}. Drugi i trzeci przykład wygenerowały to samo zapytanie.
 Składnia tego ostatniego jest przyjemniejsza dla oka, a umożliwiają nam je tzw.
 dynamiczne findery, które za pomocą metaprogramowania są tworzone w ,,locie''.
 Jest to cecha języka \emph{Ruby}. Możemy przechwycić wywołanie nieistniejącej
-metody na obiekcie, poprzez przedefiniowanie funkcji \emph{method_missing},
+metody na obiekcie, poprzez przedefiniowanie funkcji \emph{method\_missing},
 która jako argumenty przyjmuje kolejno: symbol wywołanej metody, oraz wszystkie
 pozostałe argumenty przekazane do niej. W powyższym przykładzie, symbol
-\emph{:find_by_login} jest parsowany do słów \emph{find_by} oraz \emph{login}, który
+\emph{:find\_by\_login} jest parsowany do słów \emph{find\_by} oraz \emph{login}, który
 następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej klasie
 \emph{User}. Jeśli to się powiedzie, konstruowane jest zapytanie \emph{SQL}
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.
