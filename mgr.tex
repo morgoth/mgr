@@ -169,6 +169,38 @@ odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy 
 Rozszerzenie pliku składa się z nazwy żądanego formatu (html, js, xml, etc.) oraz systemu
 szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.html.haml}.
 
+
+\emph{ActiveRecord} działa jako domyślne mapowanie
+obiektowo-relacyjne\footnote{ORM — Object-Relational Mapping (ang.)},
+czyli odzworowanie logiki powiązanych ze sobą modeli na bazę danych.
+Nazwa została wzięta z książki Martina Fowlera\cite{martin-fowler}, która
+właśnie opisuje powyższe zagadnienie. Moduł ten nie jest ściśle związany z żadną
+wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
+\emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
+konstruowanie zapytań za pomocą kodu \emph{Rubiego}, który później jest
+przekształcany na odpowiadającą mu składnię \emph{SQLa}.
+Przykład:
+\begin{listing}
+  \input{listing/activerecord_finders}
+  \caption{Konstruowanie zapytań oraz wygenerowany kod SQL}
+  \label{listing:activerecord_finders}
+\end{listing}
+
+
+Jak widzimy, w prosty sposób możemy konstruować zapytania, nie dotykając w ogóle
+czystego \emph{SQLa}. Drugi i trzeci przykład wygenerowały to samo zapytanie.
+Składnia tego ostatniego jest przyjemniejsza dla oka, a umożliwiają nam je tzw.
+dynamiczne findery, które za pomocą metaprogramowania są tworzone w ,,locie''.
+Jest to cecha języka \emph{Ruby}. Możemy przechwycić wywołanie nieistniejącej
+metody na obiekcie, poprzez przedefiniowanie funkcji \emph{method_missing},
+która jako argumenty przyjmuje kolejno: symbol wywołanej metody, oraz wszystkie
+pozostałe argumenty przekazane do niej. W powyższym przykładzie, symbol
+\emph{:find_by_login} jest parsowany do słów \emph{find_by} oraz \emph{login}, który
+następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej klasie
+\emph{User}. Jeśli to się powiedzie, konstruowane jest zapytanie \emph{SQL}
+wykorzystujące argument \emph{johndoe} jako parametr wywołania.
+
+
 \clearpage
 \section{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
