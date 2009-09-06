@@ -198,8 +198,21 @@ pozostałe argumenty przekazane do niej. W powyższym przykładzie, symbol
 \emph{:find\_by\_login} jest parsowany do słów \emph{find\_by} oraz \emph{login}, który
 następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej klasie
 \emph{User}. Jeśli to się powiedzie, konstruowane jest zapytanie \emph{SQL}
-wykorzystujące argument \emph{johndoe} jako parametr wywołania.
-
+wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
+Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
+dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy:
+\begin{listing}
+  \input{listing/activerecord_association}
+  \caption{Powiązanie dwóch obiektów ActiveRecord}
+  \label{listing:activerecord_association}
+\end{listing}
+\\
+Jeśli trzymamy się konwencji, to powyższy zapis jest wystarczający, musimy tylko
+pamiętać o umieszczeniu kolumny \emph{student\_id} w tabeli \emph{exams}. Jak
+widzimy konstrukcja odpowiada naturalnej relacji w języku angielskim, dlatego
+też nie powinno się używać lokalizowanych nazw tabel, co zapewnia spójność i
+nie powoduje ,,potworków językowych'', takich jak \emph{student has many
+egzamins}.
 
 \clearpage
 \section{Odległość Levenshteina}
