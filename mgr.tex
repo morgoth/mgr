@@ -52,7 +52,8 @@ czasem nawet w jednej linijce, możemy napisać skrypt wykonujący złożone dzi
 Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tzw.
 ,,samokomentujący się kod''. Składnia jest bardzo zbliżona do języka naturalnego
 (angielskiego), dzięki czemu nawet osoba nie mająca nic wspólnego z programowaniem,
-powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie:
+powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie
+listing \ref{listing:selfcommenting}.
 \begin{listing}
   \input{listing/selfcommenting}
   \caption{Samokomentujący się kod}
@@ -179,7 +180,7 @@ wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
 \emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
 konstruowanie zapytań za pomocą kodu \emph{Rubiego}, który później jest
 przekształcany na odpowiadającą mu składnię \emph{SQLa}.
-Przykład:
+Przykład przedstawiony na listingu \ref{listing:activerecord_finders}.
 \begin{listing}
   \input{listing/activerecord_finders}
   \caption{Konstruowanie zapytań oraz wygenerowany kod SQL}
@@ -200,19 +201,47 @@ następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej kl
 \emph{User}. Jeśli to się powiedzie, konstruowane jest zapytanie \emph{SQL}
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
 Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
-dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy:
+dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy, jak na
+listingu \ref{listing:activerecord_association}.
 \begin{listing}
   \input{listing/activerecord_association}
   \caption{Powiązanie dwóch obiektów ActiveRecord}
   \label{listing:activerecord_association}
 \end{listing}
-\\
+
+
 Jeśli trzymamy się konwencji, to powyższy zapis jest wystarczający, musimy tylko
-pamiętać o umieszczeniu kolumny \emph{student\_id} w tabeli \emph{exams}. Jak
+pamiętać o umieszczeniu kolumny \texttt{student\_id} w tabeli \texttt{exams}. Jak
 widzimy konstrukcja odpowiada naturalnej relacji w języku angielskim, dlatego
 też nie powinno się używać lokalizowanych nazw tabel, co zapewnia spójność i
-nie powoduje ,,potworków językowych'', takich jak \emph{student has many
-egzamins}.
+nie powoduje ,,potworków językowych'', takich jak \texttt{student has many
+egzamins}. Po deklaracji asocjacji dostajemy automatycznie między innymi takie
+metody jak przedstawione na listingu \ref{listing:activerecord_association_finders}.
+\begin{listing}
+  \input{listing/activerecord_association_finders}
+  \caption{Dostępne metody po deklaracji asocjacji}
+  \label{listing:activerecord_association_finders}
+\end{listing}
+
+
+Walidatory zapewniają nam poprawność wprowadzanych danych, dzięki którym również
+możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
+standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
+własne. Przykładowy sposób użycia przedstawia listing \ref{listing:activerecord_validations}.
+\begin{listing}
+  \input{listing/activerecord_validations}
+  \caption{Walidacja danych}
+  \label{listing:activerecord_validations}
+\end{listing}
+
+
+W podanym przykładzie pierwsza walidacja zapewnia nam obecność nazwy egzaminu,
+druga sprawdza czy czas trwania (\texttt{duration}) jest liczbą całkowitą większą od
+zera. Ostatni walidator jest metodą zdefiniowaną przez nas, który ma być
+wywołany jedynie gdy pole ,,ilość pytań'' (\texttt{question\_number}) jest obecne.
+Zapewnia, że liczba ta nie może być większa niż ilość wszystkich dostępnych
+pytań dla danego egzaminu. Symbol dodawanego błędu możemy następnie zlokalizować
+w plikach z tłumaczeniami.
 
 \clearpage
 \section{Odległość Levenshteina}
