@@ -241,7 +241,55 @@ zera. Ostatni walidator jest metodą zdefiniowaną przez nas, który ma być
 wywołany jedynie gdy pole ,,ilość pytań'' (\texttt{question\_number}) jest obecne.
 Zapewnia, że liczba ta nie może być większa niż ilość wszystkich dostępnych
 pytań dla danego egzaminu. Symbol dodawanego błędu możemy następnie zlokalizować
-w plikach z tłumaczeniami.
+w plikach z tłumaczeniami.\\
+Kolejną przydatną rzeczą sa wywołania zwrotne -- pozwalają na manipulację
+atrybutami, przed lub po walidacji, utworzeniu, uaktualnieniu lub usunięciu
+obiektu z bazy dancyh. Dzięki temu możemy w dokładnie określonym momencie
+wyzwolić odpowiednią logikę. Wywołania działają również przy deklarowanej
+asocjacji, więc dodatkowo dostajemy możliwość wywołania metod przy dodawaniu i
+usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu \ref
+{listing:activerecord_callbacks}.
+\begin{listing}
+  \input{listing/activerecord_callbacks}
+  \caption{Wywołania zwrotne}
+  \label{listing:activerecord_callbacks}
+\end{listing}
+
+
+Operowanie atrytubatymi w podany sposób jest bardzo wygodne, szczególnie że mamy
+zapewnioną atomowość modelu. Jeśli powiązane modele również są modyfikowane, to
+w chwili np. błędu walidacji, lub innego niepowodzenia, wszystkie zmiany są
+cofane do stanu pierwotnego. Innymi słowy, zmiany są wprowadzane do obiektów
+tylko jeśli wszystko jest przeprowadzone pomyślnie. Z transakcji możemy również
+korzystac jawnie, przekazując do metody \texttt{transaction} blok, w którym
+wykonujemy interesujące nas akcje.
+
+
+\emph{ActiveResource} jest biblioteką umożliwiającym komunikację z innymi
+aplikacjami railsowymi niemal przy tej samej składni jaka jest dostępna w \emph
+{ActiveRecord}. Wystarczy że określimy \emph{host} zdalnego serwera i już
+możemy korzystać z jego \emph{API},\footnote{API -- Application Programming
+Interface (ang.) -- tutaj interfejs do komunikacji ze zdalną aplikacją} o ile
+jest zgodne z konwencją REST.\footnote{więcej na stronie~\pageref{sec:rest}}
+Moduł jest oparty o reprezentację zasobów w postaci \emph{XML} lub \emph{JSON
+}.\footnote{JSON -- JavaScript Object Notation -- tekstowy format wymiany
+danych, będący podzbiorem języka JavaScript}
+
+
+\emph{ActiveResource} przynosi między innymi rozszerzenia biblioteki
+standardowej o nowe metody, ułatwiające konwersję lub kalkulację na podstawowych
+typach, takich jak \texttt{String}, \texttt{Date} czy \texttt{Numeric}. Przykłady
+wykorzystania przedstawione na listingu \ref{listing:activesupport}.\\
+\begin{listing}
+  \input{listing/activesupport}
+  \caption{Pzykład dostępnych metod w ActiveSupport}
+  \label{listing:activesupport}
+\end{listing}
+W ostatnim przykładzie widzimy metodę z pytajnikiem. Warto wspomnieć w tym
+momencie o konwencji jaka przyjęła się w środowisku języka \emph{Ruby}, gdzie
+właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub \texttt
+{false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
+bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
 
 \clearpage
 \section{Odległość Levenshteina}
