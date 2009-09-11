@@ -241,7 +241,9 @@ zera. Ostatni walidator jest metodą zdefiniowaną przez nas, który ma być
 wywołany jedynie gdy pole ,,ilość pytań'' (\texttt{question\_number}) jest obecne.
 Zapewnia, że liczba ta nie może być większa niż ilość wszystkich dostępnych
 pytań dla danego egzaminu. Symbol dodawanego błędu możemy następnie zlokalizować
-w plikach z tłumaczeniami.\\
+w plikach z tłumaczeniami.
+
+
 Kolejną przydatną rzeczą sa wywołania zwrotne -- pozwalają na manipulację
 atrybutami, przed lub po walidacji, utworzeniu, uaktualnieniu lub usunięciu
 obiektu z bazy dancyh. Dzięki temu możemy w dokładnie określonym momencie
@@ -256,13 +258,36 @@ usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu \re
 \end{listing}
 
 
-Operowanie atrytubatymi w podany sposób jest bardzo wygodne, szczególnie że mamy
+Operowanie atrybutami w podany sposób jest bardzo wygodne, szczególnie że mamy
 zapewnioną atomowość modelu. Jeśli powiązane modele również są modyfikowane, to
 w chwili np. błędu walidacji, lub innego niepowodzenia, wszystkie zmiany są
 cofane do stanu pierwotnego. Innymi słowy, zmiany są wprowadzane do obiektów
 tylko jeśli wszystko jest przeprowadzone pomyślnie. Z transakcji możemy również
 korzystac jawnie, przekazując do metody \texttt{transaction} blok, w którym
 wykonujemy interesujące nas akcje.
+
+
+Zmian schematu bazy danych dokonujemy poprzez migracje. Są to pliki z kodem \emph{Rubiego
+}, w których definiujemy wprowadzane tabele oraz poszczególne kolumny. Świetnie sprawdzają
+się przy pracy w zespole, gdyż każdy plik jest oznaczony datą, a sama baza danych
+przechowuje informację o aktualnej wersji, dlatego nie ma tu konflitków i nie musimy
+przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka generatorów,
+które znacznie ułatwiają i przyspieszają pracę. Dodatkowo bazują one na konwencji -- nazwa
+modelu (klasy) w liczbie pojedynczej, natomiast nazwa kolumny w liczbie mnogiej, co
+minimalizuje możliwość popełnienia błędu z naszej strony. Przykładowe polecenie, oraz
+wygenerowany plik na listingu \ref{listing:activerecord_migrations}.
+\begin{listing}
+  \input{listing/activerecord_migrations}
+  \caption{Generator modelu oraz automatycznie utworzony plik migracji}
+  \label{listing:activerecord_migrations}
+\end{listing}
+
+
+Ostatecznie zmiany wprowadzamy poprzez polecenie \texttt{rake db:migrate}\footnote{Rake --
+Ruby Make -- odpowiednik unixowego Make, pozwalający na użycie języka Ruby. Twórcą
+jest Jim Weirich}. Domyślnie \texttt{railsy} dodają dwie tzw. magiczne kolumny
+\texttt{created\_at} oraz \texttt{updated\_at}, które są aktualizowane automatycznie, jak
+nie trudno się domyślić, przy utworzeniu obiektu oraz jego aktualizacji.
 
 
 \emph{ActiveResource} jest biblioteką umożliwiającym komunikację z innymi
@@ -279,17 +304,47 @@ danych, będący podzbiorem języka JavaScript}
 \emph{ActiveResource} przynosi między innymi rozszerzenia biblioteki
 standardowej o nowe metody, ułatwiające konwersję lub kalkulację na podstawowych
 typach, takich jak \texttt{String}, \texttt{Date} czy \texttt{Numeric}. Przykłady
-wykorzystania przedstawione na listingu \ref{listing:activesupport}.\\
+wykorzystania przedstawione na listingu \ref{listing:activesupport}.
 \begin{listing}
   \input{listing/activesupport}
   \caption{Pzykład dostępnych metod w ActiveSupport}
   \label{listing:activesupport}
 \end{listing}
+
+
 W ostatnim przykładzie widzimy metodę z pytajnikiem. Warto wspomnieć w tym
 momencie o konwencji jaka przyjęła się w środowisku języka \emph{Ruby}, gdzie
 właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub \texttt
 {false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
 bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
+
+\subsubsection{Bezpieczeństwo aplikacji}
+\emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające nam zabezpieczyć się
+przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest \emph{CSRF
+}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
+napastnika pod sesję użytkownika. Jeśli osoba taka jest zalogowana, wystarczy że uruchomi
+odnośnik modyfikujący dane niedostępne bez aktywnej sesji. Innymi słowy zmusza się
+użytkownika do wysłania żądania \emph{HTTP} do serwera z jego przeglądarki, wykorzystując
+jego autentykację.\\
+Sposobem na przeciwdziałanie jest dołączanie do parametrów przesyłanych do serwera,
+unikalnego tokena, który jednoznacznie identyfikuje użytkownika. Token ten jest umieszczany
+automatycznie w formularzach, gdzie wysyłamy żądania metodą \emph{POST}. Następnie po
+stronie serwera jest porównywany z aktualnym kluczem sesji użytkownika. Dzięki temu
+eliminujemy spreparowane formularze, które próbują modyfikować poufne dane.\\
+Domyślnie mechanizm ten jest włączony dla każdej nowo tworzonej aplikacji railsowej i
+sprowadza się do umieszczenia w kontrolerze głównym linijki: \texttt
+{protect\_from\_forgery}.
+
+
+Kolejnym sposobem ataku może być tzw. \emph{XSS}\footnote{XSS -- Cross-site scripting
+(ang.)} polegający na osadzeniu, w treści kodu strony, skryptu (najczęściej
+javascriptowego), który może wyciągnąć z bazy danych poufne informacje. Przykładem niech
+będzie serwis, na którym każdy użytkownik może pozostawić komentarz. Jeśli nie jest on
+zabezpieczony, możemy wkleić kod, który przy kolejnym wyświetleniu strony, będzie potraktowany
+przez naszą aplikację jako regularny kawałek kodu aplikacji, a więc zostanie wykonany.\\
+Z pomocą przychodzi metoda \texttt{html\_escape} aliasowana jako po prostu \texttt{h()},
+która zawsze traktuje przekazane słowa jako czysty tekst, lub metoda \texttt{sanitize},
+dopuszczająca pewne zdefiniowane tagi \emph{HTMLowe}, które są uznawane za ,,bezpieczne''.
 
 \clearpage
 \section{Odległość Levenshteina}
