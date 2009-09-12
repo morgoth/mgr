@@ -318,6 +318,19 @@ właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub \tex
 {false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
 bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
 
+\subsubsection{Internacjonalizacja}
+Poczynając od wersji 2.2, \emph{Ruby on Rails} ma wbudowany mechanizm internacjonalizacji.
+Tłumaczenie słów w widokach odbywa się poprzez wywołanie metody \texttt{translate
+} aliasowanej do \texttt{t()} na kluczu, który następnie możemy zdefiniować w plikach z
+naszym tłumaczeniem. Dodatkowo możemy tłumaczyć nazwy modeli, atrybutów, czy błędy
+walidacji. Pliki z tłumaczeniem mogą być z rozszerzeniem \texttt{.rb}, wtedy zapisujemy je
+w postaci tablic asocjacyjnych języka \emph{Ruby} lub rozszerzeniem \texttt{.yml}. \emph{
+YAML}\footnote{YAML -- YAML Ain't Markup Language (ang.)} jest językiem formalnym
+przeznaczonym do reprezentowania zbioru danych. Jego główną zaletą jest czytelność,
+przeciwnie jak to jest w przypadku \emph{XMLa}. Nie ma tu otwieranych i zamykanych
+znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom zagnieżdżenia.
+
+
 \subsubsection{Bezpieczeństwo aplikacji}
 \emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające nam zabezpieczyć się
 przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest \emph{CSRF
@@ -345,6 +358,114 @@ przez naszą aplikację jako regularny kawałek kodu aplikacji, a więc zostanie
 Z pomocą przychodzi metoda \texttt{html\_escape} aliasowana jako po prostu \texttt{h()},
 która zawsze traktuje przekazane słowa jako czysty tekst, lub metoda \texttt{sanitize},
 dopuszczająca pewne zdefiniowane tagi \emph{HTMLowe}, które są uznawane za ,,bezpieczne''.
+
+\subsubsection{Merb + Ruby on Rails}
+\emph{Merb} początkowo był małym frameworkiem napisanym w języku \emph{Ruby}, by w
+przeciągu kilku lat rozwinąć się i konkurować ze swoim starszym bratem \emph{Ruby on
+Rails}. Twórcą jest Ezra Zygmuntowicz, który skupił się na szybkości działania aplikacji
+oraz uniezależnieniu frameworka od konkretnej biblioteki \emph{ORM} oraz \emph{JavaScript
+}. \emph{Merb} nastawiony był również na większą modularność, sam w sobie nie dawał tak
+dużej funkcjonalności jak \emph{RoR}, ale rozszerzenie o nowe możliwości miało być
+prostsze i wspierane przez zespół pracowników czuwających nad głównym kodem.\\
+W dniu 23 grudnia 2008 roku została ogłszona wiadomość\cite{rails-merb} o połączeniu obu zespołów,
+które razem skupią się na przeniesieniu najlepszych rzeczy z obu frameworków do jednego,
+wypuszczonego pod nazwą \emph{Ruby~on~Rails~3.0}. Pierwszej wersji możemy się spodziewać
+pod koniec 2009 roku. Informacja ta wzbudziła wiele emocji w środowisku deweloperskim, co
+oczywiście też przeniosło się na promocję samych railsów. Obecnie, framework ten jest
+jednym z najpopularniejszych i większość startujących, głównie opensourcowych,
+projektów wybiera właśnie \emph{Ruby on Rails}.\\
+Zmiany jakich spodziewamy się wraz z wydaniem wersji 3.0 to przede wszystkim większa
+wydajność oraz niezależność. Będzie możliwy swobodny wybór bibliotek odpowiedzialnych za
+\emph{JavaScript}, \emph{ORM}, silnik szablonów oraz moduł testujący. Twórcy zapewniają
+również, że migracja aplikacji pisanych we wcześniejszych wersjach oraz \emph{Merbie} do nowej
+wersji, nie będzie stwarzać problemu.
+
+\subsection{REST}\label{sec:rest}
+\emph{REST}\footnote{REST -- Representational State Transfer (ang.)} jest wzorcem
+architektury oprogramowania, który próbuje przestawić reprezentację zasobów oraz
+zarządzanie nimi poprzez odpowiednie metody protokołu \emph{HTTP}. Możemy zobrazować to w
+następujący sposób: adres \emph{URI} jest identyfikatorem określającym konkretny zasób
+(obiekt), możemy myśleć o nim jako o rzeczowniku. Dopełnieniem sentencji jest czasownik,
+który jest przedstawiony jako jedna z metod protokołu \emph{HTTP}: \emph{POST}, \emph{GET},
+\emph{PUT} lub \emph{DELETE}. Budujemy gramatycznie poprawne ,,zdanie'' poprzez
+połączenie rzeczownika z czasownikiem, otrzymując formę wywołania przesyłaną na serwer dla
+konkretnego zasobu. Odpowiednio, chcąc pobrać dane, bez modyfikacji, powinniśmy użyć
+metody \emph{GET}. \emph{POST} służy do tworzenia nowych obiektów, \emph{PUT} do ich
+modyfikacji, natomiast \emph{DELETE} do usuwania.\\
+Łączy się to wszystko świetnie z wykorzystaniem \emph{CRUD}\footnote{CRUD -- create, read,
+update and delete (ang.)}, który sprowadza się do podstawowych akcji wykonywanych na
+obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia tabela
+\ref{table:rest}.
+\begin{table}[htc]
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{metoda HTTP} & \textbf{CRUD} & \textbf{SQL} & \textbf{akcja RoR}\\
+    \hline
+    \texttt{POST} & \texttt{Create} & \texttt{Insert} & \texttt{create}\\
+    \texttt{GET} & \texttt{Read} & \texttt{Select} & \texttt{show}\\
+    \texttt{PUT} & \texttt{Update} & \texttt{Update} & \texttt{update}\\
+    \texttt{DELETE} & \texttt{Delete} & \texttt{Delete} & \texttt{destroy}\\
+    \hline
+  \end{tabular}
+  \caption{Powiązanie REST, CRUD, zapytań SQL oraz akcji RoR}
+  \label{table:rest}
+\end{table}
+
+
+
+
+\subsection{Haml i Sass}
+\emph{Haml}\footnote{Haml -- HTML Abstraction Markup Language (ang.)} jest językiem
+znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje wcięcia, tak więc podobnie
+jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
+szablonu jest bardziej przejrzysta i trudniej nam się pomylić, gdyż przy błędnej składni
+zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTML}, nawet jeśli zapomnimy
+domnkąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
+wyjątku.\\
+\emph{Haml} nie jest ściśle związany z żadnym językiem programowania i może być używany
+również we frameworkach opartych o \emph{Python}, \emph{PHP} czy \emph{.NET}, co czyni
+z niego narzędzie warte uwagi dla każdego dewelopera.
+
+
+\emph{Sass}\footnote{Sass -- Syntactically Awesome Stylesheets (ang.)} jest dostępny razem
+z biblioteką \emph{Haml} i służy do generowania kaskadowych arkuszy stylów \emph{CSS
+}\footnote{CSS -- Cascading Style Sheets (ang.)}. Również bazuje na wcięciach, więc
+wszelkie tagi są domykane automatycznie. Dodatkową zaletą poza przejrzystością i
+zwięzłością języka, jest dostępność zmiennych, na których możemy wykonywać operacje
+matematyczne. Przykładowo, jeśli mamy zdefiniowany jeden kolor i chcemy uzyskać np.
+jaśniejszy, wystarczy że odejmiemy odpowiednią wartość od głównego. Kolejną cechą jest
+obecność tzw. \texttt{mixinów}, dzięki którym możemy używać jednego fragmentu kodu w wielu
+miejscach, bez powtarzania.
+
+\subsection{Blueprint i Compass}
+\emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
+dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografię,
+listy, tabele, etc. Używamy go popzez dołączenie odpowiednich klas lub identyfikatorów do
+znaczników \emph{HTMLa}. Zyskujemy automatyczne stylowanie, które oparte jest na
+najlepszych doświadczeniach deweloperskich.\\
+\emph{Blueprint} stara się ustandaryzować podział strony na najczęściej spotykane sekcje,
+takie jak nagłówek, nawigacja, treść, stopka, a które mają mieć swoje odpowiednie
+znaczniki w przygotowywanej 5 wersji języka \emph{HTML}. Ciekawym pomysłem jest
+stylowanie względem siatki, która rodziela stronę na kilkanaście pasów. Wszelkie marginesy
+oraz przesunięte elementy są właśnie dostosowywane do rozmiarów tychże części, dzięki czemu
+estetyka strony jest zachowana.
+
+
+\emph{Compass}\footnote{Twórcą jest Chris Eppstein, więcej na stronie internetowej
+\cite{compass}} jest narzędziem napisanym w języku \emph{Ruby}, wykorzystującym język
+\emph{Sass} oraz łączącym kilka najpopularniejszych frameworków \emph{CSS}, w tym
+\emph{Blueprinta}. Jego główną cechą jest to, że nie musimy dodawać określonych klas i
+identyfikatorów do znaczników \emph{HTMLa}, aby korzystać z dobrodziejstw gotowych stylów.
+To my podporządkowujemy zebrane arkusze pod naszą strukturę strony. Głównie za sprawą
+dostępnych w \emph{Sassie} \texttt{mixinów}, jesteśmy w stanie dodawać pojedyncze,
+interesujące nas fragmenty gotowych rozwiązań.\\
+Automatycznie dostajemy również wersję arkuszy stylów do druku strony i pod \emph{Internet
+Explorera}, który niestety nie trzyma się przyjętych przez \emph{W3C}\footnote{W3C -- The
+World Wide Web Consortium (ang.) -- organizacja zajmująca się ustanawianiem standardów pisania i
+przesyłu stron WWW} standardów i często trzeba korygować jej niedoskonałości. Dotyczy to
+zwłaszcza starszych wersji przeglądarek \emph{IE}, które na szczęście wychodzą powoli z
+użytku.
+
 
 \clearpage
 \section{Odległość Levenshteina}
