@@ -83,7 +83,7 @@ działa tu zasada najmniejszego zaskoczenia. Często, powstające nowe bibliotek
 się kilku ustalonych konwencji, dzięki czemu zgłębiając nowe funkcjonalności, odnajdujemy
 duże podobieństwa do już dobrze znanych nam metod, choćby z biblioteki standardowej.
 
-\clearpage
+
 \subsection{Ruby on Rails}
 Twórcą frameworka \emph{Ruby on Rails} jest David Heinemeier Hansson. Powstał on w 2003
 roku, obecnie rozwijany cały czas przez społeczność użytkowników i czuwającą nad
@@ -125,6 +125,7 @@ katalogu \emph{controllers}. Wszystko to zapewnia nam odpowiednią separację ko
 czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
 
 
+\subsubsection{Gemy}
 \emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy -- system
 paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
@@ -290,7 +291,7 @@ jest Jim Weirich}. Domyślnie \texttt{railsy} dodają dwie tzw. magiczne kolumny
 nie trudno się domyślić, przy utworzeniu obiektu oraz jego aktualizacji.
 
 
-\emph{ActiveResource} jest biblioteką umożliwiającym komunikację z innymi
+\emph{ActiveResource} jest biblioteką umożliwiającą komunikację z innymi
 aplikacjami railsowymi niemal przy tej samej składni jaka jest dostępna w \emph
 {ActiveRecord}. Wystarczy że określimy \emph{host} zdalnego serwera i już
 możemy korzystać z jego \emph{API},\footnote{API -- Application Programming
@@ -382,7 +383,7 @@ wersji, nie będzie stwarzać problemu.
 
 \subsection{REST}\label{sec:rest}
 \emph{REST}\footnote{REST -- Representational State Transfer (ang.)} jest wzorcem
-architektury oprogramowania, który próbuje przestawić reprezentację zasobów oraz
+architektury oprogramowania, który próbuje przedstawić reprezentację zasobów oraz
 zarządzanie nimi poprzez odpowiednie metody protokołu \emph{HTTP}. Możemy zobrazować to w
 następujący sposób: adres \emph{URI} jest identyfikatorem określającym konkretny zasób
 (obiekt), możemy myśleć o nim jako o rzeczowniku. Dopełnieniem sentencji jest czasownik,
@@ -396,8 +397,8 @@ modyfikacji, natomiast \emph{DELETE} do usuwania.\\
 update and delete (ang.)}, który sprowadza się do podstawowych akcji wykonywanych na
 obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia tabela
 \ref{table:rest}.
-\begin{table}[htc]
-  \begin{tabular}{|l|l|l|l|}
+\begin{table}[htcb]
+  \begin{tabular}{|c|c|c|c|}
     \hline
     \textbf{metoda HTTP} & \textbf{CRUD} & \textbf{SQL} & \textbf{akcja RoR}\\
     \hline
@@ -412,6 +413,46 @@ obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia ta
 \end{table}
 
 
+Jeśli trzymamy się przyjętych konwencji, to pzykładowy ciąg zdarzeń dla usunięcia danego
+obiektu np. użytkownika, wyglądałby następująco: na serwer jest przesyłane żądanie pod
+adresem \texttt{users/1}, gdzie \texttt{1} jest identyfikatorem osobnika, którego chemy
+usunąć z bazy danych. Żądanie jest przesyłane metodą \emph{DELETE}, następnie po stronie
+naszej aplikacji, mapowane na akcję \texttt{destroy} w kontrolerze \emph{UsersController},
+aż w końcu przy użyciu \emph{ActiveRecord} jest generowane zapytanie \emph{SQL}, które
+ostatecznie usuwa obiekt z bazy.\\
+Warto wspomnieć w tym momencie, że przeglądarki obecnie nie wspierają wysyłania żądań
+\emph{PUT} oraz \emph{DELETE}, co jednak railsy załatwiają sobie poprzez dodanie do
+formularza ukrytego pola z nazwą docelowej metody, używając żądania \emph{POST}.\\
+Domyślnym sposobem budowania aplikacji w \emph{Ruby on Rails} poczynając od wersji 2.0
+jest właśnie \emph{REST}, który ma też duże znaczenie w przypadku wykorzystania \emph
+{ActiveResource}, czyli budowania \emph{API} w celu udostępnienia zasobów dla innych
+serwisów. Sprowadza się to praktycznie tylko do reprezentacji konkretnego obiektu poprzez
+format \emph{XML} lub \emph{JSON}.
+
+
+\subsection{Shoulda i Cucumber}
+\emph{Shoulda} jest biblioteką służącą do przeprowadzania testów jednostkowych w oparciu o
+\emph{BDD}\footnote{BDD -- Behavior Driven Development (ang.)}. Ideą takiego podejścia
+jest pisanie testów jeszcze przed stworzeniem kodu aplikacji, który opisuje funkcjonalność
+jakiej mamy się spodziewać. Następnie piszemy kod właściwy, w taki sposób aby test
+zakończył się powodzeniem. Później możemy zająć się refaktoryzacją, zabezpieczając się
+cały czas istniejącymi testami, przed ewentualnym naruszeniem integralności kodu całej
+aplikacji. Testy jednostkowe powinny zapewnić poprawne działanie tworzonych metod w
+obrębie tylko jednej klasy. Jeśli jednak istnieją powiązania z innymi modelami, powinniśmy
+się zastanowić nad użyciem jendej z bibliotek \emph{mockowania}\footnote{mock -- symulacja
+zachowania prawdziwych obiektów w celach testowych}.\\
+\emph{Shoulda} jest rozszerzeniem standardowej biblioteki testującej języka \emph{Ruby}
+\emph{Test::Unit}, która przynosi wygodniejszą składnie oraz nowe typy asercji.
+
+
+\emph{Cucumber}\footnote{Stworzony w języku Ruby przez Aslaka Hellesøya, więcej na stronie
+internetowej \cite{cucumber}} zalicza się do tzw. \emph{Scenario Driven Development} i
+służy do testowania funkcjonalności ostatecznej -- tej widocznej dla użytkownika. Polega
+na napisaniu scenariusza, który zawiera poszczególne akcje użytkownika wykonywane z
+poziomu przeglądarki. Składnia ogranicza się do kilku słów kluczowych, które poprzedzają
+dowolny tekst opisujący zdarzenia. Następnie przy pomocy wyrażeń regularnych tekst jest
+mapowany na definicję metod, pisanych już w języku \emph {Ruby}. Przykład można zobaczyć
+na listingu
 
 
 \subsection{Haml i Sass}
@@ -420,7 +461,7 @@ znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje w
 jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
 szablonu jest bardziej przejrzysta i trudniej nam się pomylić, gdyż przy błędnej składni
 zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTML}, nawet jeśli zapomnimy
-domnkąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
+domnknąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
 wyjątku.\\
 \emph{Haml} nie jest ściśle związany z żadnym językiem programowania i może być używany
 również we frameworkach opartych o \emph{Python}, \emph{PHP} czy \emph{.NET}, co czyni
@@ -497,6 +538,8 @@ dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uzna
 za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz, gdzie
 zastosowany jest podobny mechanizm oceny.
 
+\clearpage
+\tableofcontents
 \clearpage
 \bibliographystyle{plain}
 \bibliography{bibliografia}
