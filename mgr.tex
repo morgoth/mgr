@@ -53,7 +53,7 @@ Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tz
 ,,samokomentujący się kod''. Składnia jest bardzo zbliżona do języka naturalnego
 (angielskiego), dzięki czemu nawet osoba nie mająca nic wspólnego z programowaniem,
 powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie
-listing \ref{listing:selfcommenting}.
+listing nr \ref{listing:selfcommenting}.
 \begin{listing}
   \input{listing/selfcommenting}
   \caption{Samokomentujący się kod}
@@ -181,7 +181,8 @@ wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
 \emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
 konstruowanie zapytań za pomocą kodu \emph{Rubiego}, który później jest
 przekształcany na odpowiadającą mu składnię \emph{SQLa}.
-Przykład przedstawiony na listingu \ref{listing:activerecord_finders}.
+Przykład przedstawiony na listingu nr \ref{listing:activerecord_finders}.
+
 \begin{listing}
   \input{listing/activerecord_finders}
   \caption{Konstruowanie zapytań oraz wygenerowany kod SQL}
@@ -203,7 +204,8 @@ następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej kl
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
 Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
 dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy, jak na
-listingu \ref{listing:activerecord_association}.
+listingu nr \ref{listing:activerecord_association}.
+
 \begin{listing}
   \input{listing/activerecord_association}
   \caption{Powiązanie dwóch obiektów ActiveRecord}
@@ -217,7 +219,8 @@ widzimy konstrukcja odpowiada naturalnej relacji w języku angielskim, dlatego
 też nie powinno się używać lokalizowanych nazw tabel, co zapewnia spójność i
 nie powoduje ,,potworków językowych'', takich jak \texttt{student has many
 egzamins}. Po deklaracji asocjacji dostajemy automatycznie między innymi takie
-metody jak przedstawione na listingu \ref{listing:activerecord_association_finders}.
+metody jak przedstawione na listingu nr \ref{listing:activerecord_association_finders}.
+
 \begin{listing}
   \input{listing/activerecord_association_finders}
   \caption{Dostępne metody po deklaracji asocjacji}
@@ -228,7 +231,8 @@ metody jak przedstawione na listingu \ref{listing:activerecord_association_finde
 Walidatory zapewniają nam poprawność wprowadzanych danych, dzięki którym również
 możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
 standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
-własne. Przykładowy sposób użycia przedstawia listing \ref{listing:activerecord_validations}.
+własne. Przykładowy sposób użycia przedstawia listing nr \ref{listing:activerecord_validations}.
+
 \begin{listing}
   \input{listing/activerecord_validations}
   \caption{Walidacja danych}
@@ -250,8 +254,9 @@ atrybutami, przed lub po walidacji, utworzeniu, uaktualnieniu lub usunięciu
 obiektu z bazy dancyh. Dzięki temu możemy w dokładnie określonym momencie
 wyzwolić odpowiednią logikę. Wywołania działają również przy deklarowanej
 asocjacji, więc dodatkowo dostajemy możliwość wywołania metod przy dodawaniu i
-usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu \ref
-{listing:activerecord_callbacks}.
+usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
+\ref{listing:activerecord_callbacks}.
+
 \begin{listing}
   \input{listing/activerecord_callbacks}
   \caption{Wywołania zwrotne}
@@ -276,7 +281,8 @@ przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka gen
 które znacznie ułatwiają i przyspieszają pracę. Dodatkowo bazują one na konwencji -- nazwa
 modelu (klasy) w liczbie pojedynczej, natomiast nazwa kolumny w liczbie mnogiej, co
 minimalizuje możliwość popełnienia błędu z naszej strony. Przykładowe polecenie, oraz
-wygenerowany plik na listingu \ref{listing:activerecord_migrations}.
+wygenerowany plik na listingu nr~\ref{listing:activerecord_migrations}.
+
 \begin{listing}
   \input{listing/activerecord_migrations}
   \caption{Generator modelu oraz automatycznie utworzony plik migracji}
@@ -305,7 +311,8 @@ danych, będący podzbiorem języka JavaScript}
 \emph{ActiveResource} przynosi między innymi rozszerzenia biblioteki
 standardowej o nowe metody, ułatwiające konwersję lub kalkulację na podstawowych
 typach, takich jak \texttt{String}, \texttt{Date} czy \texttt{Numeric}. Przykłady
-wykorzystania przedstawione na listingu \ref{listing:activesupport}.
+wykorzystania przedstawione na listingu nr~\ref{listing:activesupport}.
+
 \begin{listing}
   \input{listing/activesupport}
   \caption{Pzykład dostępnych metod w ActiveSupport}
@@ -346,8 +353,7 @@ automatycznie w formularzach, gdzie wysyłamy żądania metodą \emph{POST}. Nas
 stronie serwera jest porównywany z aktualnym kluczem sesji użytkownika. Dzięki temu
 eliminujemy spreparowane formularze, które próbują modyfikować poufne dane.\\
 Domyślnie mechanizm ten jest włączony dla każdej nowo tworzonej aplikacji railsowej i
-sprowadza się do umieszczenia w kontrolerze głównym linijki: \texttt
-{protect\_from\_forgery}.
+sprowadza się do umieszczenia w kontrolerze głównym linijki: \texttt{protect\_from\_forgery}.
 
 
 Kolejnym sposobem ataku może być tzw. \emph{XSS}\footnote{XSS -- Cross-site scripting
@@ -395,23 +401,25 @@ metody \emph{GET}. \emph{POST} służy do tworzenia nowych obiektów, \emph{PUT}
 modyfikacji, natomiast \emph{DELETE} do usuwania.\\
 Łączy się to wszystko świetnie z wykorzystaniem \emph{CRUD}\footnote{CRUD -- create, read,
 update and delete (ang.)}, który sprowadza się do podstawowych akcji wykonywanych na
-obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia tabela
+obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia tabela nr
 \ref{table:rest}.
+
 \begin{table}[htcb]
-  \begin{tabular}{|c|c|c|c|}
-    \hline
-    \textbf{metoda HTTP} & \textbf{CRUD} & \textbf{SQL} & \textbf{akcja RoR}\\
-    \hline
-    \texttt{POST} & \texttt{Create} & \texttt{Insert} & \texttt{create}\\
-    \texttt{GET} & \texttt{Read} & \texttt{Select} & \texttt{show}\\
-    \texttt{PUT} & \texttt{Update} & \texttt{Update} & \texttt{update}\\
-    \texttt{DELETE} & \texttt{Delete} & \texttt{Delete} & \texttt{destroy}\\
-    \hline
-  \end{tabular}
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      \textbf{metoda HTTP} & \textbf{CRUD} & \textbf{SQL} & \textbf{akcja RoR}\\
+      \hline
+      \texttt{POST} & \texttt{Create} & \texttt{Insert} & \texttt{create}\\
+      \texttt{GET} & \texttt{Read} & \texttt{Select} & \texttt{show}\\
+      \texttt{PUT} & \texttt{Update} & \texttt{Update} & \texttt{update}\\
+      \texttt{DELETE} & \texttt{Delete} & \texttt{Delete} & \texttt{destroy}\\
+      \hline
+    \end{tabular}
+  \end{center}
   \caption{Powiązanie REST, CRUD, zapytań SQL oraz akcji RoR}
   \label{table:rest}
 \end{table}
-
 
 Jeśli trzymamy się przyjętych konwencji, to pzykładowy ciąg zdarzeń dla usunięcia danego
 obiektu np. użytkownika, wyglądałby następująco: na serwer jest przesyłane żądanie pod
@@ -452,7 +460,7 @@ na napisaniu scenariusza, który zawiera poszczególne akcje użytkownika wykony
 poziomu przeglądarki. Składnia ogranicza się do kilku słów kluczowych, które poprzedzają
 dowolny tekst opisujący zdarzenia. Następnie przy pomocy wyrażeń regularnych tekst jest
 mapowany na definicję metod, pisanych już w języku \emph {Ruby}. Przykład można zobaczyć
-na listingu
+na listingu nr
 
 
 \subsection{Haml i Sass}
@@ -506,6 +514,28 @@ World Wide Web Consortium (ang.) -- organizacja zajmująca się ustanawianiem st
 przesyłu stron WWW} standardów i często trzeba korygować jej niedoskonałości. Dotyczy to
 zwłaszcza starszych wersji przeglądarek \emph{IE}, które na szczęście wychodzą powoli z
 użytku.
+
+
+\subsection{jQuery}
+\emph{jQuery} jest biblioteką napisaną w \emph{JavaScripcie}, która dostarcza szereg
+gotowych rozwiązań, najczęściej spotykanych na stronach internetowych. Duży wpływ na
+rozwój kodu, oprócz twórcy Johna Resiga, ma Yehuda Katz, zajmujący się również rozwojem
+\emph{Merba} oraz \emph{Ruby on Rails} (od czasu połączenia obu frameworków).
+Jedną z głównych zalet jest niezależność od przeglądarki. Dostępne \emph{API} jest
+uniwersalne, a więc biblioteka sama dba o wyrównanie nieścisłości wynikających właśnie ze
+środowiska działania.\\
+Dzięki \emph{jQuery} w prosty sposób możemy manipulować modelem \emph{DOM}\footnote{DOM --
+Document Object Model (ang.)}, wykorzystując wygodne w użyciu selektory. Kolejną dostępną
+funkcjonalnością jest komunikacja z serwerem za pomocą technologii
+\emph{AJAX}\footnote{AJAX -- Asynchronous JavaScript and XML (ang.)}, która sprowadza się
+jedynie do wywołania odpowiedniej funkcji. Tworzenie własnych rozszerzeń nie sprawia
+problemu, dzięki czemu ilość dostępnych dodaktów jest ogromna.
+
+\subsection{Git}
+\emph{Git} jest systemem kontroli wersji stworzonym przez Linus Torvaldsa w 2005 roku.
+Został on napisany na potrzeby rozwoju jądra \emph{Linux}, jednak obecnie jest używany
+przez wiele znanych projektów, choćby takich jak: \emph{Android}, \emph{Amarok}, \emph{Perl},
+czy \emph{Ruby on Rails}.
 
 
 \clearpage
