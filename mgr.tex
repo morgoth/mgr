@@ -434,8 +434,8 @@ formularza ukrytego pola z nazwą docelowej metody, używając żądania \emph{P
 Domyślnym sposobem budowania aplikacji w \emph{Ruby on Rails} poczynając od wersji 2.0
 jest właśnie \emph{REST}, który ma też duże znaczenie w przypadku wykorzystania \emph
 {ActiveResource}, czyli budowania \emph{API} w celu udostępnienia zasobów dla innych
-serwisów. Sprowadza się to praktycznie tylko do reprezentacji konkretnego obiektu poprzez
-format \emph{XML} lub \emph{JSON}.
+serwisów. Sprowadza się to praktycznie tylko do przedstawienia konkretnego obiektu lub
+kolekcji poprzez format \emph{XML} lub \emph{JSON}.
 
 
 \subsection{Shoulda i Cucumber}
@@ -532,10 +532,15 @@ jedynie do wywołania odpowiedniej funkcji. Tworzenie własnych rozszerzeń nie 
 problemu, dzięki czemu ilość dostępnych dodaktów jest ogromna.
 
 \subsection{Git}
-\emph{Git} jest systemem kontroli wersji stworzonym przez Linus Torvaldsa w 2005 roku.
+\emph{Git} jest rozproszonym systemem kontroli wersji stworzonym przez Linus Torvaldsa w 2005 roku.
 Został on napisany na potrzeby rozwoju jądra \emph{Linux}, jednak obecnie jest używany
 przez wiele znanych projektów, choćby takich jak: \emph{Android}, \emph{Amarok}, \emph{Perl},
-czy \emph{Ruby on Rails}.
+czy \emph{Ruby on Rails}. Głównym celem była szybkość działania oraz nie powtarzanie błędów
+zaistniałych w \emph{CVS}\footnote{CVS -- Concurrent Versions System (ang.)}.
+Każdy katalog roboczy jest kompletnym repozytorium, który nie jest uzależniony od dostępu
+do sieci czy centralnego serwera, co sprawia że świetnie sprawdza się również przy projekcie
+prowadzonym tylko przez jedną osobę.\\
+
 
 
 \clearpage
