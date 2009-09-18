@@ -551,44 +551,74 @@ unikalnych publicznych repozytoriach znajdujących się na serwerach firmy\cite{
 Aby uruchomić aplikację na systemie \emph{Ubuntu} potrzebujemy:
 \begin{itemize}
   \item{Ruby wraz z interpreterem}
-  \item{Odpowiednie Gemy (m.in. Ruby on Rails)}
-  \item{Biblioteka rmagic do obróbki ilustracji}
+  \item{Odpowiednie gemy (m.in. rails)}
+  \item{Biblioteka imagemagick do obróbki ilustracji}
 \end{itemize}
 
 
 Sam system \emph{Ubuntu} możemy pobrać ze strony internetowej \cite{ubuntu}.
-Następnie instalujemy \emph{Ruby} w wersji 1.8. Najmniej kłopotów przysparza kompilacja ze
+Następnie instalujemy \emph{Rubiego} w wersji 1.8. Najmniej kłopotów przysparza kompilacja ze
 źródeł. Wystarczy, że pobierzemy stabilną wersję 1.8.7 ze strony \cite(ruby-package) i po
-rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby} (przykład dla
-wersji 1.8.7-p174).
+rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby}\footnote{Całość
+skryptu znajduje się w katalogu aplikacji, w pliku extras/environment\_setup.sh}
+(przykład dla wersji 1.8.7-p174).
 
 \begin{listing}
-  \input{listing/ubuntu_ruby}
-  \caption{Instalacja Ruby}
+  \input{listing/1_sh_ruby}
+  \caption{Instalacja Rubiego}
   \label{listing:ubuntu_ruby}
 \end{listing}
 
-
-Następnie możemy zainstalować gema \emph{RVM}\footnote{RVM -- Ruby Version Manager (ang.)
-}, aby mieć kilka wersji \emph{Rubiego}, np. 1.8 oraz 1.9 (różnice pomiędzy wydaniami
-zostały omówione na stronie ...).\\
-Pomoc możemy znaleźć na stronie internetowej \cite{rvm}. Sposób instalacji i konfiguracji
-na listingu nr~\ref{listing:ubuntu_rvm}
+Nastepnie ściągamy pakiet \emph{RubyGems} ze strony \cite{rubygems} i również kompilujemy,
+jak na listingu nr~\ref{listing:ubuntu_rubygems}
 
 \begin{listing}
-  %\input{listing/ubuntu_rvm}
-  \caption{Instalacja kilku wersji Rubiego}
-  \label{listing:ubuntu_rvm}
+  \input{listing/2_sh_rubygems}
+  \caption{Instalacja RubyGems}
+  \label{listing:ubuntu_rubygems}
 \end{listing}
+
+%Następnie możemy zainstalować gema \emph{RVM}\footnote{RVM -- Ruby Version Manager (ang.)
+%}, aby mieć kilka wersji \emph{Rubiego}, np. 1.8 oraz 1.9 (różnice pomiędzy wydaniami
+%zostały omówione na stronie ...).\\
+%Pomoc możemy znaleźć na stronie internetowej \cite{rvm}. Sposób instalacji i konfiguracji
+%na listingu nr~\ref{listing:ubuntu_rvm}
+%
+%\begin{listing}
+%  %\input{listing/ubuntu_rvm}
+%  \caption{Instalacja kilku wersji Rubiego}
+%  \label{listing:ubuntu_rvm}
+%\end{listing}
 
 Aby ściągnąć aktualną wersję aplikacji, możemy posłużyć się \emph{Gitem}.
 Najpierw instalujemy sam program, a następnie klonujemy kod do wybranego katalogu,
 tak jak na listingu nr~\ref{listing:ubuntu_git}.
 
 \begin{listing}
-  \input{listing/ubuntu_git}
+  \input{listing/3_sh_git}
   \caption{Instalacja Gita}
   \label{listing:ubuntu_git}
+\end{listing}
+
+Teraz możemy przejść do folderu aplikacji, ściągnąć wymagane gemy i zmigrować bazę danych.
+Aby przekonać się czy nasze środowisko jest w pełni gotowe do pracy, uruchamiamy testy
+jednostkowe oraz integracyjne poprzez polecenia jak na listingu nr~\ref
+{listing:ubuntu_application}.
+
+\begin{listing}
+  \input{listing/4_sh_application}
+  \caption{Instalacja gemów, migracja bazy, uruchomienie testów}
+  \label{listing:ubuntu_application}
+\end{listing}
+
+Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu nr~\ref
+{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
+\url{http://localhost:3000}.
+
+\begin{listing}
+  \input{listing/5_sh_start_server}
+  \caption{Uruchomienie lokalnego serwera aplikacji}
+  \label{listing:ubuntu_start_server}
 \end{listing}
 
 \clearpage
