@@ -540,7 +540,34 @@ zaistniałych w \emph{CVS}\footnote{CVS -- Concurrent Versions System (ang.)}.
 Każdy katalog roboczy jest kompletnym repozytorium, który nie jest uzależniony od dostępu
 do sieci czy centralnego serwera, co sprawia że świetnie sprawdza się również przy projekcie
 prowadzonym tylko przez jedną osobę.\\
+Jedną z możliwości hostowania repozytoriów oferuje \emph{GitHub}\cite{github}, który jest
+skupiskiem wielu opensourcowych projektów. Statystyki na dzień 27.07.2009 mówią o 90.000
+unikalnych publicznych repozytoriach znajdujących się na serwerach firmy\cite{github-statistics}.
 
+
+\clearpage
+\section{Opis środowiska uruchomienia}
+\subsection{Ubuntu}
+Aby uruchomić aplikację na systemie \emph{Ubuntu} potrzebujemy:
+\begin{itemize}
+  \item{Ruby wraz z interpreterem}
+  \item{Odpowiednie Gemy (m.in. Ruby on Rails)}
+  \item{Biblioteka rmagic do obróbki ilustracji}
+\end{itemize}
+
+
+Sam system \emph{Ubuntu} możemy pobrać ze strony internetowej \cite{ubuntu}.
+Następnie instalujemy \emph{Ruby} w wersji 1.8, najprościej z linii poleceń wydać komendy,
+tak jak na listingu nr~\ref{listing:ubuntu_ruby}.
+
+\begin{listing}
+  \input{listing/ubuntu_ruby}
+  \caption{Instalacja Ruby}
+  \label{listing:ubuntu_ruby}
+\end{listing}
+
+
+Kolejną rzeczą jest system paczek \emph{Rubiego} zwany \emph{RubyGems}.
 
 
 \clearpage
