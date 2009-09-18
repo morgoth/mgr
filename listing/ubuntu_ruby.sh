@@ -1,6 +1,12 @@
-# instalacja Ruby w wersji 1.8
-sudo apt-get install ruby irb ri rdoc ruby1.8-dev libzlib-ruby \
-libyaml-ruby libreadline-ruby libncurses-ruby libcurses-ruby \
-libruby libruby-extras libfcgi-ruby1.8 build-essential \
-libopenssl-ruby libdbm-ruby libdbi-ruby libdbd-sqlite3-ruby \
-sqlite3 libsqlite3-dev libsqlite3-ruby libxml-ruby libxml2-dev
+# pobranie niezbędnych pakietów
+sudo apt-get install build-essential zlib1g-dev \
+zlib1g-dev zlib1g-dev
+# pobranie wersji 1.8.7
+wget ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p174.tar.gz
+# rozpakowanie pliku .tar.gz
+tar -xzf ruby-1.8.7-p174.tar.gz
+# przejście do katalogu oraz kompilacja
+cd ruby-1.8.7-p174
+./configure
+make
+make install

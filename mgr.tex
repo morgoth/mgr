@@ -557,8 +557,10 @@ Aby uruchomić aplikację na systemie \emph{Ubuntu} potrzebujemy:
 
 
 Sam system \emph{Ubuntu} możemy pobrać ze strony internetowej \cite{ubuntu}.
-Następnie instalujemy \emph{Ruby} w wersji 1.8, najprościej z linii poleceń wydać komendy,
-tak jak na listingu nr~\ref{listing:ubuntu_ruby}.
+Następnie instalujemy \emph{Ruby} w wersji 1.8. Najmniej kłopotów przysparza kompilacja ze
+źródeł. Wystarczy, że pobierzemy stabilną wersję 1.8.7 ze strony \cite(ruby-package) i po
+rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby} (przykład dla
+wersji 1.8.7-p174).
 
 \begin{listing}
   \input{listing/ubuntu_ruby}
@@ -567,8 +569,27 @@ tak jak na listingu nr~\ref{listing:ubuntu_ruby}.
 \end{listing}
 
 
-Kolejną rzeczą jest system paczek \emph{Rubiego} zwany \emph{RubyGems}.
+Następnie możemy zainstalować gema \emph{RVM}\footnote{RVM -- Ruby Version Manager (ang.)
+}, aby mieć kilka wersji \emph{Rubiego}, np. 1.8 oraz 1.9 (różnice pomiędzy wydaniami
+zostały omówione na stronie ...).\\
+Pomoc możemy znaleźć na stronie internetowej \cite{rvm}. Sposób instalacji i konfiguracji
+na listingu nr~\ref{listing:ubuntu_rvm}
 
+\begin{listing}
+  %\input{listing/ubuntu_rvm}
+  \caption{Instalacja kilku wersji Rubiego}
+  \label{listing:ubuntu_rvm}
+\end{listing}
+
+Aby ściągnąć aktualną wersję aplikacji, możemy posłużyć się \emph{Gitem}.
+Najpierw instalujemy sam program, a następnie klonujemy kod do wybranego katalogu,
+tak jak na listingu nr~\ref{listing:ubuntu_git}.
+
+\begin{listing}
+  \input{listing/ubuntu_git}
+  \caption{Instalacja Gita}
+  \label{listing:ubuntu_git}
+\end{listing}
 
 \clearpage
 \section{Odległość Levenshteina}
