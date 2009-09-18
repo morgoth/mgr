@@ -12,3 +12,4 @@
 *.dvi
 *.ps
 listing/*.tex
+environment_setup.sh
