@@ -366,6 +366,34 @@ Z pomocą przychodzi metoda \texttt{html\_escape} aliasowana jako po prostu \tex
 która zawsze traktuje przekazane słowa jako czysty tekst, lub metoda \texttt{sanitize},
 dopuszczająca pewne zdefiniowane tagi \emph{HTMLowe}, które są uznawane za ,,bezpieczne''.
 
+
+\subsubsection{Wdrażanie aplikacji}
+Wdrażanie wersji produkcyjnej dotyczy serwera \emph{HTTP} oraz bazy danych, gdzie musimy
+wziąć pod uwagę wydajność i szybkość obsłużenia zapytania. W wersji rozwojowej
+wystarczające są domyślnie używane narzędzia, czyli napisany w \emph{Rubim} \emph{Webrick
+}, który służy nam jako lokalny serwer \emph{HTTP} oraz \emph{SQLite} jako system
+zarządzania bazą danych.
+
+
+\emph{SQLite} świetnie sprawdza się przy rozwoju aplikacji, gdyż baza danych jest trzymana
+w jednym pliku umieszczonym w dogodnym dla nas miejscu. Nie musimy się przejmować
+rozporzązaniem prawami dostępu czy zarządzaniem użytkownikami, a jeśli potrzebujemy nagle
+wyrzucić istniejącą bazę, sprowadza się to po prostu do usunięcia danego pliku.
+Co ciekawe \emph{SQLite} wydajnościowo wypada bardzo dobrze w przypadku jednego
+użytkownika, dlatego jest używany w systemach wbudowanych\footnote{Embedded system (ang.) --
+system komputerowy specjalnego przeznaczenia, który staje się integralną częścią
+obsługiwanego przez niego sprzętu.\cite{embedded-system}} takich jak telefony komórkowe
+czy urządzenia \emph{AGD}. Jednak przy obsłudze strony internetowej, gdzie jednoczesnych zapytań
+skierowanych do bazy danych może być dużo, jest potrzebny osobny, odrębny serwer. Jednym
+z najczęściej spotykanych wyborów jest \emph{PostgreSQL} lub \emph{MySQL}. Konfiguracja
+po stronie railsów wymaga jedynie określenia nazwy użytkownika i ewentualnego hasła, które
+zapisujemy w pliku \texttt{config/database.yml}.
+
+
+Początkowo produkcyjnymi serwerami \emph{HTTP} były \emph{Mongrel} i \emph{Thin}, które
+częściowo były pisane w języku \emph{C}, jednak od czasu wydania \emph{Phusion Passengera}
+
+
 \subsubsection{Merb + Ruby on Rails}
 \emph{Merb} początkowo był małym frameworkiem napisanym w języku \emph{Ruby}, by w
 przeciągu kilku lat rozwinąć się i konkurować ze swoim starszym bratem \emph{Ruby on
@@ -386,6 +414,7 @@ wydajność oraz niezależność. Będzie możliwy swobodny wybór bibliotek odp
 \emph{JavaScript}, \emph{ORM}, silnik szablonów oraz moduł testujący. Twórcy zapewniają
 również, że migracja aplikacji pisanych we wcześniejszych wersjach oraz \emph{Merbie} do nowej
 wersji, nie będzie stwarzać problemu.
+
 
 \subsection{REST}\label{sec:rest}
 \emph{REST}\footnote{REST -- Representational State Transfer (ang.)} jest wzorcem
@@ -548,20 +577,28 @@ unikalnych publicznych repozytoriach znajdujących się na serwerach firmy\cite{
 \clearpage
 \section{Opis środowiska uruchomienia}
 \subsection{Ubuntu}
-Aby uruchomić aplikację na systemie \emph{Ubuntu} potrzebujemy:
+Aby uruchomić aplikację na systemie \emph{Ubuntu} wymagane są:
 \begin{itemize}
   \item{Ruby wraz z interpreterem}
+  \item{System paczek RubyGems}
   \item{Odpowiednie gemy (m.in. rails)}
   \item{Biblioteka imagemagick do obróbki ilustracji}
+  \item{Biblioteka obsługująca bazę danych formatu SQLite3}
 \end{itemize}
+
+
+Opisany poniżej sposób instalacji i konfiguracji dotyczy wersji rozwojowej i testowej.
+Chcąc uruchomić aplikację w środowisku produkcyjnym, zalecane jest skorzystanie z bazy
+danych \emph{PostgreSQL} lub \emph{MySQL} oraz jednego z serwerów \emph{HTTP}:
+\emph{Apache}, \emph{Mongrel} lub \emph{Thin}.
 
 
 Sam system \emph{Ubuntu} możemy pobrać ze strony internetowej \cite{ubuntu}.
 Następnie instalujemy \emph{Rubiego} w wersji 1.8. Najmniej kłopotów przysparza kompilacja ze
 źródeł. Wystarczy, że pobierzemy stabilną wersję 1.8.7 ze strony \cite{ruby-package} i po
-rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby}\footnote{Całość
-skryptu znajduje się w katalogu aplikacji, w pliku extras/environment\_setup.sh}
-(przykład dla wersji 1.8.7-p174).
+rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby} (przykład dla
+wersji 1.8.7-p174)\footnote{Całość skryptu znajduje się w katalogu aplikacji, w pliku
+extras/environment\_setup.sh}.
 
 \begin{listing}
   \input{listing/1_sh_ruby}

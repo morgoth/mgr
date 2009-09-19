@@ -11,3 +11,4 @@ cd ruby-1.8.7-p174
 ./configure
 make
 sudo make install
+cd ..

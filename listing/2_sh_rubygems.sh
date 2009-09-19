@@ -6,3 +6,4 @@ cd rubygems-1.3.5
 sudo ruby setup.rb
 # aktualizacja do najnowszej wersji
 sudo gem update --system
+cd ..
