@@ -21,7 +21,7 @@
 %% Now actually use the newly defined style.
 \urlstyle{leo}
 
-\newfloat{listing}{thpb}{lol}
+\newfloat{listing}{htp}{lol}
 \floatname{listing}{Listing}
 
 \begin{document}
@@ -370,8 +370,8 @@ dopuszczająca pewne zdefiniowane tagi \emph{HTMLowe}, które są uznawane za ,,
 \subsubsection{Wdrażanie aplikacji}
 Wdrażanie wersji produkcyjnej dotyczy serwera \emph{HTTP} oraz bazy danych, gdzie musimy
 wziąć pod uwagę wydajność i szybkość obsłużenia zapytania. W wersji rozwojowej
-wystarczające są domyślnie używane narzędzia, czyli napisany w \emph{Rubim} \emph{Webrick
-}, który służy nam jako lokalny serwer \emph{HTTP} oraz \emph{SQLite} jako system
+wystarczające są domyślnie używane narzędzia, czyli napisany w \emph{Rubim} \emph{Webrick},
+który służy nam jako lokalny serwer \emph{HTTP} oraz \emph{SQLite} jako system
 zarządzania bazą danych.
 
 
@@ -391,7 +391,16 @@ zapisujemy w pliku \texttt{config/database.yml}.
 
 
 Początkowo produkcyjnymi serwerami \emph{HTTP} były \emph{Mongrel} i \emph{Thin}, które
-częściowo były pisane w języku \emph{C}, jednak od czasu wydania \emph{Phusion Passengera}
+częściowo były pisane w języku \emph{C}, jednak od czasu wydania \emph{Phusion Passengera},
+znanego również jako \texttt{mod\_rails} lub \texttt{mod\_rack}, rekomendowanym i
+jednocześnie najczęściej używanym jest serwer \emph{Apache}.
+
+
+\emph{Phsuion Passenger} jest modułem, dostępnym jako \texttt{gem}, który umożliwia
+uruchomienie aplikacji pisanych w języku \emph{Ruby} opartych o bibliotekę \emph{Rack} na
+serwerze \emph{HTTP} \emph{Apache}. \emph{Rack} z kolei, również w postaci \texttt{gema},
+dostarcza uniwersalny interfejs do naszego kodu, dzięki któremu wszelkie serwery
+wspierające \emph{Rubiego} mogą go hostować.
 
 
 \subsubsection{Merb + Ruby on Rails}
@@ -633,7 +642,7 @@ tak jak na listingu nr~\ref{listing:ubuntu_git}.
 
 \begin{listing}
   \input{listing/3_sh_git}
-  \caption{Instalacja Gita}
+  \caption{Instalacja systemu kontroli wersji Git}
   \label{listing:ubuntu_git}
 \end{listing}
 
@@ -659,7 +668,27 @@ Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu n
 \end{listing}
 
 \clearpage
-\section{Odległość Levenshteina}
+\section{Implementacja}
+
+\subsection{Wykorzystane gemy}
+\subsubsection{Authlogic}
+Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
+począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
+zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
+Force}\footnote{Brute Force (ang.) -- próba złamania hasła poprzez sukcesywne sprawdzanie
+wszystkich dostępnych możliwości}.
+
+
+Przy tworzeniu tabeli użytkowników jest zalecane umieszczenie kilku dodaktowych kolumn,
+które automatycznie się aktualizują i będą przechowywać takie informacje jak: ilość
+logowań, ostatni czas aktywności, ostatni adres \emph{IP} komputera z którego nastąpiło
+logowanie, etc.\\
+Hasło użytkownika przed zapisaniem do bazy danych jest łączone z tzw. ,,solą'', czyli
+dodatkowym ciągiem znaków zapisywanych również w bazie danych, a następnie przeliczane
+funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
+dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.
+
+\subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
 studenta.\\
