@@ -671,7 +671,7 @@ Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu n
 \section{Implementacja}
 
 \subsection{Wykorzystane gemy}
-\subsubsection{Authlogic}
+\subsubsection{authlogic}
 Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
 począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
 zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
@@ -684,9 +684,78 @@ które automatycznie się aktualizują i będą przechowywać takie informacje j
 logowań, ostatni czas aktywności, ostatni adres \emph{IP} komputera z którego nastąpiło
 logowanie, etc.\\
 Hasło użytkownika przed zapisaniem do bazy danych jest łączone z tzw. ,,solą'', czyli
-dodatkowym ciągiem znaków zapisywanych również w bazie danych, a następnie przeliczane
+dodatkowym ciągiem znaków, zapisywanych również w bazie danych, a następnie przeliczane
 funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
-dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.
+dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.\\
+Gem ten również zapewnia nam wszystkie niezbędnę walidacje, takie jak poprawność składni
+wprowadzanego adresu e-mailowego oraz loginu, zgodność hasła z potwierdzeniem, czy
+unikalność istotnych atrybutów.
+
+
+W aplikacji sesja nauczyciela i studenta jest zrealizowana za pomocą jednego modelu, co
+oznacza, że nie ma rozróżnienia pomiędzy sposobem logowania do serwisu. Po zalogowaniu
+jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
+dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
+
+\subsubsection{acts-as-list}
+\emph{Acts as list} umożliwia nam dołączęnie do modelu funkcjonalność listy, czyli
+usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
+wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
+Dla każdego studenta, z puli dostępnych pytań, jest losowana kolejność pojawienia się ich w
+teście, która jest zapisywana w bazie danych. Dzięki temu dla każdej nowej próby podejścia
+do testu, czyli również dla poszczególnych studentów, kolejność ta jest różna.
+Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru, jest losowana
+kolejność wystąpienia odpowiedzi.
+
+\subsubsection{acts-as-taggable-on}
+\emph{Acts as taggable on} jest gemem, który łączy w sobie kilka poprzednio utworzonych
+bibliotek o podobnej funkcjonalności. Dostarcza mechanizm tagowania wybranych przez
+nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możliwość grupowania
+ich nie tylko po tworzonych, konkretnych nazwach, ale też w ujęciu poszczególnych
+atrybutów. Możliwe jest również określenie właściciela poszczególnych tagów, dzięki czemu
+tworzone rekordy nie muszą być globalne, a widoczne tylko dla autora.\\
+Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging_questions}
+
+\begin{listing}
+  \input{listing/tagging_questions}
+  \caption{Sposób użycia mechanizmu tagowania}
+  \label{listing:tagging_questions}
+\end{listing}
+
+
+W aplikacji tagowanie zostało wykorzystane w klasie \texttt{TeacherQuestion}, tak aby
+każdy nauczyciel miał wygodny mechanizm określania dziedziny tworzonego przez siebie
+pytania. W analgoiczny sposób tagi zostały dodane do modelu \texttt{Student}, aby móc
+łatwo przydzielić ich do odpowiednich grup. Na listingu nr~\ref{listing:tagging_users}
+kontekstem tagowania są grupy, a właścicielem nauczyciel.
+
+\begin{listing}
+  \input{listing/tagging_users}
+  \caption{Mechanizm tagowania w kontekście grup}
+  \label{listing:tagging_users}
+\end{listing}
+
+
+Jak widzimy, możemy zawęzić wyszukiwanie odpowiednich rekordów do autora tagów.\\
+Gem udostępnia też metody pomocnicze przy wyświetlaniu tzw. ,,chmury tagów'' w
+renderowanych widokach, które możemy stylować za pomocą klas \emph{CSS}.
+
+\subsubsection{prawn}
+\emph{Prawn} jest odpowiedzialny za generowanie dokumentów w formacie
+\emph{PDF}\footnote{PDF -- google (ang.)}. Dostarcza on prosty format szablonu, w którym
+mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując w podstawowy sposób wygląd
+dokumentu. Integracja z aplikacją railsową jest zapewniona poprzez plugin \texttt{prawnto}.
+Pliki zapisywane są z rozszerzeniem \texttt{.pdf.prawn}, czyli zgodnie z konwencją,
+pierwszy element jest żądanym formatem odpowiedzi serwera, a drugi jest nazwą silnika
+generującego ostateczną postac dokumentu przesłanego do klienta.\\
+Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
+
+\begin{listing}
+  \input{listing/prawn}
+  \caption{Szablon wykorzystywany przy generowaniu dokumentu PDF}
+  \label{listing:prawn}
+\end{listing}
+
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
