@@ -742,12 +742,12 @@ renderowanych widokach, które możemy stylować za pomocą klas \emph{CSS}.
 
 \subsubsection{prawn}
 \emph{Prawn} jest odpowiedzialny za generowanie dokumentów w formacie
-\emph{PDF}\footnote{PDF -- google (ang.)}. Dostarcza on prosty format szablonu, w którym
-mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując w podstawowy sposób wygląd
-dokumentu. Integracja z aplikacją railsową jest zapewniona poprzez plugin \texttt{prawnto}.
-Pliki zapisywane są z rozszerzeniem \texttt{.pdf.prawn}, czyli zgodnie z konwencją,
-pierwszy element jest żądanym formatem odpowiedzi serwera, a drugi jest nazwą silnika
-generującego ostateczną postac dokumentu przesłanego do klienta.\\
+\emph{PDF}\footnote{PDF -- Portable Document Format (ang.)}. Dostarcza on prosty format
+szablonu, w którym mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując
+w podstawowy sposób wygląd dokumentu. Integracja z aplikacją railsową jest zapewniona
+poprzez plugin \texttt{prawnto}. Pliki zapisywane są z rozszerzeniem \texttt{.pdf.prawn},
+czyli zgodnie z konwencją, pierwszy element jest żądanym formatem odpowiedzi serwera,
+a drugi jest nazwą silnika generującego ostateczną postać dokumentu przesłanego do klienta.\\
 Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
 
 \begin{listing}
@@ -756,6 +756,43 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
   \label{listing:prawn}
 \end{listing}
 
+\subsubsection{paperclip}
+\emph{Paperclip} jest gemem, który obsługuję ładowanie oraz obróbkę plików wysyłanych na
+serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
+czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
+jedynie zainstalowanej w systemie biblioteki \emph{ImageMagick}, poprzez którą są tworzone
+miniaturki czy innego rodzaju konwersje na plikach graficznych. Dostajemy również zestaw
+walidatorów, które mogą określać typ przesyłanego pliku oraz jego wielkość.\\
+W aplikacji gem ten został wykorzystany przy załączaniu ilustracji do pytań oraz odpowiedzi.
+Sposób użycia na listingu nr~\ref{listing:paperclip}
+
+\begin{listing}
+  \input{listing/paperclip}
+  \caption{Sposób wykorzystania gema Paperclip}
+  \label{listing:paperclip}
+\end{listing}
+
+
+W podanym przykładzie model \texttt{Picture} korzysta z metody \texttt{has\_attached\_file}
+dostarczonej przez \emph{Paperclipa}. Przed zapisaniem, ilustracja będzie poddana obróbce
+i zgodnie z kodem, wersja oryginalna zostanie przekształcona do wielkości 250 pikseli,
+jesli nie jest mniejsza oraz zostanie utworzona miniaturka o proporcjonalnych
+wielkościach, nie większych niż 50 piskeli. Możemy również zdefiniować ścieżkę, pod jaką
+ilustarcja będzie widziana z poziomu przeglądarki oraz docelowy folder w naszej
+składowania w naszej aplikacji. Walidacja zapewnia, że format przyjętego pliku będzie
+ograniczony tylko do \emph{JPEG}\footnote{JPEG -- nazwa jest akronimem od nazwy komitetu,
+który ustanowił ten standard -- Joint Photographic Experts Group (ang.)},
+\emph{PNG}\footnote{PNG -- Portable Network Graphics (ang.)} lub \emph{GIF}\footnote{GIF --
+Graphics Interchange Format (ang.)}, oraz rozmiar nie przekroczy 100 kilobajtów.
+
+\subsubsection{routing-filter}
+Przełączanie pomiędzy różnymi wersjami językowymi aplikacji zostało zrealizowane w taki
+sposób, aby był dodawany przedrostek do adresu strony w postaci kodu używanego aktualnie
+języka. Drugim sposobem implementacji mogłoby być przechowywanie informacji o języku w sesji
+lub ciasteczku, przez co \emph{URL} zmieniałby się tylko w chwili przełączania, a pomiędzy
+kolejnymi żądaniami zmienna ta byłaby odczytywana na podstawie przechowywanej danej.
+Idąc jednak za radą oficjalnych przewodników \emph{Ruby on Rails}\cite{rails-guides},
+pierwszy sposób.
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
