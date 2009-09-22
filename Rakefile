@@ -9,7 +9,9 @@ ERB_SRC = FileList["listing/*.rhtml"]
 HTML_SRC = FileList["listing/*.html"]
 SVG_IMG =  FileList["**/*.svg"]
 HAML_SRC = FileList["listing/*.haml"]
+SASS_SRC = FileList["listing/*.sass"]
 SH_SRC = FileList["listing/*.sh"]
+CUC_SRC = FileList["listing/*.feature"]
 
 CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
               RUBY_SRC.ext("tex"),
@@ -17,7 +19,9 @@ CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
               HTML_SRC.ext("tex"),
               SVG_IMG.ext("png"),
               HAML_SRC.ext("tex"),
-              SH_SRC.ext("tex"))
+              SASS_SRC.ext("tex"),
+              SH_SRC.ext("tex"),
+              CUC_SRC.ext("tex"))
 
 CLOBBER.include(%w(pdf dvi ps).collect { |e| SRC.ext(e) })
 
@@ -45,6 +49,14 @@ rule ".tex" => ".haml" do |t|
   sh "pygmentize -f latex -o #{t.name} #{t.source}"
 end
 
+rule ".tex" => ".sass" do |t|
+  sh "pygmentize -f latex -o #{t.name} #{t.source}"
+end
+
+rule ".tex" => ".feature" do |t|
+  sh "pygmentize -f latex -o #{t.name} #{t.source}"
+end
+
 rule ".tex" => ".sh" do |t|
   sh "pygmentize -f latex -o #{t.name} #{t.source}"
 end
@@ -60,7 +72,7 @@ rule ".pdf" => ".tex" do |t|
   pdflatex(t.source)
 end
 
-file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + ERB_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + SVG_IMG.ext("png")
+file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + ERB_SRC.ext("tex") + SASS_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + CUC_SRC.ext("tex") + SVG_IMG.ext("png")
 
 desc "Compile PDF"
 task :pdf => SRC.ext("pdf")

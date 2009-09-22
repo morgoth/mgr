@@ -498,8 +498,13 @@ na napisaniu scenariusza, który zawiera poszczególne akcje użytkownika wykony
 poziomu przeglądarki. Składnia ogranicza się do kilku słów kluczowych, które poprzedzają
 dowolny tekst opisujący zdarzenia. Następnie przy pomocy wyrażeń regularnych tekst jest
 mapowany na definicję metod, pisanych już w języku \emph {Ruby}. Przykład można zobaczyć
-na listingu nr
+na listingu nr~\ref{listing:cucumber}
 
+\begin{listing}
+  \input{listing/cucumber}
+  \caption{Przykład testu integracyjnego z wykorzystaniem Cucumber}
+  \label{listing:cucumber}
+\end{listing}
 
 \subsection{Haml i Sass}
 \emph{Haml}\footnote{Haml -- HTML Abstraction Markup Language (ang.)} jest językiem
@@ -522,7 +527,14 @@ zwięzłością języka, jest dostępność zmiennych, na których możemy wykon
 matematyczne. Przykładowo, jeśli mamy zdefiniowany jeden kolor i chcemy uzyskać np.
 jaśniejszy, wystarczy że odejmiemy odpowiednią wartość od głównego. Kolejną cechą jest
 obecność tzw. \texttt{mixinów}, dzięki którym możemy używać jednego fragmentu kodu w wielu
-miejscach, bez powtarzania.
+miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
+
+\begin{listing}
+  \input{listing/sass}
+  \caption{Szablon w języku Sass generujący CSS}
+  \label{listing:sass}
+\end{listing}
+
 
 \subsection{Blueprint i Compass}
 \emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
@@ -812,6 +824,34 @@ pełnego adresu \emph{URL} przed odwołaniem się do kontrolera, sparsowaniu go,
 po wykonaniu logiki oraz przekierowaniu, ,,doklejeniu'' usuniętego wcześniej parametru.
 Twórcą gema jest Sven Fuchs, który jest również głównym autorem modułu internacjonalizacji
 w \emph{Ruby on Rails}.
+
+\subsubsection{formtastic}
+\emph{Formtastic} jest narzędziem, który rozbudowuje domyślny mechanizm konstruowania
+formularzy w railsach, dostarczając prostszy interfejs na rzecz, zdefiniowanych przez
+autora, struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
+w klasach, potrafi odnaleźć odpowiednią kolekcję istniejących obiektów, przy polu wyboru
+formularza. Etykiety opisujące wprowadzane dane korzystają z lokalizowanych nazw atrybutów
+poszczególnych modeli. Typ wyświetlonego pola formularza jest ropoznawany na podstawie
+odpowiadającej mu kolumnie w bazie danych. Wszystko to sprawia, że zbudowanie podstawowego
+formularza sprowadza się do kilku linijek kodu. Przykład na listingu
+nr~\ref{listing:formtastic}.
+
+\begin{listing}
+  \input{listing/formtastic}
+  \caption{Wykorzystanie gema upraszczajacęgo konstruowanie formularzy}
+  \label{listing:formtastic}
+\end{listing}
+
+
+Tworzymy nowy egzamin, pierwszym polem jest nazwa, którą wprowadzamy poprzez wpisanie
+tekstu -- domyślny sposób dla kolumn typu \emph{String}. Następnie wpisujemy liczbę pytań,
+która jednak nie jest pozycją wymaganą, przez co będzie otoczoną inną klasą \emph{CSS}.
+Do daty rozpoczęcia, przekazujemy parametr, który ustala pierwszą z możliwych dat do
+wyboru (w naszym przypadku jest to rok obecny). Do pola czasu trwania przekazujemy
+wskazówkę, która wyświetli się pod wprowadzaną wartością, \emph{Formtastic} automatycznie
+dodaje odpowiednie klasy, które możemy później wystylować w odpowiedni dla nas sposób. Na
+samym końcu wybieramy pytania, które chcemy dołączyć, kolekcja jest tu przekazana
+eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazie danych.
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
