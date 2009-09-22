@@ -35,6 +35,9 @@ edukacji w oparciu o technologię Ruby on Rails}
 \maketitle
 \end{titlepage}
 
+\section{Wstęp}
+...
+
 \section{Technologie}
 \subsection{Ruby}
 \emph{Ruby} został stworzony w 1995 roku przez Yukihiro Matsumoto, znanego również
@@ -167,7 +170,7 @@ przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może
 składowany zarówno w bazie danych jak i w ciasteczku.\\
 Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jes to plik o
 tej samej nazwie co akcja, znajdujący się w katalogu \emph{views} i podkatalogu
-odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy explicite).
+odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy eksplicite).
 Rozszerzenie pliku składa się z nazwy żądanego formatu (html, js, xml, etc.) oraz systemu
 szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.html.haml}.
 
@@ -273,8 +276,8 @@ korzystac jawnie, przekazując do metody \texttt{transaction} blok, w którym
 wykonujemy interesujące nas akcje.
 
 
-Zmian schematu bazy danych dokonujemy poprzez migracje. Są to pliki z kodem \emph{Rubiego
-}, w których definiujemy wprowadzane tabele oraz poszczególne kolumny. Świetnie sprawdzają
+Zmian schematu bazy danych dokonujemy poprzez migracje. Są to pliki z kodem \emph{Rubiego},
+w których definiujemy wprowadzane tabele oraz poszczególne kolumny. Świetnie sprawdzają
 się przy pracy w zespole, gdyż każdy plik jest oznaczony datą, a sama baza danych
 przechowuje informację o aktualnej wersji, dlatego nie ma tu konflitków i nie musimy
 przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka generatorów,
@@ -302,10 +305,10 @@ aplikacjami railsowymi niemal przy tej samej składni jaka jest dostępna w \emp
 {ActiveRecord}. Wystarczy że określimy \emph{host} zdalnego serwera i już
 możemy korzystać z jego \emph{API},\footnote{API -- Application Programming
 Interface (ang.) -- tutaj interfejs do komunikacji ze zdalną aplikacją} o ile
-jest zgodne z konwencją REST.\footnote{więcej na stronie~\pageref{sec:rest}}
-Moduł jest oparty o reprezentację zasobów w postaci \emph{XML} lub \emph{JSON
-}.\footnote{JSON -- JavaScript Object Notation -- tekstowy format wymiany
-danych, będący podzbiorem języka JavaScript}
+jest zgodne z konwencją REST\footnote{więcej na stronie~\pageref{sec:rest}}.
+Moduł jest oparty o reprezentację zasobów w postaci \emph{XML} lub
+\emph{JSON}\footnote{JSON -- JavaScript Object Notation -- tekstowy format wymiany
+danych, będący podzbiorem języka JavaScript}.
 
 
 \emph{ActiveResource} przynosi między innymi rozszerzenia biblioteki
@@ -322,8 +325,8 @@ wykorzystania przedstawione na listingu nr~\ref{listing:activesupport}.
 
 W ostatnim przykładzie widzimy metodę z pytajnikiem. Warto wspomnieć w tym
 momencie o konwencji jaka przyjęła się w środowisku języka \emph{Ruby}, gdzie
-właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub \texttt
-{false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
+właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub
+\texttt{false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
 bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
 
 \subsubsection{Internacjonalizacja}
@@ -332,8 +335,8 @@ Tłumaczenie słów w widokach odbywa się poprzez wywołanie metody \texttt{tra
 } aliasowanej do \texttt{t()} na kluczu, który następnie możemy zdefiniować w plikach z
 naszym tłumaczeniem. Dodatkowo możemy tłumaczyć nazwy modeli, atrybutów, czy błędy
 walidacji. Pliki z tłumaczeniem mogą być z rozszerzeniem \texttt{.rb}, wtedy zapisujemy je
-w postaci tablic asocjacyjnych języka \emph{Ruby} lub rozszerzeniem \texttt{.yml}. \emph{
-YAML}\footnote{YAML -- YAML Ain't Markup Language (ang.)} jest językiem formalnym
+w postaci tablic asocjacyjnych języka \emph{Ruby} lub rozszerzeniem \texttt{.yml}.
+\emph{YAML}\footnote{YAML -- YAML Ain't Markup Language (ang.)} jest językiem formalnym
 przeznaczonym do reprezentowania zbioru danych. Jego główną zaletą jest czytelność,
 przeciwnie jak to jest w przypadku \emph{XMLa}. Nie ma tu otwieranych i zamykanych
 znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom zagnieżdżenia.
@@ -341,8 +344,8 @@ znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom
 
 \subsubsection{Bezpieczeństwo aplikacji}
 \emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające nam zabezpieczyć się
-przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest \emph{CSRF
-}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
+przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest
+\emph{CSRF}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
 napastnika pod sesję użytkownika. Jeśli osoba taka jest zalogowana, wystarczy że uruchomi
 odnośnik modyfikujący dane niedostępne bez aktywnej sesji. Innymi słowy zmusza się
 użytkownika do wysłania żądania \emph{HTTP} do serwera z jego przeglądarki, wykorzystując
@@ -520,8 +523,8 @@ z niego narzędzie warte uwagi dla każdego dewelopera.
 
 
 \emph{Sass}\footnote{Sass -- Syntactically Awesome Stylesheets (ang.)} jest dostępny razem
-z biblioteką \emph{Haml} i służy do generowania kaskadowych arkuszy stylów \emph{CSS
-}\footnote{CSS -- Cascading Style Sheets (ang.)}. Również bazuje na wcięciach, więc
+z biblioteką \emph{Haml} i służy do generowania kaskadowych arkuszy stylów (\emph{CSS
+}\footnote{CSS -- Cascading Style Sheets (ang.)}). Również bazuje na wcięciach, więc
 wszelkie tagi są domykane automatycznie. Dodatkową zaletą poza przejrzystością i
 zwięzłością języka, jest dostępność zmiennych, na których możemy wykonywać operacje
 matematyczne. Przykładowo, jeśli mamy zdefiniowany jeden kolor i chcemy uzyskać np.
@@ -683,7 +686,7 @@ Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu n
 \section{Implementacja}
 
 \subsection{Wykorzystane gemy}
-\subsubsection{authlogic}
+\subsubsection{Authlogic}
 Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
 począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
 zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
@@ -715,7 +718,7 @@ oznacza, że nie ma rozróżnienia pomiędzy sposobem logowania do serwisu. Po z
 jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
 dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
 
-\subsubsection{acts-as-list}
+\subsubsection{Acts as list}
 \emph{Acts as list} umożliwia nam dołączęnie do modelu funkcjonalność listy, czyli
 usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
 wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
@@ -725,7 +728,7 @@ do testu, czyli również dla poszczególnych studentów, kolejność ta jest r�
 Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru, jest losowana
 kolejność wystąpienia odpowiedzi.
 
-\subsubsection{acts-as-taggable-on}
+\subsubsection{Acts as taggable on}
 \emph{Acts as taggable on} jest gemem, który łączy w sobie kilka poprzednio utworzonych
 bibliotek o podobnej funkcjonalności. Dostarcza mechanizm tagowania wybranych przez
 nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możliwość grupowania
@@ -758,7 +761,7 @@ Jak widzimy, możemy zawęzić wyszukiwanie odpowiednich rekordów do autora tag
 Gem udostępnia też metody pomocnicze przy wyświetlaniu tzw. ,,chmury tagów'' w
 renderowanych widokach, które możemy stylować za pomocą klas \emph{CSS}.
 
-\subsubsection{prawn}
+\subsubsection{Prawn}
 \emph{Prawn} jest odpowiedzialny za generowanie dokumentów w formacie
 \emph{PDF}\footnote{PDF -- Portable Document Format (ang.)}. Dostarcza on prosty format
 szablonu, w którym mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując
@@ -774,7 +777,7 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
   \label{listing:prawn}
 \end{listing}
 
-\subsubsection{paperclip}
+\subsubsection{Paperclip}
 \emph{Paperclip} jest gemem, który obsługuję ładowanie oraz obróbkę plików wysyłanych na
 serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
 czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
@@ -803,7 +806,7 @@ który ustanowił ten standard -- Joint Photographic Experts Group (ang.)},
 \emph{PNG}\footnote{PNG -- Portable Network Graphics (ang.)} lub \emph{GIF}\footnote{GIF --
 Graphics Interchange Format (ang.)}, oraz rozmiar nie przekroczy 100 kilobajtów.
 
-\subsubsection{routing-filter}
+\subsubsection{Routing filter}
 Przełączanie pomiędzy różnymi wersjami językowymi aplikacji zostało zrealizowane w taki
 sposób, aby był dodawany przedrostek do adresu strony w postaci kodu używanego aktualnie
 języka. Drugim sposobem implementacji mogłoby być przechowywanie informacji o języku w sesji
@@ -825,10 +828,10 @@ po wykonaniu logiki oraz przekierowaniu, ,,doklejeniu'' usuniętego wcześniej p
 Twórcą gema jest Sven Fuchs, który jest również głównym autorem modułu internacjonalizacji
 w \emph{Ruby on Rails}.
 
-\subsubsection{formtastic}
+\subsubsection{Formtastic}
 \emph{Formtastic} jest narzędziem, który rozbudowuje domyślny mechanizm konstruowania
-formularzy w railsach, dostarczając prostszy interfejs na rzecz, zdefiniowanych przez
-autora, struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
+formularzy w railsach, dostarczając prostszy interfejs, na rzecz zdefiniowanej przez
+autora struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
 w klasach, potrafi odnaleźć odpowiednią kolekcję istniejących obiektów, przy polu wyboru
 formularza. Etykiety opisujące wprowadzane dane korzystają z lokalizowanych nazw atrybutów
 poszczególnych modeli. Typ wyświetlonego pola formularza jest ropoznawany na podstawie
@@ -851,7 +854,16 @@ wyboru (w naszym przypadku jest to rok obecny). Do pola czasu trwania przekazuje
 wskazówkę, która wyświetli się pod wprowadzaną wartością, \emph{Formtastic} automatycznie
 dodaje odpowiednie klasy, które możemy później wystylować w odpowiedni dla nas sposób. Na
 samym końcu wybieramy pytania, które chcemy dołączyć, kolekcja jest tu przekazana
-eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazie danych.
+eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazie danych klasy
+\texttt{Question}.
+
+\subsubsection{State machine}
+
+\begin{listing}
+  \input{listing/state_machine}
+  \caption{Sposób użycia maszyny stanowej}
+  \label{listing:state_machine}
+\end{listing}
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
