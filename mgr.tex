@@ -689,7 +689,13 @@ funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
 dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.\\
 Gem ten również zapewnia nam wszystkie niezbędnę walidacje, takie jak poprawność składni
 wprowadzanego adresu e-mailowego oraz loginu, zgodność hasła z potwierdzeniem, czy
-unikalność istotnych atrybutów.
+unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing:authlogic}
+
+\begin{listing}
+  \input{listing/authlogic}
+  \caption{Sposób użycia systemu autentykacji}
+  \label{listing:authlogic}
+\end{listing}
 
 
 W aplikacji sesja nauczyciela i studenta jest zrealizowana za pomocą jednego modelu, co
@@ -792,7 +798,20 @@ języka. Drugim sposobem implementacji mogłoby być przechowywanie informacji o
 lub ciasteczku, przez co \emph{URL} zmieniałby się tylko w chwili przełączania, a pomiędzy
 kolejnymi żądaniami zmienna ta byłaby odczytywana na podstawie przechowywanej danej.
 Idąc jednak za radą oficjalnych przewodników \emph{Ruby on Rails}\cite{rails-guides},
-pierwszy sposób.
+pierwszy sposób nie burzy podstawowych założeń sieci, mianowicie chcąc przesłać odnośnik
+do strony, powinien on przedstawiać dokładnie tą samą treść, dlatego informacja o języku
+tłumaczenia w adresie \emph{URL} jest niezbędna.
+
+
+Napotykamy jednak na problem przy definiowaniu ścieżek, które są mapowane na kontrolery i
+odpowiednie akcje. Okazuje się bowiem, że musielibyśmy przy każdym wewnętrznym odsyłaczu,
+mapować dodatkowo parametr odpowiedzialny za informację o języku. Z pomocą jednak
+przychodzi gem \emph{Routing filter}, który pozwala na używanie powyżej opisanego
+mechanizmu bez przejmowania się o konfigurację ścieżek. Działa na zasadzie przechwycenia
+pełnego adresu \emph{URL} przed odwołaniem się do kontrolera, sparsowaniu go, aż w końcu
+po wykonaniu logiki oraz przekierowaniu, ,,doklejeniu'' usuniętego wcześniej parametru.
+Twórcą gema jest Sven Fuchs, który jest również głównym autorem modułu internacjonalizacji
+w \emph{Ruby on Rails}.
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
