@@ -479,7 +479,7 @@ serwisów. Sprowadza się to praktycznie tylko do przedstawienia konkretnego obi
 kolekcji poprzez format \emph{XML} lub \emph{JSON}.
 
 
-\subsection{Shoulda i Cucumber}
+\subsection{Testy jednostkowe}
 \emph{Shoulda} jest biblioteką służącą do przeprowadzania testów jednostkowych w oparciu o
 \emph{BDD}\footnote{BDD -- Behavior Driven Development (ang.)}. Ideą takiego podejścia
 jest pisanie testów jeszcze przed stworzeniem kodu aplikacji, który opisuje funkcjonalność
@@ -492,8 +492,24 @@ się zastanowić nad użyciem jendej z bibliotek \emph{mockowania}\footnote{mock
 zachowania prawdziwych obiektów w celach testowych}.\\
 \emph{Shoulda} jest rozszerzeniem standardowej biblioteki testującej języka \emph{Ruby}
 \emph{Test::Unit}, która przynosi wygodniejszą składnie oraz nowe typy asercji.
+Przykładowy test na listingu nr~\ref{listing:shoulda}
+
+\begin{listing}
+  \input{listing/shoulda}
+  \caption{Przykład testu jednostkowego}
+  \label{listing:shoulda}
+\end{listing}
 
 
+Testujemy tutaj przejście stanu egzaminu (implementowanego za pomocą maszyny stanowej,
+więcej na stronie nr~\pageref{sec:state_machine}) w ropoczęty, po którym powinna być
+zachowana w bazie danych data i czas. W metodzie \texttt{setup}, która przygotowuje
+dostępne obiekty w obrębie danego kontekstu dla każdego testu jednostkowego, przykładowy
+rekord został utworzony przy pomocy gema \texttt{factory\_girl}. Zastępuje on domyślny
+system tworzenia railsowych obiektów testowych, wczytywanych z plików \emph{YAML}, na
+rzecz dynamicznie tworzonych obiektów w ciele testu.
+
+\subsection{Testy integracyjne}
 \emph{Cucumber}\footnote{Stworzony w języku Ruby przez Aslaka Hellesøya, więcej na stronie
 internetowej \cite{cucumber}} zalicza się do tzw. \emph{Scenario Driven Development} i
 służy do testowania funkcjonalności ostatecznej -- tej widocznej dla użytkownika. Polega
@@ -505,9 +521,26 @@ na listingu nr~\ref{listing:cucumber}
 
 \begin{listing}
   \input{listing/cucumber}
-  \caption{Przykład testu integracyjnego z wykorzystaniem Cucumber}
+  \caption{Przykład testu integracyjnego}
   \label{listing:cucumber}
 \end{listing}
+
+
+Każda linijka jest osobnym krokiem, które są definiowane w plikach pomocniczych.
+Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumber_steps}
+
+\begin{listing}
+  \input{listing/cucumber_steps}
+  \caption{Implementacja kroków użytych w scenariuszu}
+  \label{listing:cucumber_steps}
+\end{listing}
+
+
+Za pomocą wyrażeń regularnych odnajdujemy przekazane w scenariuszu parametry, które
+posłużą nam do wygenerowania odpowiedniej treści. Do poruszania się po stronie w
+wirtualnej przeglądarce jest użyty gem \emph{Webrat}, który parsując dokument
+\emph{HTML} uzupełnia odpowiednie pola o przekazane atrybuty, a następnie symuluje
+komunikację z serwerem przyjmując jego rzekomą odpowiedź.
 
 \subsection{Haml i Sass}
 \emph{Haml}\footnote{Haml -- HTML Abstraction Markup Language (ang.)} jest językiem
@@ -857,13 +890,37 @@ samym końcu wybieramy pytania, które chcemy dołączyć, kolekcja jest tu prze
 eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazie danych klasy
 \texttt{Question}.
 
-\subsubsection{State machine}
+\subsubsection{State machine}\label{sec:state_machine}
+Maszyna stanowa pozwala nam wprowadzić do obiektu pojęcie stanu w jakim obecnie się
+znajduje oraz zdefiniować dostępne, czasem warunkowe, przejścia do innych stanów. Kolumna
+w bazie danych, odpowiedzialna za tę informację, jest typu \emph{String}, przez co
+zyskuje na czytelności. Tworzone metody pomocnicze są jednocześnie opisem pełnionych
+funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state_machine}.
 
 \begin{listing}
   \input{listing/state_machine}
   \caption{Sposób użycia maszyny stanowej}
   \label{listing:state_machine}
 \end{listing}
+
+
+Egzamin może znajdować się w trzech stanach: \texttt{prepared}, \texttt{started} oraz
+\texttt{finished}, pomiędzy którymi możemy się przemieszczać przy pomocy zdefiniowanych
+przejść. Dodatkowo przy proóbie przejścia \texttt{start} oraz \texttt{try\_finish}
+sprawdzamy warunki, jeśli zwrócą fałsz, obiekty pozostaną w swoim poprzednim stanie.
+Możemy również uruchomić dodatkową logikę za pomocą wywołań podobnych do tych dostępnych w
+\emph{ActiveRecord}, tyle że opierających się na przejściach. I tak przy wystartowaniu
+testu wywołujemy metodę, która ustawia aktualną datę i czas w atrubucie rekordu,
+analogicznie rzecz się ma przy zakończeniu testu.\\
+Przykładowa interakcja z maszyną stanową przy tak zdefiniowanej strukturze może wyglądać
+jak na listingu nr~\ref{listing:state_machine_transitions}.
+
+\begin{listing}
+  \input{listing/state_machine_transitions}
+  \caption{Interakcja z maszyną stanową}
+  \label{listing:state_machine_transitions}
+\end{listing}
+
 
 \subsection{Odległość Levenshteina}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w

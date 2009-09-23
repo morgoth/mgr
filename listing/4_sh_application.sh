@@ -7,8 +7,8 @@ sudo gem install rails
 sudo gem install sqlite3-ruby
 # instalacja używanych gemów
 sudo rake gems:install RAILS_ENV=test
-# migracja bazy danych
-rake db:migrate
+# ładowanie schematu bazy danych
+rake db:schema:load
 # uruchomienie testów jednostkowych
 rake test
 # uruchomienie testów integracyjnych
