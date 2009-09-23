@@ -12,4 +12,6 @@
 *.dvi
 *.ps
 listing/*.tex
+images/*.pdf
+images/*.eps
 environment_setup.sh

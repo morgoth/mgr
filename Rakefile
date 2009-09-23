@@ -4,6 +4,7 @@ task :default => [:evince]
 
 SH_OUTPUT_FILE = "environment_setup.sh"
 SRC = "mgr.tex"
+IMG_SRC = FileList["images/*.dia"]
 RUBY_SRC = FileList["listing/*.rb"]
 ERB_SRC = FileList["listing/*.rhtml"]
 HTML_SRC = FileList["listing/*.html"]
@@ -21,9 +22,10 @@ CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
               HAML_SRC.ext("tex"),
               SASS_SRC.ext("tex"),
               SH_SRC.ext("tex"),
-              CUC_SRC.ext("tex"))
+              CUC_SRC.ext("tex"),
+              IMG_SRC.ext("pdf"))
 
-CLOBBER.include(%w(pdf dvi ps).collect { |e| SRC.ext(e) })
+CLOBBER.include(%w(pdf dvi ps eps).collect { |e| SRC.ext(e) })
 
 def pdflatex(source)
   sh "pdflatex -interaction=nonstopmode #{source}"
@@ -31,6 +33,14 @@ end
 
 def bibtex(source)
   sh "bibtex #{source.ext("")}"
+end
+
+rule '.pdf' => '.eps' do |t|
+  sh "epstopdf -outfile=#{t.name} #{t.source}"
+end
+
+rule '.eps' => '.dia' do |t|
+  sh "dia -e #{t.name} #{t.source}"
 end
 
 rule ".png" => ".svg" do |t|
@@ -72,7 +82,7 @@ rule ".pdf" => ".tex" do |t|
   pdflatex(t.source)
 end
 
-file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + ERB_SRC.ext("tex") + SASS_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + CUC_SRC.ext("tex") + SVG_IMG.ext("png")
+file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + IMG_SRC.ext("pdf") + ERB_SRC.ext("tex") + SASS_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + CUC_SRC.ext("tex") + SVG_IMG.ext("png")
 
 desc "Compile PDF"
 task :pdf => SRC.ext("pdf")

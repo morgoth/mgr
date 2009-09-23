@@ -1,6 +1,6 @@
 exam = Exam.first
-exam.prepared?
-#=> true
+exam.state
+#=> "prepared"
 exam.can_finish?
 #=> false
 exam.start
