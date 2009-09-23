@@ -10,6 +10,6 @@ sudo rake gems:install RAILS_ENV=test
 # ładowanie schematu bazy danych
 rake db:schema:load
 # uruchomienie testów jednostkowych
-rake test
+rake test:units
 # uruchomienie testów integracyjnych
 cucumber

@@ -35,6 +35,9 @@ edukacji w oparciu o technologię Ruby on Rails}
 \maketitle
 \end{titlepage}
 
+\tableofcontents
+
+\clearpage
 \section{Wstęp}
 ...
 
@@ -106,7 +109,7 @@ Bates\footnote{Ryan Bates -- jeden z aktywistów Ruby on Rails, znany głównie 
 darmowych, cotygodniowych screencastów \cite{ryan-bates}} tworzy w 15 minut szkielet
 systemu blogowego, uwzględniając takie dodatki jak dostępność poprzez kanał
 RSS\footnote{RSS -- Really Simple Syndication (ang.)} czy reprezentacja zasobów w postaci
-\emph{XML}.\cite{blog-in-15-min}\\
+\emph{XML} \cite{blog-in-15-min}.\\
 Kolejną zaletą takiego podejścia, jest przejrzystość kodu. Dopóki postępujemy zgodnie ze
 wskazówkami, nasz kod nie powinien być trudny do zrozumienia przez innego programistę
 również zajmującego się tą technologią.\\
@@ -178,7 +181,7 @@ szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.
 \emph{ActiveRecord} działa jako domyślne mapowanie
 obiektowo-relacyjne\footnote{ORM -- Object-Relational Mapping (ang.)},
 czyli odzworowanie logiki powiązanych ze sobą modeli na bazę danych.
-Nazwa została wzięta z książki Martina Fowlera\cite{martin-fowler}, która
+Nazwa została wzięta z książki Martina Fowlera \cite{martin-fowler}, która
 właśnie opisuje powyższe zagadnienie. Moduł ten nie jest ściśle związany z żadną
 wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
 \emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
@@ -385,7 +388,7 @@ wyrzucić istniejącą bazę, sprowadza się to po prostu do usunięcia danego p
 Co ciekawe \emph{SQLite} wydajnościowo wypada bardzo dobrze w przypadku jednego
 użytkownika, dlatego jest używany w systemach wbudowanych\footnote{Embedded system (ang.) --
 system komputerowy specjalnego przeznaczenia, który staje się integralną częścią
-obsługiwanego przez niego sprzętu.\cite{embedded-system}} takich jak telefony komórkowe
+obsługiwanego przez niego sprzętu \cite{embedded-system}} takich jak telefony komórkowe
 czy urządzenia \emph{AGD}. Jednak przy obsłudze strony internetowej, gdzie jednoczesnych zapytań
 skierowanych do bazy danych może być dużo, jest potrzebny osobny, odrębny serwer. Jednym
 z najczęściej spotykanych wyborów jest \emph{PostgreSQL} lub \emph{MySQL}. Konfiguracja
@@ -414,7 +417,7 @@ oraz uniezależnieniu frameworka od konkretnej biblioteki \emph{ORM} oraz \emph{
 }. \emph{Merb} nastawiony był również na większą modularność, sam w sobie nie dawał tak
 dużej funkcjonalności jak \emph{RoR}, ale rozszerzenie o nowe możliwości miało być
 prostsze i wspierane przez zespół pracowników czuwających nad głównym kodem.\\
-W dniu 23 grudnia 2008 roku została ogłszona wiadomość\cite{rails-merb} o połączeniu obu zespołów,
+W dniu 23 grudnia 2008 roku została ogłszona wiadomość \cite{rails-merb} o połączeniu obu zespołów,
 które razem skupią się na przeniesieniu najlepszych rzeczy z obu frameworków do jednego,
 wypuszczonego pod nazwą \emph{Ruby~on~Rails~3.0}. Pierwszej wersji możemy się spodziewać
 pod koniec 2009 roku. Informacja ta wzbudziła wiele emocji w środowisku deweloperskim, co
@@ -626,9 +629,9 @@ zaistniałych w \emph{CVS}\footnote{CVS -- Concurrent Versions System (ang.)}.
 Każdy katalog roboczy jest kompletnym repozytorium, który nie jest uzależniony od dostępu
 do sieci czy centralnego serwera, co sprawia że świetnie sprawdza się również przy projekcie
 prowadzonym tylko przez jedną osobę.\\
-Jedną z możliwości hostowania repozytoriów oferuje \emph{GitHub}\cite{github}, który jest
+Jedną z możliwości hostowania repozytoriów oferuje \emph{GitHub} \cite{github}, który jest
 skupiskiem wielu opensourcowych projektów. Statystyki na dzień 27.07.2009 mówią o 90.000
-unikalnych publicznych repozytoriach znajdujących się na serwerach firmy\cite{github-statistics}.
+unikalnych publicznych repozytoriach znajdujących się na serwerach firmy \cite{github-statistics}.
 
 
 \clearpage
@@ -845,7 +848,7 @@ sposób, aby był dodawany przedrostek do adresu strony w postaci kodu używaneg
 języka. Drugim sposobem implementacji mogłoby być przechowywanie informacji o języku w sesji
 lub ciasteczku, przez co \emph{URL} zmieniałby się tylko w chwili przełączania, a pomiędzy
 kolejnymi żądaniami zmienna ta byłaby odczytywana na podstawie przechowywanej danej.
-Idąc jednak za radą oficjalnych przewodników \emph{Ruby on Rails}\cite{rails-guides},
+Idąc jednak za radą oficjalnych przewodników \emph{Ruby on Rails} \cite{rails-guides},
 pierwszy sposób nie burzy podstawowych założeń sieci, mianowicie chcąc przesłać odnośnik
 do strony, powinien on przedstawiać dokładnie tą samą treść, dlatego informacja o języku
 tłumaczenia w adresie \emph{URL} jest niezbędna.
@@ -923,6 +926,7 @@ jak na listingu nr~\ref{listing:state_machine_transitions}.
 
 
 Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:state_machine}.
+
 \begin{figure}[ht]
   \begin{center}
     \includegraphics[width=0.3\linewidth]{images/state_machine.pdf}
@@ -961,8 +965,6 @@ dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uzna
 za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz, gdzie
 zastosowany jest podobny mechanizm oceny.
 
-\clearpage
-\tableofcontents
 \clearpage
 \bibliographystyle{plain}
 \bibliography{bibliografia}
