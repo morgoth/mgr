@@ -41,6 +41,56 @@ edukacji w oparciu o technologię Ruby on Rails}
 \section{Wstęp}
 ...
 
+\section{Istniejące systemy nauki zdalnej}
+\subsection{Moodle}
+\emph{Moodle}\footnote{Moodle -- Modular Object-Oriented Dynamic Learning Environment (ang.)}
+jest wolnym, wypuszczonym na licencji \emph{GNU GPL}\footnote{GNU GPL -- GNU General Public
+Licence (ang.) -- licencja stworzona przez Richarda Stallmana oraz Ebena Moglena na potrzeby
+projektu GNU} oprogramowaniem przeznaczonym do edukacji za pośrednictwem internetu. Twórcą
+jest Martin Dougiamas, którego imię początkowo było rozszerzeniem pierwszej litery nazwy
+tegoż systemu. Został on zaprojektowany aby pomóc w organizacji kursów przez nauczycieli,
+z bogatą możliwością interakcji z uczestnikami. Kod jest pisany w języku
+\emph{PHP}\footnote{PHP -- PHP Hypertext Preprocessor (ang.)} w oparciu o serwer \emph{HTTP}
+\emph{Apache} oraz o system zarządzania bazą danych. Może być uruchamiany na dowolnym
+systemie operacyjnym: \emph{Linux}, \emph{Windows}, \emph{Mac~OS~X}. Statystyki na czas
+obecny mówią o 38.840 znanych serwisach wykorzystujących \emph{Moodle} w 204 różnych
+państwach \cite{moodle-statistics}.
+
+
+Podstawowa funkcjonalność jest bardzo duża, poczynając od zarządzania uczestnikami kursu
+po wymyślne konstruowanie treści strony. W zależności od pełnionej roli w systemie, po
+zalogowaniu, dostajemy dostęp do różnych opcji. Konto administratora ma największe
+uprawnienia, jest odpowiedzialne za zarządzanie użytkownikami, określaniem ich ról, oraz
+wszelkie konfiguracyjne rzeczy, takie jak sposób rejestracji, wybór motywów graficznych
+prezentujących treść strony, statystyki, sesje, etc.
+Menu do zarządzania jest bardzo długie, a istotne, najczęściej konfigurowane opcje są
+przemieszane z rzadko używanymi elementami, co utrudnia skuteczną nawigację po serwisie.
+
+
+Moduł do konstruowania i przeprowadzania testów umożliwia tworzenie pytań rodzaju
+wielokrotnego lub jednokrotnego wyboru, wyliczeniowych, a nawet otwartych. Minusem tych
+ostatnich jest to, że test nie może zostać oceniony automatycznie, punkty muszą zostać
+przyznane przez osobę odpowiedzialną za jego przygotowanie. Mając do dyspozycji bank
+pytań, możemy przygotować test, decydując o dacie rozpoczęcia, czasu trwania, kolejności
+wyświetlanych odpowiedzi, czy ilości podejść. Mnogość opcji konfiguracji sprawia, że
+stworzenie nowego rekordu zajmuje dużo czasu, co zdecydowanie obniża motywację podjęcia
+takowej próby.
+
+
+Jako że \emph{Moodle} jest wolnym oprogramowaniem, powstało wiele rozszerzeń
+dostarczających nowe funkcje. Między innymi takie jak:
+
+\begin{itemize}
+  \item{różne metody autentykacji}
+  \item{motywy graficzne}
+  \item{czat}
+  \item{kalendarz}
+  \item{filtry treści}
+  \item{efekty graficzne wykorzystujące JavaScript}
+  \item{komunikacja z serwerem za pomocą technologii AJAX}
+\end{itemize}
+
+\clearpage
 \section{Technologie}
 \subsection{Ruby}
 \emph{Ruby} został stworzony w 1995 roku przez Yukihiro Matsumoto, znanego również
@@ -59,7 +109,8 @@ Jedną z głównych cech tego języka, która rzuca się w oczy od razu, jest tz
 ,,samokomentujący się kod''. Składnia jest bardzo zbliżona do języka naturalnego
 (angielskiego), dzięki czemu nawet osoba nie mająca nic wspólnego z programowaniem,
 powinna przewidzieć co dany kawałek kodu wykonuje. Przykładem niech będzie
-listing nr \ref{listing:selfcommenting}.
+listing nr~\ref{listing:selfcommenting}.
+
 \begin{listing}
   \input{listing/selfcommenting}
   \caption{Samokomentujący się kod}
@@ -135,6 +186,7 @@ czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
 \emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy -- system
 paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
+
 \begin{itemize}
   \item ActionMailer
   \item ActionPack
@@ -172,10 +224,10 @@ asocjacyjną, do której możemy się odwoływać za pomocą kluczy. Sposób
 przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może być
 składowany zarówno w bazie danych jak i w ciasteczku.\\
 Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jes to plik o
-tej samej nazwie co akcja, znajdujący się w katalogu \emph{views} i podkatalogu
+tej samej nazwie co akcja, znajdujący się w katalogu \texttt{views} i podkatalogu
 odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy eksplicite).
 Rozszerzenie pliku składa się z nazwy żądanego formatu (html, js, xml, etc.) oraz systemu
-szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \emph{index.html.haml}.
+szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \texttt{index.html.haml}.
 
 
 \emph{ActiveRecord} działa jako domyślne mapowanie
@@ -187,7 +239,7 @@ wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
 \emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
 konstruowanie zapytań za pomocą kodu \emph{Rubiego}, który później jest
 przekształcany na odpowiadającą mu składnię \emph{SQLa}.
-Przykład przedstawiony na listingu nr \ref{listing:activerecord_finders}.
+Przykład przedstawiony na listingu nr~\ref{listing:activerecord_finders}.
 
 \begin{listing}
   \input{listing/activerecord_finders}
@@ -210,7 +262,7 @@ następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej kl
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
 Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
 dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy, jak na
-listingu nr \ref{listing:activerecord_association}.
+listingu nr~\ref{listing:activerecord_association}.
 
 \begin{listing}
   \input{listing/activerecord_association}
@@ -225,7 +277,7 @@ widzimy konstrukcja odpowiada naturalnej relacji w języku angielskim, dlatego
 też nie powinno się używać lokalizowanych nazw tabel, co zapewnia spójność i
 nie powoduje ,,potworków językowych'', takich jak \texttt{student has many
 egzamins}. Po deklaracji asocjacji dostajemy automatycznie między innymi takie
-metody jak przedstawione na listingu nr \ref{listing:activerecord_association_finders}.
+metody jak przedstawione na listingu nr~\ref{listing:activerecord_association_finders}.
 
 \begin{listing}
   \input{listing/activerecord_association_finders}
@@ -237,7 +289,8 @@ metody jak przedstawione na listingu nr \ref{listing:activerecord_association_fi
 Walidatory zapewniają nam poprawność wprowadzanych danych, dzięki którym również
 możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
 standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
-własne. Przykładowy sposób użycia przedstawia listing nr \ref{listing:activerecord_validations}.
+własne. Przykładowy sposób użycia przedstawia listing
+nr~\ref{listing:activerecord_validations}.
 
 \begin{listing}
   \input{listing/activerecord_validations}
