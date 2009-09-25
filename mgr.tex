@@ -60,11 +60,20 @@ państwach \cite{moodle-statistics}.
 Podstawowa funkcjonalność jest bardzo duża, poczynając od zarządzania uczestnikami kursu
 po wymyślne konstruowanie treści strony. W zależności od pełnionej roli w systemie, po
 zalogowaniu, dostajemy dostęp do różnych opcji. Konto administratora ma największe
-uprawnienia, jest odpowiedzialne za zarządzanie użytkownikami, określaniem ich ról, oraz
+uprawnienia, jest odpowiedzialne za zarządzanie użytkownikami, określaniem ich ról oraz
 wszelkie konfiguracyjne rzeczy, takie jak sposób rejestracji, wybór motywów graficznych
 prezentujących treść strony, statystyki, sesje, etc.
 Menu do zarządzania jest bardzo długie, a istotne, najczęściej konfigurowane opcje są
 przemieszane z rzadko używanymi elementami, co utrudnia skuteczną nawigację po serwisie.
+W pełni rozwinięty panel został przedsatwiony na ilustracji nr~\ref{fig:moodle_panel}.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=1\linewidth]{images/moodle_panel.png}
+  \end{center}
+  \caption{Panel administratora w systemie Moodle}
+  \label{fig:moodle_panel}
+\end{figure}
 
 
 Moduł do konstruowania i przeprowadzania testów umożliwia tworzenie pytań rodzaju
@@ -89,6 +98,14 @@ dostarczających nowe funkcje. Między innymi takie jak:
   \item{efekty graficzne wykorzystujące JavaScript}
   \item{komunikacja z serwerem za pomocą technologii AJAX}
 \end{itemize}
+
+
+Podsumowując, \emph{Moodle} jest bardzo rozbudowanym systemem. przeznaczonym dla większych
+grup. Zawiera w sobie wiele modułów, które są integralnymi elementami całego systemu, dlatego
+nie mamy możliwości skupienia się tylko na części do przeprowadzania testów -- musimy
+również obsłużyć wszystkie pozostałe funkcje, takie jak forum, tworzenie personalnych
+stron, szczegółowe konfiguracje zarządzania treścią, etc. Powoduje to spore zużycie
+zasobów serwera na rzeczach, które de facto nie są używane.
 
 \clearpage
 \section{Technologie}
@@ -761,8 +778,8 @@ jednostkowe oraz integracyjne poprzez polecenia jak na listingu nr~\ref
   \label{listing:ubuntu_application}
 \end{listing}
 
-Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu nr~\ref
-{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
+Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu
+nr~\ref{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
 \url{http://localhost:3000}.
 
 \begin{listing}
@@ -773,9 +790,81 @@ Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu n
 
 \clearpage
 \section{Implementacja}
+\subsection{Modele}
+Zgodnie ze wzorcem \emph{MVC} oraz konwencją \emph{Ruby on Rails} modele są odpowiedzialne
+za główną logikę biznesową aplikacji.
+
+\subsubsection{Użytkownik, nauczyciel, student}
+Model \emph{User} przechowuje informacje na temat zarejestrowanych użytkowników w
+portalu. Poza kolumnami dotyczącymi imienia i nazwiska, tabela posiada również wszystkie
+niezbędnę pola potrzebne do systemu autentykacji, który został zbudowany przy użyciu
+biblioteki \emph{Authlogic} opisanej na stronie~\pageref{sec:authlogic}. Jest to klasa
+nadrzędna, po której za pomocą mechanizmu \emph{STI}\footnote{STI -- Single Table
+Inheritance (ang.)}, dziedziczą modele \emph{Teacher} oraz \emph{Student}. Oznacza to, że
+istnieje tylko jedna tabela w bazie danych, odnosząca się zarówno do studenta jak i
+nauczyciela, informacja o typie obiektu jest przechowywana w kolumnie \texttt{type} jako
+\emph{String}. Sposób zapisu został przedstawiony na listingu nr~\ref{listing:sti}.
+
+\begin{listing}
+  \input{listing/sti}
+  \caption{Ddziedziczenie STI w Ruby on Rails}
+  \label{listing:sti}
+\end{listing}
+
+
+Metody zdefiniowane w klasie \emph{User} są dziedziczone i dostępne dla obiektów
+pochodnych, natomiast wszelkie funkcje charakterystyczne dla konkretnego typu, mogą być
+tworzone w ciele ich własnych klas.
+
+\subsubsection{Pytanie nauczycielskie}
+Każdy nauczyciel może tworzyć pytania, które później wybiera podczas przygotowywania
+testu. Tabela \texttt{teacher\_exams} przechowuje informacja o identyfikatorze
+nauczyciela, przez którego został stworzony rekord, przez co wybór ewentualnych pytań jest
+ograniczony do autora.
+Na poprawny rekord składa się treść lub ilustracja oraz typ pytania, który może być
+jednym~z:
+\begin{itemize}
+  \item{jednokrotnego wyboru}
+  \item{wielokrotnego wyboru}
+  \item{porównujący do wzorca\footnote{opis implementacji na stronie \pageref{sec:levenshtein}}}
+\end{itemize}
+
+
+Mamy również możliwość tagowania każdego pytania, przez co sortowanie i odnalazienie
+właściwego powinno być prostsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
+on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
+
+
+Klasa posiada również metodę zwracającą największy możliwy wynik punktowy dla danego
+pytania. Jest to istotne w obliczaniu końcowego wyniku procentowego. Lising
+nr~\ref{listing:max_points} przedsawia ciało tejże metody.
+
+\begin{listing}
+  \input{listing/max_points}
+  \caption{Metoda obliczająca maksymalną ilość punktów możliwą do zdobycia dla konkretnego pytania}
+  \label{listing:max_points}
+\end{listing}
+
+
+Metoda dla pytania typu jednokrotnego wyboru, zwraca maksymalną wartość ze zbioru
+podrzędnych odpowiedzi. Dla kazdego innego typu są brane pod uwagę tylko punkty dodatnie,
+które następnie są sumowane.
+
+
+\subsection{Schemat bazy danych}
+Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
+nr~\ref{fig:db_schema}
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=1\linewidth]{images/db_schema.pdf}
+  \end{center}
+  \caption{Diagram związków encji dla egzaminu}
+  \label{fig:db_schema}
+\end{figure}
 
 \subsection{Wykorzystane gemy}
-\subsubsection{Authlogic}
+\subsubsection{Authlogic}\label{sec:authlogic}
 Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
 począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
 zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
@@ -817,7 +906,7 @@ do testu, czyli również dla poszczególnych studentów, kolejność ta jest r�
 Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru, jest losowana
 kolejność wystąpienia odpowiedzi.
 
-\subsubsection{Acts as taggable on}
+\subsubsection{Acts as taggable on}\label{sec:acts_as_taggable_on}
 \emph{Acts as taggable on} jest gemem, który łączy w sobie kilka poprzednio utworzonych
 bibliotek o podobnej funkcjonalności. Dostarcza mechanizm tagowania wybranych przez
 nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możliwość grupowania
@@ -989,7 +1078,7 @@ Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:st
 \end{figure}
 
 
-\subsection{Odległość Levenshteina}
+\subsection{Odległość Levenshteina}\label{sec:levenshtein}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
 studenta.\\
