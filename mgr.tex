@@ -850,6 +850,27 @@ Metoda dla pytania typu jednokrotnego wyboru, zwraca maksymalną wartość ze zb
 podrzędnych odpowiedzi. Dla kazdego innego typu są brane pod uwagę tylko punkty dodatnie,
 które następnie są sumowane.
 
+\subsubsection{Odpowiedź nauczycielska}
+Model \emph{TeacherAnswer} jest w relacji z \emph{TeacherQuestion} typu wiele do jednego.
+Dla pytań wielokrotnego i jednokrotnego wyboru możemy stworzyć dowolną liczbę odpowiedzi.
+Jedynie dla pytania porównującego do wzorca jest dopuszczalny tylko jeden rekord, co
+zapewnia nam walidacja zdefiniowana w ciele klasy. Wymaganym polem jest ilość punktów
+przyznawanych w wypadku zaznaczenia odpowiedzi przez studenta. Liczba ta nie musi być
+całkowita i może przyjmować wartości ujemne, dlatego wszelaki balans punktowy przy
+komponowaniu testu spoczywa na nauczycielu. Treść może składać się z tekstu lub być
+zastąpiona ilustracją.
+
+\subsubsection{Egzamin nauczycielski}
+Każdy nauczyciel może przygotować test, składający się z wybranych przez niego pytań,
+które sam utworzył. Cały formularz składa się z najstępujących pól:
+
+\begin{itemize}
+  \item{nazwa -- pole wymagane}
+  \item{czas trwania -- podawany w minutach}
+  \item{data rozpoczęcia}
+  \item{kolekcja pytań, które mają zostać zawarte w egzaminie}
+  \item{ilość pytań losowanych przy tworzeniu podejścia do rozwiązania}
+\end{itemize}
 
 \subsection{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
