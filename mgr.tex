@@ -107,6 +107,8 @@ również obsłużyć wszystkie pozostałe funkcje, takie jak forum, tworzenie p
 stron, szczegółowe konfiguracje zarządzania treścią, etc. Powoduje to spore zużycie
 zasobów serwera na rzeczach, które de facto nie są używane.
 
+\subsection{OLAT}
+
 \clearpage
 \section{Technologie}
 \subsection{Ruby}
@@ -205,11 +207,11 @@ paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być rów
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 
 \begin{itemize}
-  \item ActionMailer
-  \item ActionPack
-  \item ActiveRecord
-  \item ActiveResource
-  \item ActiveSupport
+  \item{ActionMailer}
+  \item{ActionPack}
+  \item{ActiveRecord}
+  \item{ActiveResource}
+  \item{ActiveSupport}
 \end{itemize}
 
 
@@ -862,15 +864,52 @@ zastąpiona ilustracją.
 
 \subsubsection{Egzamin nauczycielski}
 Każdy nauczyciel może przygotować test, składający się z wybranych przez niego pytań,
-które sam utworzył. Cały formularz składa się z najstępujących pól:
+które sam utworzył. Cały formularz składa się z następujących pól:
 
 \begin{itemize}
   \item{nazwa -- pole wymagane}
   \item{czas trwania -- podawany w minutach}
   \item{data rozpoczęcia}
   \item{kolekcja pytań, które mają zostać zawarte w egzaminie}
-  \item{ilość pytań losowanych przy tworzeniu podejścia do rozwiązania}
+  \item{ilość pytań losowanych przy tworzeniu podejścia do testu}
 \end{itemize}
+
+
+Ostatnie pole jest opcjonalne, pozwala nam na wyznaczenie z ilu pytań będzie się składała
+próba podejścia do testu. Jeśli jest mniejsza niż ilość wybranych ogółem, to pytania będą
+losowane do danej wartości spośród całej puli.\\
+Usuwanie egzaminów jest możliwe tylko jeśli nie zostało jeszcze utworzone podejście dla
+studenta. Poza informacją w panelu o tym fakcie, model jest zabezpieczony metodą
+uruchamianą za pomocą wywołania \texttt{before\_destroy}, jak na listingu
+nr~\ref{listing:exam_destroyable}.
+
+\begin{listing}
+  \input{listing/exam_destroyable}
+  \caption{Zabezpieczenie rekordu przed usunięciem, jeśli posiada powiązania}
+  \label{listing:exam_destroyable}
+\end{listing}
+
+
+Wystarczy, że metoda \texttt{destroyable?} zwróci fałsz, a rekord nie zostanie usunięty.
+Klasa \emph{TeacherExam} posiada również metodę, która zwraca maksymalną ilość punktów
+możliwych do zdobycia z całości egzaminu. Sprowadza się ona do iteracji po powiązanych
+pytaniach i zsumowaniu wartości zwracanych przez motodę wywołaną na obiektach
+klasy \emph{TeacherQuestion}, która została opisana w poprzednim podrozdziale.
+
+\subsubsection{Egzamin}
+Model \emph{Exam} łączy ten przygotowany przez nauczyciela (o którym można myśleć jako
+o szablonie, który jest taki sam dla wszystkich), z konkretnym studentem, dla którego są
+generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze stanów:
+
+\begin{itemize}
+  \item{przygotowany}
+  \item{rozpoczęty}
+  \item{zakończony}
+\end{itemize}
+
+
+Zostało to zrealizowane przy pomocy maszyny stanowej, opisanej dokładniej na
+stronie~\pageref{sec:state_machine}.
 
 \subsection{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji

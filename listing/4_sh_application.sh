@@ -12,4 +12,4 @@ rake db:schema:load
 # uruchomienie testów jednostkowych
 rake test:units
 # uruchomienie testów integracyjnych
-cucumber
+rake cucumber
