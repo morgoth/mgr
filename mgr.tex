@@ -909,11 +909,20 @@ generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze st
 
 
 Zostało to zrealizowane przy pomocy maszyny stanowej, opisanej dokładniej na
-stronie~\pageref{sec:state_machine}.
+stronie~\pageref{sec:state_machine}. Student, do którego został przypisany egzamin, może
+go rozpocząć, o ile pozwala mu na to data startu. Po zakończeniu testu, zapisywana jest
+dokładny czas, co pozwala później obliczyć statystyki. Na obiekcie można również wywołać
+metodę zliczającą zdobyte punkty oraz wynik procentowy (liczony jako iloraz zdobytych
+punktów oraz maksymalnej, możliwej liczby dla danego zestawu pytań).
+
+\subsubsection{Pytanie}
+Pytania są generowane przy tworzeniu egzaminu. Każdy rekord jest uporządkowanym elementem
+listy, co zostało osiągnięte przy użyciu gema \emph{Acts as list}, opisanego dokładniej na
+stronie~\pageref{sec:acts_as_list}.
 
 \subsection{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
-nr~\ref{fig:db_schema}
+nr~\ref{fig:db_schema}.
 
 \begin{figure}[ht]
   \begin{center}
@@ -956,7 +965,7 @@ oznacza, że nie ma rozróżnienia pomiędzy sposobem logowania do serwisu. Po z
 jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
 dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
 
-\subsubsection{Acts as list}
+\subsubsection{Acts as list}\label{sec:acts_as_list}
 \emph{Acts as list} umożliwia nam dołączęnie do modelu funkcjonalność listy, czyli
 usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
 wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
