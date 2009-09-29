@@ -910,7 +910,7 @@ generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze st
 
 Zostało to zrealizowane przy pomocy maszyny stanowej, opisanej dokładniej na
 stronie~\pageref{sec:state_machine}. Student, do którego został przypisany egzamin, może
-go rozpocząć, o ile pozwala mu na to data startu. Po zakończeniu testu, zapisywana jest
+go rozpocząć, o ile pozwala mu na to data startu. Po zakończeniu testu, zapisywany jest
 dokładny czas, co pozwala później obliczyć statystyki. Na obiekcie można również wywołać
 metodę zliczającą zdobyte punkty oraz wynik procentowy (liczony jako iloraz zdobytych
 punktów oraz maksymalnej, możliwej liczby dla danego zestawu pytań).
@@ -918,7 +918,52 @@ punktów oraz maksymalnej, możliwej liczby dla danego zestawu pytań).
 \subsubsection{Pytanie}
 Pytania są generowane przy tworzeniu egzaminu. Każdy rekord jest uporządkowanym elementem
 listy, co zostało osiągnięte przy użyciu gema \emph{Acts as list}, opisanego dokładniej na
-stronie~\pageref{sec:acts_as_list}.
+stronie~\pageref{sec:acts_as_list}. Obiekt posiada dwa stany:
+
+\begin{itemize}
+  \item{przygotowany}
+  \item{odwiedzony}
+\end{itemize}
+
+
+Pozwala to rozróżnić, na które pytanie student już odpowiedział. Po utworzeniu rekordu, są
+generowane odpowiedzi, których kolejność również jest losowana. Przy próbie aktualizacji
+rekordu przez studenta, sprawdzamy czy egzamin nie powinien się zakończyć. Jeśli tak,
+do rekordu nie są wprowadzane zmiany (odpowiedź studenta nie zostaje uznana). Kod został
+przedstawiony na listingu nr~\ref{listing:manage_exam_and_answers}
+
+\begin{listing}
+  \input{listing/manage_exam_and_answers}
+  \caption{Obsługa aktualizacji odpowiedzi przez studenta}
+  \label{listing:manage_exam_and_answers}
+\end{listing}
+
+
+Zmienna \texttt{@student\_answers} przechowuje tablicę asocjacyjną, gdzie kluczem jest
+rodzaj pytania (ustawiany w formularzu), a wartością, w zależności od rodzaju,
+tablica identyfikatorów wybranych odpowiedzi lub wpisany tekst.
+
+\subsubsection{Odpowiedź}
+
+\subsubsection{Ilustracja}
+Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę, dzięki
+bibliotece \emph{Paperclip}, opisanej dokładniej na stronie~\pageref{sec:paperclip}.
+Model ten jest w relacji polimorficznej do pytania oraz odpowiedzi. Pozwala to na
+uniezależnienie rekordu od konretnego typu ,,rodzica'', informacja ta jest po prostu
+zapisywana w odpowiedniej kolumnie. Implementacja została przestawiona na listingu
+nr~\ref{listing:polymorphic}.
+
+\begin{listing}
+  \input{listing/polymorphic}
+  \caption{Asocjacje polimorficzne}
+  \label{listing:polymorphic}
+\end{listing}
+
+
+Aby móc korzystać z polimorfizmu, tabela \texttt{pictures} musi posiadać kolumny
+\texttt{imageable\_type} oraz \texttt{imageable\_id}, które jednoznacznie identyfikują
+rekord nadrzędny.
+
 
 \subsection{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
@@ -1024,7 +1069,7 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
   \label{listing:prawn}
 \end{listing}
 
-\subsubsection{Paperclip}
+\subsubsection{Paperclip}\label{sec:paperclip}
 \emph{Paperclip} jest gemem, który obsługuję ładowanie oraz obróbkę plików wysyłanych na
 serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
 czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
