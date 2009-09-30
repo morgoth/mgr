@@ -941,9 +941,27 @@ przedstawiony na listingu nr~\ref{listing:manage_exam_and_answers}
 
 Zmienna \texttt{@student\_answers} przechowuje tablicę asocjacyjną, gdzie kluczem jest
 rodzaj pytania (ustawiany w formularzu), a wartością, w zależności od rodzaju,
-tablica identyfikatorów wybranych odpowiedzi lub wpisany tekst.
+tablica identyfikatorów wybranych odpowiedzi albo wpisany tekst.
 
 \subsubsection{Odpowiedź}
+Model \emph{Answer} jest pośrednikiem pomiędzy pierwotną formą odpowiedzi, a tą udzieloną
+przez studenta. W rekordzie jest przechowywana informacja o zaznaczeniu, w przypadku pytań
+jednokrotnego i wielokrotnego wyboru albo tekst przy pytaniu porównującym do wzorca. Przed
+zapisem aktualizujemy kolumnę odpowiednią wartością. Sposób implementacji został
+przedstawiony na listingu nr~\ref{listing:calculate_points}.
+
+\begin{listing}
+  \input{listing/calculate_points}
+  \caption{Aktualizacja wartości odpowiedzi przed zapisem}
+  \label{listing:calculate_points}
+\end{listing}
+
+
+Jeśli wartością pola \texttt{value} jest ,,true'', oznacza to że została ona zaznaczona przez studenta, w
+takim przypadku przepisujemy wartość punktową zdefiniowaną przez nauczyciela, w przeciwnym
+razie wpisujemy 0. Jeśli pytanie było typu porównania do wzorca, za pomocą odległości
+Levenshteina, sprawdzamy czy oba napisy są odpowiednio podobne i znów analogicznie,
+uzupełniamy wartość punktową.
 
 \subsubsection{Ilustracja}
 Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę, dzięki
@@ -963,6 +981,30 @@ nr~\ref{listing:polymorphic}.
 Aby móc korzystać z polimorfizmu, tabela \texttt{pictures} musi posiadać kolumny
 \texttt{imageable\_type} oraz \texttt{imageable\_id}, które jednoznacznie identyfikują
 rekord nadrzędny.
+
+\subsubsection{Import studentów}
+Klasa \emph{StudentImport} pozwala nam na załączenie pliku w formacie \emph{YAML}, w
+którym umieszczone są informacje o loginie i haśle poszczególnych studentów. Po wgraniu
+pliku, zostają utworzone odpowiednie konta. Sposób realizacji został przestawiony na
+listingu nr~\ref{listing:student_import}
+
+\begin{listing}
+  \input{listing/student_import}
+  \caption{Import kont studentów z pliku YAML}
+  \label{listing:student_import}
+\end{listing}
+
+
+Korzystamy tu z modułu \texttt{yaml}, który dostarcza szereg metod ułatwiających pracę z
+tym typem plików. Po wczytaniu pliku otrzymujemy tablicę z atrybutami użytkowników, po
+których iterujemy i tworzymy rekordy. Odpowiedni format wewnątrz pliku wygląda jak na
+listingu nr~\ref{listing:student_import_yaml}.
+
+\begin{listing}
+  \input{listing/student_import_yaml}
+  \caption{Format danych atrybutów studenta w pliku YAML}
+  \label{listing:student_import_yaml}
+\end{listing}
 
 
 \subsection{Schemat bazy danych}
