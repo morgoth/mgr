@@ -1,15 +1,24 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[11pt,twoside]{report}
 
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage[polish]{babel}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{amsfonts}
-\usepackage{amsmath}
+%\usepackage{amsmath}
 \usepackage{float}
+\usepackage{tocloft}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
 
 \input{pygments}
+
+\setlength{\headheight}{15pt}
+
+\fancypagestyle{plain}{\fancyfoot{}\fancyhead{}\renewcommand{\headrulewidth}{0pt}}
 
 \providecommand{\imref}[1]{Rys. \ref{#1}} % referencja do obrazka
 
@@ -26,23 +35,42 @@
 
 \begin{document}
 
-\author{Wojciech Wnętrzak}
-\title{Opracowanie elastycznego systemu organizacji testów internetowych do zdalnej
-edukacji w oparciu o technologię Ruby on Rails}
-\date{\today}
+\pagestyle{fancy}
+\lhead{\nouppercase{\rightmark}}
+\rhead{\nouppercase{\leftmark}}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername \ \thechapter. \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LE]{\thepage}
+\fancyhead[RO]{\thepage}
 
 \begin{titlepage}
-\maketitle
+  \begin{center}
+    \includegraphics[width=80pt]{images/godlo.pdf}\\[30pt]
+    \Large\textsc{Politechnika Śląska}\\[0.5em]
+    \textsc{Wydział Automatyki, Elektroniki i Informatyki}\\[100pt]
+    \LARGE Praca dyplomowa magisterska\\[50pt]
+    Opracowanie elastycznego systemu organizacji testów\\[0.5em]
+    internetowych do zdalnej edukacji w oparciu o technologię\\[0.5em]
+    Ruby on Rails\\[80pt]
+  \end{center}
+  \Large\textbf{Autor}: Wojciech Wnętrzak\\
+  \Large\textbf{Kierujący pracą}: dr inż. Jerzy Mościński\\
+  \vfill
+  \normalsize\centering Gliwice, \today
 \end{titlepage}
 
 \tableofcontents
 
-\clearpage
-\section{Wstęp}
+\cleardoublepage
+\chapter{Wstęp}
 ...
 
-\section{Istniejące systemy nauki zdalnej}
-\subsection{Moodle}
+\chapter{Istniejące systemy nauki zdalnej}
+\section{Moodle}
 \emph{Moodle}\footnote{Moodle -- Modular Object-Oriented Dynamic Learning Environment (ang.)}
 jest wolnym, wypuszczonym na licencji \emph{GNU GPL}\footnote{GNU GPL -- GNU General Public
 Licence (ang.) -- licencja stworzona przez Richarda Stallmana oraz Ebena Moglena na potrzeby
@@ -107,11 +135,11 @@ również obsłużyć wszystkie pozostałe funkcje, takie jak forum, tworzenie p
 stron, szczegółowe konfiguracje zarządzania treścią, etc. Powoduje to spore zużycie
 zasobów serwera na rzeczach, które de facto nie są używane.
 
-\subsection{OLAT}
+\section{OLAT}
 
-\clearpage
-\section{Technologie}
-\subsection{Ruby}
+\cleardoublepage
+\chapter{Technologie}
+\section{Ruby}
 \emph{Ruby} został stworzony w 1995 roku przez Yukihiro Matsumoto, znanego również
 pod pseudonimem Matz. Łączy on w sobie cechy kilku języków, między innymi: \emph{Lispa},
 \emph{Perla}, \emph{Pythona} czy \emph{Smalltalka}, z każdego wybierając to co najlepsze,
@@ -160,7 +188,7 @@ się kilku ustalonych konwencji, dzięki czemu zgłębiając nowe funkcjonalnoś
 duże podobieństwa do już dobrze znanych nam metod, choćby z biblioteki standardowej.
 
 
-\subsection{Ruby on Rails}
+\section{Ruby on Rails}
 Twórcą frameworka \emph{Ruby on Rails} jest David Heinemeier Hansson. Powstał on w 2003
 roku, obecnie rozwijany cały czas przez społeczność użytkowników i czuwającą nad
 spójnością kodu tzw. \emph{Core Team}. Jest to produkt wolnego
@@ -201,7 +229,7 @@ katalogu \emph{controllers}. Wszystko to zapewnia nam odpowiednią separację ko
 czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
 
 
-\subsubsection{Gemy}
+\subsection{Gemy}
 \emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy -- system
 paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
@@ -404,7 +432,7 @@ właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub
 \texttt{false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
 bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
 
-\subsubsection{Internacjonalizacja}
+\subsection{Internacjonalizacja}
 Poczynając od wersji 2.2, \emph{Ruby on Rails} ma wbudowany mechanizm internacjonalizacji.
 Tłumaczenie słów w widokach odbywa się poprzez wywołanie metody \texttt{translate
 } aliasowanej do \texttt{t()} na kluczu, który następnie możemy zdefiniować w plikach z
@@ -417,7 +445,7 @@ przeciwnie jak to jest w przypadku \emph{XMLa}. Nie ma tu otwieranych i zamykany
 znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom zagnieżdżenia.
 
 
-\subsubsection{Bezpieczeństwo aplikacji}
+\subsection{Bezpieczeństwo aplikacji}
 \emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające nam zabezpieczyć się
 przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest
 \emph{CSRF}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
@@ -445,7 +473,7 @@ która zawsze traktuje przekazane słowa jako czysty tekst, lub metoda \texttt{s
 dopuszczająca pewne zdefiniowane tagi \emph{HTMLowe}, które są uznawane za ,,bezpieczne''.
 
 
-\subsubsection{Wdrażanie aplikacji}
+\subsection{Wdrażanie aplikacji}
 Wdrażanie wersji produkcyjnej dotyczy serwera \emph{HTTP} oraz bazy danych, gdzie musimy
 wziąć pod uwagę wydajność i szybkość obsłużenia zapytania. W wersji rozwojowej
 wystarczające są domyślnie używane narzędzia, czyli napisany w \emph{Rubim} \emph{Webrick},
@@ -481,7 +509,7 @@ dostarcza uniwersalny interfejs do naszego kodu, dzięki któremu wszelkie serwe
 wspierające \emph{Rubiego} mogą go hostować.
 
 
-\subsubsection{Merb + Ruby on Rails}
+\subsection{Merb + Ruby on Rails}
 \emph{Merb} początkowo był małym frameworkiem napisanym w języku \emph{Ruby}, by w
 przeciągu kilku lat rozwinąć się i konkurować ze swoim starszym bratem \emph{Ruby on
 Rails}. Twórcą jest Ezra Zygmuntowicz, który skupił się na szybkości działania aplikacji
@@ -503,7 +531,7 @@ również, że migracja aplikacji pisanych we wcześniejszych wersjach oraz \emp
 wersji, nie będzie stwarzać problemu.
 
 
-\subsection{REST}\label{sec:rest}
+\section{REST}\label{sec:rest}
 \emph{REST}\footnote{REST -- Representational State Transfer (ang.)} jest wzorcem
 architektury oprogramowania, który próbuje przedstawić reprezentację zasobów oraz
 zarządzanie nimi poprzez odpowiednie metody protokołu \emph{HTTP}. Możemy zobrazować to w
@@ -554,7 +582,7 @@ serwisów. Sprowadza się to praktycznie tylko do przedstawienia konkretnego obi
 kolekcji poprzez format \emph{XML} lub \emph{JSON}.
 
 
-\subsection{Testy jednostkowe}
+\section{Testy jednostkowe}
 \emph{Shoulda} jest biblioteką służącą do przeprowadzania testów jednostkowych w oparciu o
 \emph{BDD}\footnote{BDD -- Behavior Driven Development (ang.)}. Ideą takiego podejścia
 jest pisanie testów jeszcze przed stworzeniem kodu aplikacji, który opisuje funkcjonalność
@@ -584,7 +612,7 @@ rekord został utworzony przy pomocy gema \texttt{factory\_girl}. Zastępuje on 
 system tworzenia railsowych obiektów testowych, wczytywanych z plików \emph{YAML}, na
 rzecz dynamicznie tworzonych obiektów w ciele testu.
 
-\subsection{Testy integracyjne}
+\section{Testy integracyjne}
 \emph{Cucumber}\footnote{Stworzony w języku Ruby przez Aslaka Hellesøya, więcej na stronie
 internetowej \cite{cucumber}} zalicza się do tzw. \emph{Scenario Driven Development} i
 służy do testowania funkcjonalności ostatecznej -- tej widocznej dla użytkownika. Polega
@@ -617,7 +645,7 @@ wirtualnej przeglądarce jest użyty gem \emph{Webrat}, który parsując dokumen
 \emph{HTML} uzupełnia odpowiednie pola o przekazane atrybuty, a następnie symuluje
 komunikację z serwerem przyjmując jego rzekomą odpowiedź.
 
-\subsection{Haml i Sass}
+\section{Haml i Sass}
 \emph{Haml}\footnote{Haml -- HTML Abstraction Markup Language (ang.)} jest językiem
 znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje wcięcia, tak więc podobnie
 jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
@@ -647,7 +675,7 @@ miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
 \end{listing}
 
 
-\subsection{Blueprint i Compass}\label{sec:compass}
+\section{Blueprint i Compass}\label{sec:compass}
 \emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
 dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografię,
 listy, tabele, etc. Używamy go popzez dołączenie odpowiednich klas lub identyfikatorów do
@@ -677,7 +705,7 @@ zwłaszcza starszych wersji przeglądarek \emph{IE}, które na szczęście wycho
 użytku.
 
 
-\subsection{jQuery}
+\section{jQuery}
 \emph{jQuery} jest biblioteką napisaną w \emph{JavaScripcie}, która dostarcza szereg
 gotowych rozwiązań, najczęściej spotykanych na stronach internetowych. Duży wpływ na
 rozwój kodu, oprócz twórcy Johna Resiga, ma Yehuda Katz, zajmujący się również rozwojem
@@ -692,7 +720,7 @@ funkcjonalnością jest komunikacja z serwerem za pomocą technologii
 jedynie do wywołania odpowiedniej funkcji. Tworzenie własnych rozszerzeń nie sprawia
 problemu, dzięki czemu ilość dostępnych dodaktów jest ogromna.
 
-\subsection{Git}
+\section{Git}
 \emph{Git} jest rozproszonym systemem kontroli wersji stworzonym przez Linus Torvaldsa w 2005 roku.
 Został on napisany na potrzeby rozwoju jądra \emph{Linux}, jednak obecnie jest używany
 przez wiele znanych projektów, choćby takich jak: \emph{Android}, \emph{Amarok}, \emph{Perl},
@@ -706,9 +734,9 @@ skupiskiem wielu opensourcowych projektów. Statystyki na dzień 27.07.2009 mów
 unikalnych publicznych repozytoriach znajdujących się na serwerach firmy \cite{github-statistics}.
 
 
-\clearpage
-\section{Opis środowiska uruchomienia}
-\subsection{Ubuntu}
+\cleardoublepage
+\chapter{Opis środowiska uruchomienia}
+\section{Ubuntu}
 Aby uruchomić aplikację na systemie \emph{Ubuntu} wymagane są:
 \begin{itemize}
   \item{Ruby wraz z interpreterem}
@@ -790,13 +818,13 @@ nr~\ref{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
   \label{listing:ubuntu_start_server}
 \end{listing}
 
-\clearpage
-\section{Implementacja}
-\subsection{Modele}
+\cleardoublepage
+\chapter{Implementacja}
+\section{Modele}
 Zgodnie ze wzorcem \emph{MVC} oraz konwencją \emph{Ruby on Rails} modele są odpowiedzialne
 za główną logikę biznesową aplikacji.
 
-\subsubsection{Użytkownik, nauczyciel, student}
+\subsection{Użytkownik, nauczyciel, student}
 Model \emph{User} przechowuje informacje na temat zarejestrowanych użytkowników w
 portalu. Poza kolumnami dotyczącymi imienia i nazwiska, tabela posiada również wszystkie
 niezbędnę pola potrzebne do systemu autentykacji, który został zbudowany przy użyciu
@@ -818,7 +846,7 @@ Metody zdefiniowane w klasie \emph{User} są dziedziczone i dostępne dla obiekt
 pochodnych, natomiast wszelkie funkcje charakterystyczne dla konkretnego typu, mogą być
 tworzone w ciele ich własnych klas.
 
-\subsubsection{Pytanie nauczycielskie}
+\subsection{Pytanie nauczycielskie}
 Każdy nauczyciel może tworzyć pytania, które później wybiera podczas przygotowywania
 testu. Tabela \texttt{teacher\_exams} przechowuje informacja o identyfikatorze
 nauczyciela, przez którego został stworzony rekord, przez co wybór ewentualnych pytań jest
@@ -852,7 +880,7 @@ Metoda dla pytania typu jednokrotnego wyboru, zwraca maksymalną wartość ze zb
 podrzędnych odpowiedzi. Dla kazdego innego typu są brane pod uwagę tylko punkty dodatnie,
 które następnie są sumowane.
 
-\subsubsection{Odpowiedź nauczycielska}
+\subsection{Odpowiedź nauczycielska}
 Model \emph{TeacherAnswer} jest w relacji z \emph{TeacherQuestion} typu wiele do jednego.
 Dla pytań wielokrotnego i jednokrotnego wyboru możemy stworzyć dowolną liczbę odpowiedzi.
 Jedynie dla pytania porównującego do wzorca jest dopuszczalny tylko jeden rekord, co
@@ -862,7 +890,7 @@ całkowita i może przyjmować wartości ujemne, dlatego wszelaki balans punktow
 komponowaniu testu spoczywa na nauczycielu. Treść może składać się z tekstu lub być
 zastąpiona ilustracją.
 
-\subsubsection{Egzamin nauczycielski}
+\subsection{Egzamin nauczycielski}
 Każdy nauczyciel może przygotować test, składający się z wybranych przez niego pytań,
 które sam utworzył. Cały formularz składa się z następujących pól:
 
@@ -896,7 +924,7 @@ możliwych do zdobycia z całości egzaminu. Sprowadza się ona do iteracji po p
 pytaniach i zsumowaniu wartości zwracanych przez motodę wywołaną na obiektach
 klasy \emph{TeacherQuestion}, która została opisana w poprzednim podrozdziale.
 
-\subsubsection{Egzamin}
+\subsection{Egzamin}
 Model \emph{Exam} łączy ten przygotowany przez nauczyciela (o którym można myśleć jako
 o szablonie, który jest taki sam dla wszystkich), z konkretnym studentem, dla którego są
 generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze stanów:
@@ -915,7 +943,7 @@ dokładny czas, co pozwala później obliczyć statystyki. Na obiekcie można r�
 metodę zliczającą zdobyte punkty oraz wynik procentowy (liczony jako iloraz zdobytych
 punktów oraz maksymalnej, możliwej liczby dla danego zestawu pytań).
 
-\subsubsection{Pytanie}
+\subsection{Pytanie}
 Pytania są generowane przy tworzeniu egzaminu. Każdy rekord jest uporządkowanym elementem
 listy, co zostało osiągnięte przy użyciu gema \emph{Acts as list}, opisanego dokładniej na
 stronie~\pageref{sec:acts_as_list}. Obiekt posiada dwa stany:
@@ -943,7 +971,7 @@ Zmienna \texttt{@student\_answers} przechowuje tablicę asocjacyjną, gdzie kluc
 rodzaj pytania (ustawiany w formularzu), a wartością, w zależności od rodzaju,
 tablica identyfikatorów wybranych odpowiedzi albo wpisany tekst.
 
-\subsubsection{Odpowiedź}
+\subsection{Odpowiedź}
 Model \emph{Answer} jest pośrednikiem pomiędzy pierwotną formą odpowiedzi, a tą udzieloną
 przez studenta. W rekordzie jest przechowywana informacja o zaznaczeniu, w przypadku pytań
 jednokrotnego i wielokrotnego wyboru albo tekst przy pytaniu porównującym do wzorca. Przed
@@ -963,7 +991,7 @@ razie wpisujemy 0. Jeśli pytanie było typu: porównanie do wzorca, za pomocą 
 Levenshteina, sprawdzamy czy oba napisy są odpowiednio podobne i znów analogicznie,
 uzupełniamy wartość punktową.
 
-\subsubsection{Ilustracja}
+\subsection{Ilustracja}
 Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę dzięki
 bibliotece \emph{Paperclip}, opisanej dokładniej na stronie~\pageref{sec:paperclip}.
 Model ten jest w relacji polimorficznej do pytania oraz odpowiedzi. Pozwala to na
@@ -984,13 +1012,13 @@ rekord nadrzędny. Diagram nr~\ref{fig:polymorphic} obrazuje ten mechanizm.
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[width=1.1\linewidth]{images/polymorphic.pdf}
+    \includegraphics[width=1\linewidth]{images/polymorphic.pdf}
   \end{center}
   \caption{Mechanizm asocjacji polimorficznej}
   \label{fig:polymorphic}
 \end{figure}
 
-\subsubsection{Import studentów}
+\subsection{Import studentów}
 Klasa \emph{StudentImport} pozwala nam na załączenie pliku w formacie \emph{YAML}, w
 którym umieszczone są informacje o loginie i haśle poszczególnych studentów. Po wgraniu
 pliku, zostają utworzone odpowiednie konta. Sposób realizacji został przestawiony na
@@ -1014,7 +1042,7 @@ listingu nr~\ref{listing:student_import_yaml}.
   \label{listing:student_import_yaml}
 \end{listing}
 
-\subsection{Szata graficzna}
+\section{Szata graficzna}
 Praca nad wyglądem strony internetowej jest zupełnie różna od części dotyczącej
 programowania. Rzadko kiedy zdarza się, aby programista łączył te dwie umiejętności w
 sposób zadowalający, dlatego w miarę możliwośći, dąży się do jak największej separacji obu
@@ -1063,7 +1091,7 @@ aplikacji.
   \label{fig:layout}
 \end{figure}
 
-\subsection{Schemat bazy danych}
+\section{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
 nr~\ref{fig:db_schema}.
 
@@ -1075,8 +1103,8 @@ nr~\ref{fig:db_schema}.
   \label{fig:db_schema}
 \end{figure}
 
-\subsection{Wykorzystane gemy}
-\subsubsection{Authlogic}\label{sec:authlogic}
+\section{Wykorzystane gemy}
+\subsection{Authlogic}\label{sec:authlogic}
 Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
 począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
 zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
@@ -1108,7 +1136,7 @@ oznacza, że nie ma rozróżnienia pomiędzy sposobem logowania do serwisu. Po z
 jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
 dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
 
-\subsubsection{Acts as list}\label{sec:acts_as_list}
+\subsection{Acts as list}\label{sec:acts_as_list}
 \emph{Acts as list} umożliwia nam dołączęnie do modelu funkcjonalność listy, czyli
 usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
 wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
@@ -1118,7 +1146,7 @@ do testu, czyli również dla poszczególnych studentów, kolejność ta jest r�
 Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru, jest losowana
 kolejność wystąpienia odpowiedzi.
 
-\subsubsection{Acts as taggable on}\label{sec:acts_as_taggable_on}
+\subsection{Acts as taggable on}\label{sec:acts_as_taggable_on}
 \emph{Acts as taggable on} jest gemem, który łączy w sobie kilka poprzednio utworzonych
 bibliotek o podobnej funkcjonalności. Dostarcza mechanizm tagowania wybranych przez
 nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możliwość grupowania
@@ -1151,7 +1179,7 @@ Jak widzimy, możemy zawęzić wyszukiwanie odpowiednich rekordów do autora tag
 Gem udostępnia też metody pomocnicze przy wyświetlaniu tzw. ,,chmury tagów'' w
 renderowanych widokach, które możemy stylować za pomocą klas \emph{CSS}.
 
-\subsubsection{Prawn}
+\subsection{Prawn}
 \emph{Prawn} jest odpowiedzialny za generowanie dokumentów w formacie
 \emph{PDF}\footnote{PDF -- Portable Document Format (ang.)}. Dostarcza on prosty format
 szablonu, w którym mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując
@@ -1167,7 +1195,7 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
   \label{listing:prawn}
 \end{listing}
 
-\subsubsection{Paperclip}\label{sec:paperclip}
+\subsection{Paperclip}\label{sec:paperclip}
 \emph{Paperclip} jest gemem, który obsługuję ładowanie oraz obróbkę plików wysyłanych na
 serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
 czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
@@ -1196,7 +1224,7 @@ który ustanowił ten standard -- Joint Photographic Experts Group (ang.)},
 \emph{PNG}\footnote{PNG -- Portable Network Graphics (ang.)} lub \emph{GIF}\footnote{GIF --
 Graphics Interchange Format (ang.)}, oraz rozmiar nie przekroczy 100 kilobajtów.
 
-\subsubsection{Routing filter}
+\subsection{Routing filter}
 Przełączanie pomiędzy różnymi wersjami językowymi aplikacji zostało zrealizowane w taki
 sposób, aby był dodawany przedrostek do adresu strony w postaci kodu używanego aktualnie
 języka. Drugim sposobem implementacji mogłoby być przechowywanie informacji o języku w sesji
@@ -1218,7 +1246,7 @@ po wykonaniu logiki oraz przekierowaniu, ,,doklejeniu'' usuniętego wcześniej p
 Twórcą gema jest Sven Fuchs, który jest również głównym autorem modułu internacjonalizacji
 w \emph{Ruby on Rails}.
 
-\subsubsection{Formtastic}
+\subsection{Formtastic}
 \emph{Formtastic} jest narzędziem, który rozbudowuje domyślny mechanizm konstruowania
 formularzy w railsach, dostarczając prostszy interfejs, na rzecz zdefiniowanej przez
 autora struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
@@ -1247,7 +1275,7 @@ samym końcu wybieramy pytania, które chcemy dołączyć, kolekcja jest tu prze
 eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazie danych klasy
 \texttt{Question}.
 
-\subsubsection{State machine}\label{sec:state_machine}
+\subsection{State machine}\label{sec:state_machine}
 Maszyna stanowa pozwala nam wprowadzić do obiektu pojęcie stanu w jakim obecnie się
 znajduje oraz zdefiniować dostępne, czasem warunkowe, przejścia do innych stanów. Kolumna
 w bazie danych, odpowiedzialna za tę informację, jest typu \emph{String}, przez co
@@ -1290,7 +1318,7 @@ Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:st
 \end{figure}
 
 
-\subsection{Odległość Levenshteina}\label{sec:levenshtein}
+\section{Odległość Levenshteina}\label{sec:levenshtein}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
 studenta.\\
@@ -1319,7 +1347,7 @@ dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uzna
 za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz, gdzie
 zastosowany jest podobny mechanizm oceny.
 
-\clearpage
+\cleardoublepage
 \bibliographystyle{plain}
 \bibliography{bibliografia}
 \end{document}

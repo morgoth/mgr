@@ -13,7 +13,7 @@ SASS_SRC = FileList["listing/*.sass"]
 SH_SRC = FileList["listing/*.sh"]
 CUC_SRC = FileList["listing/*.feature"]
 
-CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
+CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav *.dia~),
               RUBY_SRC.ext("tex"),
               ERB_SRC.ext("tex"),
               HTML_SRC.ext("tex"),
