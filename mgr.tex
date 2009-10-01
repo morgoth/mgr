@@ -647,7 +647,7 @@ miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
 \end{listing}
 
 
-\subsection{Blueprint i Compass}
+\subsection{Blueprint i Compass}\label{sec:compass}
 \emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
 dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografię,
 listy, tabele, etc. Używamy go popzez dołączenie odpowiednich klas lub identyfikatorów do
@@ -839,7 +839,7 @@ on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
 
 Klasa posiada również metodę zwracającą największy możliwy wynik punktowy dla danego
 pytania. Jest to istotne w obliczaniu końcowego wyniku procentowego. Lising
-nr~\ref{listing:max_points} przedsawia ciało tejże metody.
+nr~\ref{listing:max_points} przedstawia ciało tejże metody.
 
 \begin{listing}
   \input{listing/max_points}
@@ -957,14 +957,14 @@ przedstawiony na listingu nr~\ref{listing:calculate_points}.
 \end{listing}
 
 
-Jeśli wartością pola \texttt{value} jest ,,true'', oznacza to że została ona zaznaczona przez studenta, w
+Jeśli wartością pola \texttt{value} jest ,,true'', oznacza to że została ona wybrana przez studenta, w
 takim przypadku przepisujemy wartość punktową zdefiniowaną przez nauczyciela, w przeciwnym
-razie wpisujemy 0. Jeśli pytanie było typu porównania do wzorca, za pomocą odległości
+razie wpisujemy 0. Jeśli pytanie było typu: porównanie do wzorca, za pomocą odległości
 Levenshteina, sprawdzamy czy oba napisy są odpowiednio podobne i znów analogicznie,
 uzupełniamy wartość punktową.
 
 \subsubsection{Ilustracja}
-Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę, dzięki
+Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę dzięki
 bibliotece \emph{Paperclip}, opisanej dokładniej na stronie~\pageref{sec:paperclip}.
 Model ten jest w relacji polimorficznej do pytania oraz odpowiedzi. Pozwala to na
 uniezależnienie rekordu od konretnego typu ,,rodzica'', informacja ta jest po prostu
@@ -980,7 +980,15 @@ nr~\ref{listing:polymorphic}.
 
 Aby móc korzystać z polimorfizmu, tabela \texttt{pictures} musi posiadać kolumny
 \texttt{imageable\_type} oraz \texttt{imageable\_id}, które jednoznacznie identyfikują
-rekord nadrzędny.
+rekord nadrzędny. Diagram nr~\ref{fig:polymorphic} obrazuje ten mechanizm.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=1.1\linewidth]{images/polymorphic.pdf}
+  \end{center}
+  \caption{Mechanizm asocjacji polimorficznej}
+  \label{fig:polymorphic}
+\end{figure}
 
 \subsubsection{Import studentów}
 Klasa \emph{StudentImport} pozwala nam na załączenie pliku w formacie \emph{YAML}, w
@@ -1006,6 +1014,54 @@ listingu nr~\ref{listing:student_import_yaml}.
   \label{listing:student_import_yaml}
 \end{listing}
 
+\subsection{Szata graficzna}
+Praca nad wyglądem strony internetowej jest zupełnie różna od części dotyczącej
+programowania. Rzadko kiedy zdarza się, aby programista łączył te dwie umiejętności w
+sposób zadowalający, dlatego w miarę możliwośći, dąży się do jak największej separacji obu
+dziedzin w obrębie wykonywanego projektu. Główną zasadą jest powstrzymywanie się od
+umieszczania elementów stylów w kodzie strony. Odpowiedzialność za to przejmują kaskadowe
+arkusze stylów (\emph{CSS}), które poprzez klasy oraz identyfikatory odnoszą się do
+poszczególnych fragmentów strony. Zalecane jest również dostosowywanie się do przyjętych
+zwyczajów, takich jak podział dokumentu na sekcje: nagłówek, nawigacja, stopka, etc.
+Zwłaszcza że w wersji 5 języka \emph{HTML} będą miały one swoje własne znaczniki,
+odpowiednio: \texttt{header}, \texttt{nav}, \texttt{footer} \cite{html5}.
+
+
+Częstym rozwiązaniem jest zatem skorzystanie z gotowych szablonów, które przeważnie oferują
+estetyczny, kolorystycznie spójny interfejs. Dla potrzeb aplikacji, schemat oraz zestaw
+barw został zaczerpnięty z szablonu autorstwa Tylera Halla, wydanego na licencji
+\emph{MIT} \cite{yui-app-theme}. Został on przystosowany do użytku z narzędziami
+\emph{Compass} oraz \emph{Sass} opisanymi dokładniej na stronie \pageref{sec:compass}.
+Ciało dokumentu zostało podzielone na 24 kolumny, które stanowią punkt odniesienia dla
+wyrównań, marginesów oraz wypełnień pojedynczych elementów. Typografia jest ustawiana
+przez framework \emph{Blueprint}, który bazuje na latach konfiguracyjnych doświadczeń
+największych portali dostępnych w sieci. Dzięki wykorzystaniu języka \emph{Sass}, możemy
+podzielić stylowanie na odrębne fragmenty, które następnie mogą być używane w kilku
+miejscach, co znacznie upraszcza pisanie kodu oraz jest czytelniejsze dla potencjalnego
+grafika. Wyodrębnione zostały następujące fragmenty:
+
+\begin{itemize}
+  \item{bazowa konfiguracja rozmiarów oraz kolorów}
+  \item{stylowanie bloków, dotyczących nawigacji oraz treści właściwej}
+  \item{formularze bazujące na klasach generowanych przez gem \emph{Formtastic}}
+  \item{tabele, przedstawiające listę rekordów}
+  \item{moduł zaokrąglający brzegi}
+\end{itemize}
+
+
+Reużywalność kodu jest zwłaszcza widoczna przy wykorzystaniu modułu zaokrąglającego
+brzegi. Wystarczy że w obrębie pliku \texttt{sass}, w którym chcemy dołączyć tę
+funkcjonalność, zaimportujemy dany szablon, a wygenerowany \emph{CSS} będzie zawierał
+pożądane przez nas style. Na ilustracji nr~\ref{fig:layout} znajduje się zrzut ekranu
+aplikacji.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=1\linewidth]{images/layout.png}
+  \end{center}
+  \caption{Zrzut ekranu aplikacji}
+  \label{fig:layout}
+\end{figure}
 
 \subsection{Schemat bazy danych}
 Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji

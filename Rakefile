@@ -8,7 +8,6 @@ IMG_SRC = FileList["images/*.dia"]
 RUBY_SRC = FileList["listing/*.rb"]
 ERB_SRC = FileList["listing/*.rhtml"]
 HTML_SRC = FileList["listing/*.html"]
-SVG_IMG =  FileList["**/*.svg"]
 HAML_SRC = FileList["listing/*.haml"]
 SASS_SRC = FileList["listing/*.sass"]
 SH_SRC = FileList["listing/*.sh"]
@@ -18,7 +17,6 @@ CLEAN.include(%w(*.toc *.aux *.log *.lof *.bbl *.blg *.out *.snm *.vrb *.nav),
               RUBY_SRC.ext("tex"),
               ERB_SRC.ext("tex"),
               HTML_SRC.ext("tex"),
-              SVG_IMG.ext("png"),
               HAML_SRC.ext("tex"),
               SASS_SRC.ext("tex"),
               SH_SRC.ext("tex"),
@@ -41,10 +39,6 @@ end
 
 rule '.eps' => '.dia' do |t|
   sh "dia -e #{t.name} #{t.source}"
-end
-
-rule ".png" => ".svg" do |t|
-  sh "inkscape -e #{t.name} #{t.source}"
 end
 
 rule ".tex" => ".rb" do |t|
@@ -82,7 +76,7 @@ rule ".pdf" => ".tex" do |t|
   pdflatex(t.source)
 end
 
-file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + IMG_SRC.ext("pdf") + ERB_SRC.ext("tex") + SASS_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + CUC_SRC.ext("tex") + SVG_IMG.ext("png")
+file SRC.ext("pdf") => [SRC] + RUBY_SRC.ext("tex") + IMG_SRC.ext("pdf") + ERB_SRC.ext("tex") + SASS_SRC.ext("tex") + HAML_SRC.ext("tex") + HTML_SRC.ext("tex") + SH_SRC.ext("tex") + CUC_SRC.ext("tex")
 
 desc "Compile PDF"
 task :pdf => SRC.ext("pdf")
