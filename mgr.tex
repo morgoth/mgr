@@ -12,7 +12,7 @@
 \usepackage{tocloft}
 \usepackage{subfig}
 \usepackage{fancyhdr}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 \input{pygments}
 
@@ -136,6 +136,38 @@ stron, szczegółowe konfiguracje zarządzania treścią, etc. Powoduje to spore
 zasobów serwera na rzeczach, które de facto nie są używane.
 
 \section{OLAT}
+\emph{OLAT}\footnote{OLAT -- Online Learning And Training (ang.)} jest internetowym
+systemem zdalnej nauki dostępnym na wolnej licencji. Jest rozwijany od 1999 roku, głównie
+na uniwersytecie w Zurychu. Całość została napisana w języku \emph{Java} i do uruchomienia
+po stronie klienta wymaga maszyny wirtualnej. Wraz z kolejnymi latami rozwoju, platforma
+przybierała nowe funkcjonalności i obecnie częściami składowymi są między innymi:
+
+\begin{itemize}
+  \item{zarządzanie treścią}
+  \item{fora}
+  \item{testy z różnymi rodzajami pytań}
+  \item{wiki}
+  \item{ankiety}
+  \item{czat}
+  \item{moduł oceniania}
+  \item{wielojęzyczność}
+\end{itemize}
+
+
+Uruchomienie serwera jest możliwe na większości systemach operacyjnych, wymaganymi
+komponentami są:
+
+\begin{itemize}
+  \item{Java SDK\footnote{SDK -- Software Development Kit (ang.)}}
+  \item{Tomcat Servlet}
+  \item{serwer bazy danych, np. MySQL lub PostgreSQL}
+\end{itemize}
+
+
+Pomimo, że główny kod pisany jest w \emph{Javie}, to jednak procentowo, więcej linii kodu
+zawierają skrypty \emph{JavaScriptowe}. Służą one do obsługi interfejsu użytkownika i
+przy wyłączonym interpreterze w przeglądarce, praktycznie żadna funkcjonalność nie działa.
+
 
 \cleardoublepage
 \chapter{Technologie}
