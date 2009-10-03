@@ -2,7 +2,7 @@
 sudo gem sources -a http://gems.github.com
 cp config/example_database.yml config/database.yml
 # instalacja Ruby on Rails
-sudo gem install rails
+sudo gem install rails --no-ri --no-rdoc
 # instalacja gema dla bazy danych SQLite3
 sudo gem install sqlite3-ruby prawn
 # instalacja używanych gemów
