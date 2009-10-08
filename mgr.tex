@@ -860,17 +860,34 @@ nr~\ref{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
 \end{listing}
 
 \section{Windows}
-Ze strony pobieramy instalator \emph{Rubiego}, uruchamiamy i podążamy krokami wyznaczonymi
-przez przyjazny kreator. Po drodze zaznaczamy opcję ,,enable rubygems''. Po instalacji
-(domyślnie do folderu C:/ruby), sprawdzamy czy pliki wykonywalne są widoczne ze
-zmiennej środowiskowej \texttt{PATH}, wydając komendę z linii poleceń \texttt{ruby -v},
+Ze strony \cite{ruby-windows} pobieramy instalator \emph{Rubiego} (wersja 1.8.6-p383),
+uruchamiamy i podążamy krokami wyznaczonymi przez przyjazny kreator.
+Po drodze zaznaczamy opcję ,,enable rubygems''. Po instalacji
+(domyślnie do folderu C:/ruby), sprawdzamy czy katalog z plikami binarnymi jest widoczny
+ze zmiennej środowiskowej \texttt{PATH}, wydając komendę z linii poleceń \texttt{ruby~-v},
 otrzymując jednocześnie werjsę wydania. Następnie upewniamy się, że pakiet
-\texttt{RubyGems} również jest dostępny poprzez komendę \texttt{gem -v}. Jeśli wszystko
-przebiegło pomyślnie, aktualizujemy pakiet poprzez \texttt{gem update --system}. Następnie
-możemy zainstalować program obsługujący \emph{Gita} i pobrać aktualną wersję aplikacji
-poprzez polecenie \texttt{git clone git://github.com/morgoth/quiz.git}.
+\texttt{RubyGems} również jest dostępny poprzez komendę \texttt{gem~-v}. Jeśli wszystko
+przebiegło pomyślnie, aktualizujemy pakiet poprzez \texttt{gem~update~--system}. Kolejnym
+krokiem jest zapewnienie obsługi bazy danych \emph{SQLite}, w tym celu pobieramy dwa pliki
+ze strony \cite{sqlite-windows} i umieszczamy je np. w katalogu \texttt{C:/ruby/bin}. Są
+to:
 
-rubyinstaller, zaznaczyć opcję enable rubygems, update rubygems, dll i exe dla sqlite
+\begin{itemize}
+  \item{plik \texttt{dll} dostarczający obsługę SQLite3}
+  \item{plik \texttt{exe} jako konsolowy program umożliwiający modyfikację bazy}
+\end{itemize}
+
+
+Do obsługi obróbki zdjęć potrzebujemy programu \emph{ImageMagick}, który możemy pobrać i
+zainstalować ze strony \cite{imagemagick-windows}.
+
+
+Chcąc pobrać aktualną wersję kodu aplikacji, musimy skorzystać z systemu kontroli wersji
+\emph{Git}. W tym celu instalujemy program dostępny na stronie \cite{git-windows}.
+Wydając polecenie z linii komend \texttt{git~clone git://github.com/morgoth/quiz.git},
+kopiujemy kod na lokalny komputer. Instalacja wymaganych gemów przebiega podobnie jak w
+systemie unixowym (opuszczając słowo \texttt{sudo}), więc podążamy za listingiem
+nr~\ref{listing:ubuntu_application}.
 
 
 \cleardoublepage
