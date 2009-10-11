@@ -816,17 +816,6 @@ jak na listingu nr~\ref{listing:ubuntu_rubygems}
   \label{listing:ubuntu_rubygems}
 \end{listing}
 
-%Następnie możemy zainstalować gema \emph{RVM}\footnote{RVM -- Ruby Version Manager (ang.)
-%}, aby mieć kilka wersji \emph{Rubiego}, np. 1.8 oraz 1.9 (różnice pomiędzy wydaniami
-%zostały omówione na stronie ...).\\
-%Pomoc możemy znaleźć na stronie internetowej \cite{rvm}. Sposób instalacji i konfiguracji
-%na listingu nr~\ref{listing:ubuntu_rvm}
-%
-%\begin{listing}
-%  %\input{listing/ubuntu_rvm}
-%  \caption{Instalacja kilku wersji Rubiego}
-%  \label{listing:ubuntu_rvm}
-%\end{listing}
 
 Aby ściągnąć aktualną wersję aplikacji, możemy posłużyć się \emph{Gitem}.
 Najpierw instalujemy sam program, a następnie klonujemy kod do wybranego katalogu,
@@ -840,8 +829,8 @@ tak jak na listingu nr~\ref{listing:ubuntu_git}.
 
 Teraz możemy przejść do folderu aplikacji, ściągnąć wymagane gemy i zmigrować bazę danych.
 Aby przekonać się czy nasze środowisko jest w pełni gotowe do pracy, uruchamiamy testy
-jednostkowe oraz integracyjne poprzez polecenia jak na listingu nr~\ref
-{listing:ubuntu_application}.
+jednostkowe oraz integracyjne poprzez polecenia jak na listingu
+nr~\ref{listing:ubuntu_application}.
 
 \begin{listing}
   \input{listing/4_sh_application}
@@ -1458,7 +1447,7 @@ angielskiego, cyfry, znaki przestankowe oraz kilka symboli}. Naturalnie powodowa
 niedogodności, framework \emph{Ruby on Rails} wprowadził własne metody, które eleminowały
 ten problem, jednak nadal trzeba było pamiętać o używaniu ich eksplicite. Biblioteka
 \emph{ActiveSupport} dostarcza \texttt{mb\_chars}, która wywołana na obiekcie typu
-\texttt{String}, zwraca jego reprezentacje w \emph{Unikodzie}\footnote{Unicode --
+\texttt{String}, zwraca jego reprezentację w \emph{Unikodzie}\footnote{Unicode --
 zestaw znaków, który w założeniu ma obejmować wszystkie dostępne pisma na świecie}. W
 wersji 1.9 wszystkie znaki są interpretowane natywnie, dlatego znikają problemy związane z
 ilością bajtów w jakiej jest zapisany dany znak, jednak pojawiają się nowe, dotyczące
@@ -1497,7 +1486,7 @@ W języku \emph{Ruby} jest to szczególnie proste dzięki otwartym klasom. Równ
 sposób został rozwiązany problem uruchomienia aplikacji na wersji 1.8.6, która nie
 posiada kilku metod używanych w kodzie. Listing nr~\ref{listing:monkey_patching}
 przedstawia rozszerzenie klasy \emph{Array} o metodę \texttt{shuffle} w przypadku gdy nie
-jest ona dostępna.
+jest ona zdefiniowana w bibliotece standardowej.
 
 \begin{listing}
   \input{listing/monkey_patching}
@@ -1505,6 +1494,24 @@ jest ona dostępna.
   \label{listing:monkey_patching}
 \end{listing}
 
+
+Aplikację można uruchomić na wszystkich trzech, wspomnianych wcześniej, wersjach języka
+\emph{Ruby}. Wszelkie niekompatybilności zostały poprawione, tak aby nie uzależniać się od
+jednego środowiska uruchomieniowego. Możemy sprawdzić to w bardzo prosty sposób.
+Wystarczy, że zainstalujemy gem \emph{rvm}\footnote{RVM -- Ruby Version Manager (ang.) --
+więcej na stronie \cite{rvm}}, poprzez który w prosty sposób możemy się przełączać
+pomiędzy poszczególnymi wersjami. Skrypt instalacyjny mógłby wyglądać jak na listingu
+nr~\ref{listing:rvm}.
+
+\begin{listing}
+  \input{listing/rvm}
+  \caption{Instalacja gema rvm}
+  \label{listing:rvm}
+\end{listing}
+
+
+W chwili przełączenia jest ściągany i kompilowany kod źródłowy pożądanej wersji.
+Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw gemów.
 
 \cleardoublepage
 \bibliographystyle{plain}

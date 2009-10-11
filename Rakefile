@@ -100,7 +100,7 @@ end
 def generate_sh_script
   File.open("#{SH_OUTPUT_FILE}", "w") do |f|
     f.puts "#!/bin/sh\n"
-    SH_SRC.sort.each do |script|
+    SH_SRC.sort.select { |s| s.match(/\d_sh_\w*/)}.each do |script|
       f.puts File.open(script, "r") { |ff| ff.read }
     end
   end
