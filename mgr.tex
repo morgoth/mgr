@@ -54,8 +54,8 @@
     \textsc{Wydział Automatyki, Elektroniki i Informatyki}\\[100pt]
     \LARGE Praca dyplomowa magisterska\\[50pt]
     Opracowanie elastycznego systemu organizacji testów\\[0.5em]
-    internetowych do zdalnej edukacji w oparciu o technologię\\[0.5em]
-    Ruby on Rails\\[80pt]
+    internetowych do zdalnej edukacji w oparciu\\[0.5em]
+    o technologię Ruby on Rails\\[80pt]
   \end{center}
   \Large\textbf{Autor}: Wojciech Wnętrzak\\
   \Large\textbf{Kierujący pracą}: dr inż. Jerzy Mościński\\
@@ -636,7 +636,7 @@ się zastanowić nad użyciem jendej z bibliotek \emph{mockowania}\footnote{mock
 zachowania prawdziwych obiektów w celach testowych}.\\
 \emph{Shoulda} jest rozszerzeniem standardowej biblioteki testującej języka \emph{Ruby}
 \emph{Test::Unit}, która przynosi wygodniejszą składnie oraz nowe typy asercji.
-Przykładowy test na listingu nr~\ref{listing:shoulda}
+Przykładowy test na listingu nr~\ref{listing:shoulda}.
 
 \begin{listing}
   \input{listing/shoulda}
@@ -661,7 +661,7 @@ na napisaniu scenariusza, który zawiera poszczególne akcje użytkownika wykony
 poziomu przeglądarki. Składnia ogranicza się do kilku słów kluczowych, które poprzedzają
 dowolny tekst opisujący zdarzenia. Następnie przy pomocy wyrażeń regularnych tekst jest
 mapowany na definicję metod, pisanych już w języku \emph {Ruby}. Przykład można zobaczyć
-na listingu nr~\ref{listing:cucumber}
+na listingu nr~\ref{listing:cucumber}.
 
 \begin{listing}
   \input{listing/cucumber}
@@ -894,7 +894,7 @@ nr~\ref{listing:ubuntu_application}.
 \chapter{Implementacja}
 \section{Modele}
 Zgodnie ze wzorcem \emph{MVC} oraz konwencją \emph{Ruby on Rails} modele są odpowiedzialne
-za główną logikę biznesową aplikacji.
+za główną logikę biznesową aplikacji, dlatego też zostaną one przedstawione poniżej.
 
 \subsection{Użytkownik, nauczyciel, student}
 Model \emph{User} przechowuje informacje na temat zarejestrowanych użytkowników w
@@ -1114,6 +1114,23 @@ listingu nr~\ref{listing:student_import_yaml}.
   \label{listing:student_import_yaml}
 \end{listing}
 
+\section{Schemat bazy danych}
+Każda tabela w bazie danych jest odpowiednikiem modelu w aplikacji, a jej nazwa, zgodnie z
+konwencją, została stworzona poprzez przekształcenie nazwy modelu do liczby mnogiej w
+języku angielskim. Wszelkie połączenia pomiędzy kolumnami są ustanawiane z poziomu
+aplikacji, dlatego też nie ma potrzeby tworzenia kluczy obcych w bazie danych. Aktualny schemat, z
+tabelami, kolumnami oraz ich typami można podejrzeć w pliku \texttt{db/schema.rb}.
+Ilustarcja nr~\ref{fig:db_schema} przedstawia strukturę powiązań tabel dotyczących
+egzaminu.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=1\linewidth]{images/db_schema.pdf}
+  \end{center}
+  \caption{Diagram związków encji dla egzaminu}
+  \label{fig:db_schema}
+\end{figure}
+
 \section{Szata graficzna}
 Praca nad wyglądem strony internetowej jest zupełnie różna od części dotyczącej
 programowania. Rzadko kiedy zdarza się, aby programista łączył te dwie umiejętności w
@@ -1145,7 +1162,7 @@ grafika. Wyodrębnione zostały następujące fragmenty:
   \item{stylowanie bloków, dotyczących nawigacji oraz treści właściwej}
   \item{formularze bazujące na klasach generowanych przez gem \emph{Formtastic}}
   \item{tabele, przedstawiające listę rekordów}
-  \item{moduł zaokrąglający brzegi}
+  \item{moduł zaokrąglający krawędzie}
 \end{itemize}
 
 
@@ -1161,18 +1178,6 @@ aplikacji.
   \end{center}
   \caption{Zrzut ekranu aplikacji}
   \label{fig:layout}
-\end{figure}
-
-\section{Schemat bazy danych}
-Uproszczony schemat elementów składowych egzaminu został przedstawiony na ilustracji
-nr~\ref{fig:db_schema}.
-
-\begin{figure}[ht]
-  \begin{center}
-    \includegraphics[width=1\linewidth]{images/db_schema.pdf}
-  \end{center}
-  \caption{Diagram związków encji dla egzaminu}
-  \label{fig:db_schema}
 \end{figure}
 
 \section{Wykorzystane gemy}
@@ -1403,6 +1408,8 @@ porównaniu:
   \item nie będzie brana pod uwagę wielkość liter
   \item na każde 6 liter wzorca jest możliwy jeden błąd
 \end{itemize}
+
+
 Do realizacji drugiego podpunktu została użyta odległość Levenshteina, która docelowo
 oblicza wartość liczbową pomiędzy dwoma ciągami znaków, dzięki czemu jesteśmy w stanie
 ocenić jak bardzo różnią się od siebie porównywane napisy.\\
@@ -1414,10 +1421,90 @@ przeprowadzających jeden napis w drugi, gdzie działaniem prostym nazwiemy:
   \item usunięcie znaku z napisu
   \item zamianę znaku w napisie na inny znak
 \end{itemize}
+
+
 Mając obliczoną odległość pomiędzy wzrocem a odpowiedzią, mierzymy długość wzorca i
 dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uznajemy odpowiedź
-za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz, gdzie
-zastosowany jest podobny mechanizm oceny.
+za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz \cite{nerdquiz},
+gdzie zastosowany jest podobny mechanizm oceny. Autorem kodu implementującego algorytm jest
+Erik Veenstra \cite{veenstra}. Został on jednak przystosowany do polskich znaków oraz
+problemów z kodowaniem w różnych wersjach \emph{Rubiego}\footnote{Problem został dokładniej
+omówiony na stronie~\pageref{sec:ruby-versions}}. Aktualny kod znajduje się w pliku
+\texttt{lib/levenshtein.rb}.
+
+\section{Różnice pomiędzy wersjami Rubiego}\label{sec:ruby-version}
+Na dzień dzisiejszy najbardziej popularnymi wersjami języka \emph{Ruby} są:
+
+\begin{itemize}
+  \item{1.8.6}
+  \item{1.8.7}
+  \item{1.9.1}
+\end{itemize}
+
+
+Pierwsza z nich powoli wychodzi z użytku. Migracja do wersji 1.8.7 nie powinna sprawiać
+problemu, gdyż jest kompatybilna wstecz. Oprócz poprawienia błędów, zostało dodanych wiele
+metod, które były już dostępne w gałęzi 1.9. Autorzy chcieli potraktować tę wersję jako
+przejściową, jednak znaczna większość deweloperów nie zdecydowała się na wdrożenie swoich
+aplikacji przy użyciu wersji 1.9. Głównym powodem jest zmiana obsługi kodowania znaków i
+problemy wynikające z tego faktu.
+
+
+We wcześniejszych wersjach łańcuchy znaków były po prostu
+ciągiem bajtów, przez co np. polskie litery były traktowane jako ,,dłuższe'' niż
+standardowe mieszczące się w kodzie \emph{ASCII}\footnote{ASCII -- American Standard Code
+for Information Interchange (ang.) -- 7-bitowy kod reprezentujący litery z alfabetu
+angielskiego, cyfry, znaki przestankowe oraz kilka symboli}. Naturalnie powodowało to wiele
+niedogodności, framework \emph{Ruby on Rails} wprowadził własne metody, które eleminowały
+ten problem, jednak nadal trzeba było pamiętać o używaniu ich eksplicite. Biblioteka
+\emph{ActiveSupport} dostarcza \texttt{mb\_chars}, która wywołana na obiekcie typu
+\texttt{String}, zwraca jego reprezentacje w \emph{Unikodzie}\footnote{Unicode --
+zestaw znaków, który w założeniu ma obejmować wszystkie dostępne pisma na świecie}. W
+wersji 1.9 wszystkie znaki są interpretowane natywnie, dlatego znikają problemy związane z
+ilością bajtów w jakiej jest zapisany dany znak, jednak pojawiają się nowe, dotyczące
+ustawiania odpowiedniego kodowania. Listing nr~\ref{listing:mb_chars} przedstawia
+wynik operacji na różnych wersjach języka \emph{Ruby}.
+
+\begin{listing}
+  \input{listing/mb_chars}
+  \caption{Kodowanie znaków w różnych wersjach języka Ruby}
+  \label{listing:mb_chars}
+\end{listing}
+
+
+Wczytując plik ze skryptem, możemy ustawić kodowanie poprzez umieszczenie w pierwszych
+liniach informacji w postaci znanej np. z edytorów \emph{Emacs} lub \emph{VIM}. Wtedy
+wszelkie ciągi znaków będą interpretowane tak jak sobie tego zażyczyliśmy. Wszystko to
+jest możliwe poprzez klasę \emph{Encoding}, określającą sposób w jaki mają być
+odczytywane bajty, w których jest zapisany dany znak. Klasa ta zawiera wiele metod, dzięki
+którym jesteśmy w stanie między innymi forsować kodowanie lub sprawdzać czy dane znaki zawierają się w
+\emph{ASCII}. Więcej na ten temat można znaleźć na blogu Radosława Bułata, który opisuje
+również inne zmiany wprowadzone do wersji 1.9 \cite{radarek}.
+
+
+Problemy jakie wynikają przy migracji do wersji 1.9 to częsta niekompatybilność gemów,
+które nie są przygotowane na obsługę pełnego kodowania. Również \emph{Ruby on Rails} nie
+jest wolny od tych pułapek. Domyślnie wszystkie szablony oraz przesyłane parametry są
+kodowane poprzez \emph{ASCII-8BIT}. W momencie dołączenia do aplikacji plików z polskim
+tłumaczeniem (\emph{UTF-8}), zwracane są wyjątki dotyczące niekompatybilności pomiędzy
+oboma standardami. Niezbyt eleganckim rozwiązaniem, jednak na chwilę obecną jedynym z możliwych,
+jest forsowanie kodowania do przyjętego we frameworku, poprzez tzw.
+\emph{monkey patching}\footnote{Monkey patch -- znany w dynamicznych językach sposób na
+rozszerzenie lub modyfikację klas o metody bez zmiany kodu źródłowego}.
+
+
+W języku \emph{Ruby} jest to szczególnie proste dzięki otwartym klasom. Również w ten
+sposób został rozwiązany problem uruchomienia aplikacji na wersji 1.8.6, która nie
+posiada kilku metod używanych w kodzie. Listing nr~\ref{listing:monkey_patching}
+przedstawia rozszerzenie klasy \emph{Array} o metodę \texttt{shuffle} w przypadku gdy nie
+jest ona dostępna.
+
+\begin{listing}
+  \input{listing/monkey_patching}
+  \caption{Monkey patching umożliwiający uruchomienie aplikacji na wersji 1.8.6 języka Ruby}
+  \label{listing:monkey_patching}
+\end{listing}
+
 
 \cleardoublepage
 \bibliographystyle{plain}
