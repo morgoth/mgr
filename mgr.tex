@@ -20,7 +20,15 @@
 
 \fancypagestyle{plain}{\fancyfoot{}\fancyhead{}\renewcommand{\headrulewidth}{0pt}}
 
-\providecommand{\imref}[1]{Rys. \ref{#1}} % referencja do obrazka
+%\newcommand{\listlistings}{Spis listingów}
+%\newlistof[chapter]{listing}{lst}{\listlistings}
+
+%\newcommand{\listingcaption}[1]{
+%  \refstepcounter{listing}
+%  \par\noindent\listingcaption{#1}
+%  \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
+%}
+
 
 %% Define a new 'leo' style for the package that will use a smaller font.
 \makeatletter
@@ -327,12 +335,12 @@ wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
 \emph{MySQL}, \emph{PostgreSQL} czy \emph{Oracle}. Pozwala między innymi na
 konstruowanie zapytań za pomocą kodu \emph{Rubiego}, który później jest
 przekształcany na odpowiadającą mu składnię \emph{SQLa}.
-Przykład przedstawiony na listingu nr~\ref{listing:activerecord_finders}.
+Przykład przedstawiony na listingu nr~\ref{listing:activerecord-finders}.
 
 \begin{listing}
   \input{listing/activerecord_finders}
   \caption{Konstruowanie zapytań oraz wygenerowany kod SQL}
-  \label{listing:activerecord_finders}
+  \label{listing:activerecord-finders}
 \end{listing}
 
 
@@ -350,12 +358,12 @@ następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej kl
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
 Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
 dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy, jak na
-listingu nr~\ref{listing:activerecord_association}.
+listingu nr~\ref{listing:activerecord-association}.
 
 \begin{listing}
   \input{listing/activerecord_association}
   \caption{Powiązanie dwóch obiektów ActiveRecord}
-  \label{listing:activerecord_association}
+  \label{listing:activerecord-association}
 \end{listing}
 
 
@@ -365,12 +373,12 @@ widzimy konstrukcja odpowiada naturalnej relacji w języku angielskim, dlatego
 też nie powinno się używać lokalizowanych nazw tabel, co zapewnia spójność i
 nie powoduje ,,potworków językowych'', takich jak \texttt{student has many
 egzamins}. Po deklaracji asocjacji dostajemy automatycznie między innymi takie
-metody jak przedstawione na listingu nr~\ref{listing:activerecord_association_finders}.
+metody jak przedstawione na listingu nr~\ref{listing:activerecord-association-finders}.
 
 \begin{listing}
   \input{listing/activerecord_association_finders}
   \caption{Dostępne metody po deklaracji asocjacji}
-  \label{listing:activerecord_association_finders}
+  \label{listing:activerecord-association-finders}
 \end{listing}
 
 
@@ -378,12 +386,12 @@ Walidatory zapewniają nam poprawność wprowadzanych danych, dzięki którym r�
 możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
 standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
 własne. Przykładowy sposób użycia przedstawia listing
-nr~\ref{listing:activerecord_validations}.
+nr~\ref{listing:activerecord-validations}.
 
 \begin{listing}
   \input{listing/activerecord_validations}
   \caption{Walidacja danych}
-  \label{listing:activerecord_validations}
+  \label{listing:activerecord-validations}
 \end{listing}
 
 
@@ -402,12 +410,12 @@ obiektu z bazy dancyh. Dzięki temu możemy w dokładnie określonym momencie
 wyzwolić odpowiednią logikę. Wywołania działają również przy deklarowanej
 asocjacji, więc dodatkowo dostajemy możliwość wywołania metod przy dodawaniu i
 usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
-\ref{listing:activerecord_callbacks}.
+\ref{listing:activerecord-callbacks}.
 
 \begin{listing}
   \input{listing/activerecord_callbacks}
   \caption{Wywołania zwrotne}
-  \label{listing:activerecord_callbacks}
+  \label{listing:activerecord-callbacks}
 \end{listing}
 
 
@@ -428,12 +436,12 @@ przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka gen
 które znacznie ułatwiają i przyspieszają pracę. Dodatkowo bazują one na konwencji -- nazwa
 modelu (klasy) w liczbie pojedynczej, natomiast nazwa kolumny w liczbie mnogiej, co
 minimalizuje możliwość popełnienia błędu z naszej strony. Przykładowe polecenie, oraz
-wygenerowany plik na listingu nr~\ref{listing:activerecord_migrations}.
+wygenerowany plik na listingu nr~\ref{listing:activerecord-migrations}.
 
 \begin{listing}
   \input{listing/activerecord_migrations}
   \caption{Generator modelu oraz automatycznie utworzony plik migracji}
-  \label{listing:activerecord_migrations}
+  \label{listing:activerecord-migrations}
 \end{listing}
 
 
@@ -671,12 +679,12 @@ na listingu nr~\ref{listing:cucumber}.
 
 
 Każda linijka jest osobnym krokiem, które są definiowane w plikach pomocniczych.
-Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumber_steps}
+Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumber-steps}.
 
 \begin{listing}
   \input{listing/cucumber_steps}
   \caption{Implementacja kroków użytych w scenariuszu}
-  \label{listing:cucumber_steps}
+  \label{listing:cucumber-steps}
 \end{listing}
 
 
@@ -797,55 +805,55 @@ danych \emph{PostgreSQL} lub \emph{MySQL} oraz jednego z serwerów \emph{HTTP}:
 Sam system \emph{Ubuntu} możemy pobrać ze strony internetowej \cite{ubuntu}.
 Następnie instalujemy \emph{Rubiego} w wersji 1.8. Najmniej kłopotów przysparza kompilacja ze
 źródeł. Wystarczy, że pobierzemy stabilną wersję 1.8.7 ze strony \cite{ruby-package} i po
-rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu_ruby} (przykład dla
+rozpakowaniu wydamy polecenia jak na listingu nr~\ref{listing:ubuntu-ruby} (przykład dla
 wersji 1.8.7-p174)\footnote{Całość skryptu znajduje się w katalogu aplikacji, w pliku
 extras/environment\_setup.sh}.
 
 \begin{listing}
   \input{listing/1_sh_ruby}
   \caption{Instalacja Rubiego}
-  \label{listing:ubuntu_ruby}
+  \label{listing:ubuntu-ruby}
 \end{listing}
 
 Nastepnie ściągamy pakiet \emph{RubyGems} ze strony \cite{rubygems} i również kompilujemy,
-jak na listingu nr~\ref{listing:ubuntu_rubygems}
+jak na listingu nr~\ref{listing:ubuntu-rubygems}.
 
 \begin{listing}
   \input{listing/2_sh_rubygems}
   \caption{Instalacja RubyGems}
-  \label{listing:ubuntu_rubygems}
+  \label{listing:ubuntu-rubygems}
 \end{listing}
 
 
 Aby ściągnąć aktualną wersję aplikacji, możemy posłużyć się \emph{Gitem}.
 Najpierw instalujemy sam program, a następnie klonujemy kod do wybranego katalogu,
-tak jak na listingu nr~\ref{listing:ubuntu_git}.
+tak jak na listingu nr~\ref{listing:ubuntu-git}.
 
 \begin{listing}
   \input{listing/3_sh_git}
   \caption{Instalacja systemu kontroli wersji Git}
-  \label{listing:ubuntu_git}
+  \label{listing:ubuntu-git}
 \end{listing}
 
 Teraz możemy przejść do folderu aplikacji, ściągnąć wymagane gemy i zmigrować bazę danych.
 Aby przekonać się czy nasze środowisko jest w pełni gotowe do pracy, uruchamiamy testy
 jednostkowe oraz integracyjne poprzez polecenia jak na listingu
-nr~\ref{listing:ubuntu_application}.
+nr~\ref{listing:ubuntu-application}.
 
 \begin{listing}
   \input{listing/4_sh_application}
   \caption{Instalacja gemów, migracja bazy, uruchomienie testów}
-  \label{listing:ubuntu_application}
+  \label{listing:ubuntu-application}
 \end{listing}
 
 Jeśli wszystko się powiodło możemy uruchomić serwer poleceniem z listingu
-nr~\ref{listing:ubuntu_start_server}. Nasza aplikacja jest dostępna pod adresem
+nr~\ref{listing:ubuntu-start-server}. Nasza aplikacja jest dostępna pod adresem
 \url{http://localhost:3000}.
 
 \begin{listing}
   \input{listing/5_sh_start_server}
   \caption{Uruchomienie lokalnego serwera aplikacji}
-  \label{listing:ubuntu_start_server}
+  \label{listing:ubuntu-start-server}
 \end{listing}
 
 \section{Windows}
@@ -928,12 +936,12 @@ on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
 
 Klasa posiada również metodę zwracającą największy możliwy wynik punktowy dla danego
 pytania. Jest to istotne w obliczaniu końcowego wyniku procentowego. Lising
-nr~\ref{listing:max_points} przedstawia ciało tejże metody.
+nr~\ref{listing:max-points} przedstawia ciało tejże metody.
 
 \begin{listing}
   \input{listing/max_points}
   \caption{Metoda obliczająca maksymalną ilość punktów możliwą do zdobycia dla konkretnego pytania}
-  \label{listing:max_points}
+  \label{listing:max-points}
 \end{listing}
 
 
@@ -970,12 +978,12 @@ losowane do danej wartości spośród całej puli.\\
 Usuwanie egzaminów jest możliwe tylko jeśli nie zostało jeszcze utworzone podejście dla
 studenta. Poza informacją w panelu o tym fakcie, model jest zabezpieczony metodą
 uruchamianą za pomocą wywołania \texttt{before\_destroy}, jak na listingu
-nr~\ref{listing:exam_destroyable}.
+nr~\ref{listing:exam-destroyable}.
 
 \begin{listing}
   \input{listing/exam_destroyable}
   \caption{Zabezpieczenie rekordu przed usunięciem, jeśli posiada powiązania}
-  \label{listing:exam_destroyable}
+  \label{listing:exam-destroyable}
 \end{listing}
 
 
@@ -1019,12 +1027,12 @@ Pozwala to rozróżnić, na które pytanie student już odpowiedział. Po utworz
 generowane odpowiedzi, których kolejność również jest losowana. Przy próbie aktualizacji
 rekordu przez studenta, sprawdzamy czy egzamin nie powinien się zakończyć. Jeśli tak,
 do rekordu nie są wprowadzane zmiany (odpowiedź studenta nie zostaje uznana). Kod został
-przedstawiony na listingu nr~\ref{listing:manage_exam_and_answers}
+przedstawiony na listingu nr~\ref{listing:manage-exam-and-answers}
 
 \begin{listing}
   \input{listing/manage_exam_and_answers}
   \caption{Obsługa aktualizacji odpowiedzi przez studenta}
-  \label{listing:manage_exam_and_answers}
+  \label{listing:manage-exam-and-answers}
 \end{listing}
 
 
@@ -1037,12 +1045,12 @@ Model \emph{Answer} jest pośrednikiem pomiędzy pierwotną formą odpowiedzi, a
 przez studenta. W rekordzie jest przechowywana informacja o zaznaczeniu, w przypadku pytań
 jednokrotnego i wielokrotnego wyboru albo tekst przy pytaniu porównującym do wzorca. Przed
 zapisem aktualizujemy kolumnę odpowiednią wartością. Sposób implementacji został
-przedstawiony na listingu nr~\ref{listing:calculate_points}.
+przedstawiony na listingu nr~\ref{listing:calculate-points}.
 
 \begin{listing}
   \input{listing/calculate_points}
   \caption{Aktualizacja wartości odpowiedzi przed zapisem}
-  \label{listing:calculate_points}
+  \label{listing:calculate-points}
 \end{listing}
 
 
@@ -1083,24 +1091,24 @@ rekord nadrzędny. Diagram nr~\ref{fig:polymorphic} obrazuje ten mechanizm.
 Klasa \emph{StudentImport} pozwala nam na załączenie pliku w formacie \emph{YAML}, w
 którym umieszczone są informacje o loginie i haśle poszczególnych studentów. Po wgraniu
 pliku, zostają utworzone odpowiednie konta. Sposób realizacji został przestawiony na
-listingu nr~\ref{listing:student_import}
+listingu nr~\ref{listing:student-import}.
 
 \begin{listing}
   \input{listing/student_import}
   \caption{Import kont studentów z pliku YAML}
-  \label{listing:student_import}
+  \label{listing:student-import}
 \end{listing}
 
 
 Korzystamy tu z modułu \texttt{yaml}, który dostarcza szereg metod ułatwiających pracę z
 tym typem plików. Po wczytaniu pliku otrzymujemy tablicę z atrybutami użytkowników, po
 których iterujemy i tworzymy rekordy. Odpowiedni format wewnątrz pliku wygląda jak na
-listingu nr~\ref{listing:student_import_yaml}.
+listingu nr~\ref{listing:student-import-yaml}.
 
 \begin{listing}
   \input{listing/student_import_yaml}
   \caption{Format danych atrybutów studenta w pliku YAML}
-  \label{listing:student_import_yaml}
+  \label{listing:student-import-yaml}
 \end{listing}
 
 \section{Schemat bazy danych}
@@ -1219,25 +1227,25 @@ nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możl
 ich nie tylko po tworzonych, konkretnych nazwach, ale też w ujęciu poszczególnych
 atrybutów. Możliwe jest również określenie właściciela poszczególnych tagów, dzięki czemu
 tworzone rekordy nie muszą być globalne, a widoczne tylko dla autora.\\
-Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging_questions}
+Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging-questions}.
 
 \begin{listing}
   \input{listing/tagging_questions}
   \caption{Sposób użycia mechanizmu tagowania}
-  \label{listing:tagging_questions}
+  \label{listing:tagging-questions}
 \end{listing}
 
 
 W aplikacji tagowanie zostało wykorzystane w klasie \texttt{TeacherQuestion}, tak aby
 każdy nauczyciel miał wygodny mechanizm określania dziedziny tworzonego przez siebie
 pytania. W analgoiczny sposób tagi zostały dodane do modelu \texttt{Student}, aby móc
-łatwo przydzielić ich do odpowiednich grup. Na listingu nr~\ref{listing:tagging_users}
+łatwo przydzielić ich do odpowiednich grup. Na listingu nr~\ref{listing:tagging-users}
 kontekstem tagowania są grupy, a właścicielem nauczyciel.
 
 \begin{listing}
   \input{listing/tagging_users}
   \caption{Mechanizm tagowania w kontekście grup}
-  \label{listing:tagging_users}
+  \label{listing:tagging-users}
 \end{listing}
 
 
@@ -1346,12 +1354,12 @@ Maszyna stanowa pozwala nam wprowadzić do obiektu pojęcie stanu w jakim obecni
 znajduje oraz zdefiniować dostępne, czasem warunkowe, przejścia do innych stanów. Kolumna
 w bazie danych, odpowiedzialna za tę informację, jest typu \emph{String}, przez co
 zyskuje na czytelności. Tworzone metody pomocnicze są jednocześnie opisem pełnionych
-funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state_machine}.
+funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
 
 \begin{listing}
   \input{listing/state_machine}
   \caption{Sposób użycia maszyny stanowej}
-  \label{listing:state_machine}
+  \label{listing:state-machine}
 \end{listing}
 
 
@@ -1364,12 +1372,12 @@ Możemy również uruchomić dodatkową logikę za pomocą wywołań podobnych d
 testu wywołujemy metodę, która ustawia aktualną datę i czas w atrubucie rekordu,
 analogicznie rzecz się ma przy zakończeniu testu.\\
 Przykładowa interakcja z maszyną stanową przy tak zdefiniowanej strukturze może wyglądać
-jak na listingu nr~\ref{listing:state_machine_transitions}.
+jak na listingu nr~\ref{listing:state-machine-transitions}.
 
 \begin{listing}
   \input{listing/state_machine_transitions}
   \caption{Interakcja z maszyną stanową}
-  \label{listing:state_machine_transitions}
+  \label{listing:state-machine-transitions}
 \end{listing}
 
 
@@ -1451,13 +1459,13 @@ ten problem, jednak nadal trzeba było pamiętać o używaniu ich eksplicite. Bi
 zestaw znaków, który w założeniu ma obejmować wszystkie dostępne pisma na świecie}. W
 wersji 1.9 wszystkie znaki są interpretowane natywnie, dlatego znikają problemy związane z
 ilością bajtów w jakiej jest zapisany dany znak, jednak pojawiają się nowe, dotyczące
-ustawiania odpowiedniego kodowania. Listing nr~\ref{listing:mb_chars} przedstawia
+ustawiania odpowiedniego kodowania. Listing nr~\ref{listing:mb-chars} przedstawia
 wynik operacji na różnych wersjach języka \emph{Ruby}.
 
 \begin{listing}
   \input{listing/mb_chars}
   \caption{Kodowanie znaków w różnych wersjach języka Ruby}
-  \label{listing:mb_chars}
+  \label{listing:mb-chars}
 \end{listing}
 
 
@@ -1484,14 +1492,14 @@ rozszerzenie lub modyfikację klas o metody bez zmiany kodu źródłowego}.
 
 W języku \emph{Ruby} jest to szczególnie proste dzięki otwartym klasom. Również w ten
 sposób został rozwiązany problem uruchomienia aplikacji na wersji 1.8.6, która nie
-posiada kilku metod używanych w kodzie. Listing nr~\ref{listing:monkey_patching}
+posiada kilku metod używanych w kodzie. Listing nr~\ref{listing:monkey-patching}
 przedstawia rozszerzenie klasy \emph{Array} o metodę \texttt{shuffle} w przypadku gdy nie
 jest ona zdefiniowana w bibliotece standardowej.
 
 \begin{listing}
   \input{listing/monkey_patching}
   \caption{Monkey patching umożliwiający uruchomienie aplikacji na wersji 1.8.6 języka Ruby}
-  \label{listing:monkey_patching}
+  \label{listing:monkey-patching}
 \end{listing}
 
 
@@ -1512,6 +1520,9 @@ nr~\ref{listing:rvm}.
 
 W chwili przełączenia jest ściągany i kompilowany kod źródłowy pożądanej wersji.
 Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw gemów.
+
+%\cleardoublepage
+%\listoflisting
 
 \cleardoublepage
 \bibliographystyle{plain}
