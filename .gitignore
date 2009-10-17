@@ -11,6 +11,8 @@
 *.pdf
 *.dvi
 *.ps
+*.lst
+*.lot
 images/*.dia~
 listing/*.tex
 images/*.pdf
