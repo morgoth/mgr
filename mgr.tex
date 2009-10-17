@@ -20,20 +20,24 @@
 
 \fancypagestyle{plain}{\fancyfoot{}\fancyhead{}\renewcommand{\headrulewidth}{0pt}}
 
-%\newcommand{\listlistings}{Spis listingów}
-%\newlistof[chapter]{listing}{lst}{\listlistings}
+% \newcommand{\listingcaption}[1]{
+  % \refstepcounter{listing}
+  % \par\noindent\listingcaption{#1}
+  % \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
+% }
+%\cftsetindents{listing}{1.5em}{2.5em}
 
-%\newcommand{\listingcaption}[1]{
-%  \refstepcounter{listing}
-%  \par\noindent\listingcaption{#1}
-%  \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
-%}
-
+\newcommand{\listlistings}{Spis listingów}
+\newlistof[chapter]{listing}{lst}{\listlistings}
+\newcommand{\listingcaption}[1]{
+  \refstepcounter{listing}
+  \par\noindent{Listing \thelisting: #1}
+  \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
+}
 
 %% Define a new 'leo' style for the package that will use a smaller font.
 \makeatletter
-\def\url@leostyle{
-  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\def\url@leostyle{\@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
 \makeatother
 %% Now actually use the newly defined style.
 \urlstyle{leo}
@@ -209,7 +213,7 @@ listing nr~\ref{listing:selfcommenting}.
 
 \begin{listing}
   \input{listing/selfcommenting}
-  \caption{Samokomentujący się kod}
+  \listingcaption{Samokomentujący się kod}
   \label{listing:selfcommenting}
 \end{listing}
 
@@ -339,7 +343,7 @@ Przykład przedstawiony na listingu nr~\ref{listing:activerecord-finders}.
 
 \begin{listing}
   \input{listing/activerecord_finders}
-  \caption{Konstruowanie zapytań oraz wygenerowany kod SQL}
+  \listingcaption{Konstruowanie zapytań oraz wygenerowany kod SQL}
   \label{listing:activerecord-finders}
 \end{listing}
 
@@ -362,7 +366,7 @@ listingu nr~\ref{listing:activerecord-association}.
 
 \begin{listing}
   \input{listing/activerecord_association}
-  \caption{Powiązanie dwóch obiektów ActiveRecord}
+  \listingcaption{Powiązanie dwóch obiektów ActiveRecord}
   \label{listing:activerecord-association}
 \end{listing}
 
@@ -377,7 +381,7 @@ metody jak przedstawione na listingu nr~\ref{listing:activerecord-association-fi
 
 \begin{listing}
   \input{listing/activerecord_association_finders}
-  \caption{Dostępne metody po deklaracji asocjacji}
+  \listingcaption{Dostępne metody po deklaracji asocjacji}
   \label{listing:activerecord-association-finders}
 \end{listing}
 
@@ -390,7 +394,7 @@ nr~\ref{listing:activerecord-validations}.
 
 \begin{listing}
   \input{listing/activerecord_validations}
-  \caption{Walidacja danych}
+  \listingcaption{Walidacja danych}
   \label{listing:activerecord-validations}
 \end{listing}
 
@@ -414,7 +418,7 @@ usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
 
 \begin{listing}
   \input{listing/activerecord_callbacks}
-  \caption{Wywołania zwrotne}
+  \listingcaption{Wywołania zwrotne}
   \label{listing:activerecord-callbacks}
 \end{listing}
 
@@ -440,7 +444,7 @@ wygenerowany plik na listingu nr~\ref{listing:activerecord-migrations}.
 
 \begin{listing}
   \input{listing/activerecord_migrations}
-  \caption{Generator modelu oraz automatycznie utworzony plik migracji}
+  \listingcaption{Generator modelu oraz automatycznie utworzony plik migracji}
   \label{listing:activerecord-migrations}
 \end{listing}
 
@@ -470,7 +474,7 @@ wykorzystania przedstawione na listingu nr~\ref{listing:activesupport}.
 
 \begin{listing}
   \input{listing/activesupport}
-  \caption{Pzykład dostępnych metod w ActiveSupport}
+  \listingcaption{Pzykład dostępnych metod w ActiveSupport}
   \label{listing:activesupport}
 \end{listing}
 
@@ -648,7 +652,7 @@ Przykładowy test na listingu nr~\ref{listing:shoulda}.
 
 \begin{listing}
   \input{listing/shoulda}
-  \caption{Przykład testu jednostkowego}
+  \listingcaption{Przykład testu jednostkowego}
   \label{listing:shoulda}
 \end{listing}
 
@@ -673,7 +677,7 @@ na listingu nr~\ref{listing:cucumber}.
 
 \begin{listing}
   \input{listing/cucumber}
-  \caption{Przykład testu integracyjnego}
+  \listingcaption{Przykład testu integracyjnego}
   \label{listing:cucumber}
 \end{listing}
 
@@ -683,7 +687,7 @@ Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumbe
 
 \begin{listing}
   \input{listing/cucumber_steps}
-  \caption{Implementacja kroków użytych w scenariuszu}
+  \listingcaption{Implementacja kroków użytych w scenariuszu}
   \label{listing:cucumber-steps}
 \end{listing}
 
@@ -719,7 +723,7 @@ miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
 
 \begin{listing}
   \input{listing/sass}
-  \caption{Szablon w języku Sass generujący CSS}
+  \listingcaption{Szablon w języku Sass generujący CSS}
   \label{listing:sass}
 \end{listing}
 
@@ -811,7 +815,7 @@ extras/environment\_setup.sh}.
 
 \begin{listing}
   \input{listing/1_sh_ruby}
-  \caption{Instalacja Rubiego}
+  \listingcaption{Instalacja Rubiego}
   \label{listing:ubuntu-ruby}
 \end{listing}
 
@@ -820,7 +824,7 @@ jak na listingu nr~\ref{listing:ubuntu-rubygems}.
 
 \begin{listing}
   \input{listing/2_sh_rubygems}
-  \caption{Instalacja RubyGems}
+  \listingcaption{Instalacja RubyGems}
   \label{listing:ubuntu-rubygems}
 \end{listing}
 
@@ -831,7 +835,7 @@ tak jak na listingu nr~\ref{listing:ubuntu-git}.
 
 \begin{listing}
   \input{listing/3_sh_git}
-  \caption{Instalacja systemu kontroli wersji Git}
+  \listingcaption{Instalacja systemu kontroli wersji Git}
   \label{listing:ubuntu-git}
 \end{listing}
 
@@ -842,7 +846,7 @@ nr~\ref{listing:ubuntu-application}.
 
 \begin{listing}
   \input{listing/4_sh_application}
-  \caption{Instalacja gemów, migracja bazy, uruchomienie testów}
+  \listingcaption{Instalacja gemów, migracja bazy, uruchomienie testów}
   \label{listing:ubuntu-application}
 \end{listing}
 
@@ -852,7 +856,7 @@ nr~\ref{listing:ubuntu-start-server}. Nasza aplikacja jest dostępna pod adresem
 
 \begin{listing}
   \input{listing/5_sh_start_server}
-  \caption{Uruchomienie lokalnego serwera aplikacji}
+  \listingcaption{Uruchomienie lokalnego serwera aplikacji}
   \label{listing:ubuntu-start-server}
 \end{listing}
 
@@ -906,7 +910,7 @@ nauczyciela, informacja o typie obiektu jest przechowywana w kolumnie \texttt{ty
 
 \begin{listing}
   \input{listing/sti}
-  \caption{Ddziedziczenie STI w Ruby on Rails}
+  \listingcaption{Ddziedziczenie STI w Ruby on Rails}
   \label{listing:sti}
 \end{listing}
 
@@ -940,7 +944,7 @@ nr~\ref{listing:max-points} przedstawia ciało tejże metody.
 
 \begin{listing}
   \input{listing/max_points}
-  \caption{Metoda obliczająca maksymalną ilość punktów możliwą do zdobycia dla konkretnego pytania}
+  \listingcaption{Metoda obliczająca maksymalną ilość punktów możliwą do zdobycia dla konkretnego pytania}
   \label{listing:max-points}
 \end{listing}
 
@@ -982,7 +986,7 @@ nr~\ref{listing:exam-destroyable}.
 
 \begin{listing}
   \input{listing/exam_destroyable}
-  \caption{Zabezpieczenie rekordu przed usunięciem, jeśli posiada powiązania}
+  \listingcaption{Zabezpieczenie rekordu przed usunięciem, jeśli posiada powiązania}
   \label{listing:exam-destroyable}
 \end{listing}
 
@@ -1031,7 +1035,7 @@ przedstawiony na listingu nr~\ref{listing:manage-exam-and-answers}
 
 \begin{listing}
   \input{listing/manage_exam_and_answers}
-  \caption{Obsługa aktualizacji odpowiedzi przez studenta}
+  \listingcaption{Obsługa aktualizacji odpowiedzi przez studenta}
   \label{listing:manage-exam-and-answers}
 \end{listing}
 
@@ -1049,7 +1053,7 @@ przedstawiony na listingu nr~\ref{listing:calculate-points}.
 
 \begin{listing}
   \input{listing/calculate_points}
-  \caption{Aktualizacja wartości odpowiedzi przed zapisem}
+  \listingcaption{Aktualizacja wartości odpowiedzi przed zapisem}
   \label{listing:calculate-points}
 \end{listing}
 
@@ -1070,7 +1074,7 @@ nr~\ref{listing:polymorphic}.
 
 \begin{listing}
   \input{listing/polymorphic}
-  \caption{Asocjacje polimorficzne}
+  \listingcaption{Asocjacje polimorficzne}
   \label{listing:polymorphic}
 \end{listing}
 
@@ -1095,7 +1099,7 @@ listingu nr~\ref{listing:student-import}.
 
 \begin{listing}
   \input{listing/student_import}
-  \caption{Import kont studentów z pliku YAML}
+  \listingcaption{Import kont studentów z pliku YAML}
   \label{listing:student-import}
 \end{listing}
 
@@ -1107,7 +1111,7 @@ listingu nr~\ref{listing:student-import-yaml}.
 
 \begin{listing}
   \input{listing/student_import_yaml}
-  \caption{Format danych atrybutów studenta w pliku YAML}
+  \listingcaption{Format danych atrybutów studenta w pliku YAML}
   \label{listing:student-import-yaml}
 \end{listing}
 
@@ -1200,7 +1204,7 @@ unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing
 
 \begin{listing}
   \input{listing/authlogic}
-  \caption{Sposób użycia systemu autentykacji}
+  \listingcaption{Sposób użycia systemu autentykacji}
   \label{listing:authlogic}
 \end{listing}
 
@@ -1231,7 +1235,7 @@ Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging
 
 \begin{listing}
   \input{listing/tagging_questions}
-  \caption{Sposób użycia mechanizmu tagowania}
+  \listingcaption{Sposób użycia mechanizmu tagowania}
   \label{listing:tagging-questions}
 \end{listing}
 
@@ -1244,7 +1248,7 @@ kontekstem tagowania są grupy, a właścicielem nauczyciel.
 
 \begin{listing}
   \input{listing/tagging_users}
-  \caption{Mechanizm tagowania w kontekście grup}
+  \listingcaption{Mechanizm tagowania w kontekście grup}
   \label{listing:tagging-users}
 \end{listing}
 
@@ -1265,7 +1269,7 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
 
 \begin{listing}
   \input{listing/prawn}
-  \caption{Szablon wykorzystywany przy generowaniu dokumentu PDF}
+  \listingcaption{Szablon wykorzystywany przy generowaniu dokumentu PDF}
   \label{listing:prawn}
 \end{listing}
 
@@ -1281,7 +1285,7 @@ Sposób użycia na listingu nr~\ref{listing:paperclip}
 
 \begin{listing}
   \input{listing/paperclip}
-  \caption{Sposób wykorzystania gema Paperclip}
+  \listingcaption{Sposób wykorzystania gema Paperclip}
   \label{listing:paperclip}
 \end{listing}
 
@@ -1333,7 +1337,7 @@ nr~\ref{listing:formtastic}.
 
 \begin{listing}
   \input{listing/formtastic}
-  \caption{Wykorzystanie gema upraszczajacęgo konstruowanie formularzy}
+  \listingcaption{Wykorzystanie gema upraszczajacęgo konstruowanie formularzy}
   \label{listing:formtastic}
 \end{listing}
 
@@ -1358,7 +1362,7 @@ funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
 
 \begin{listing}
   \input{listing/state_machine}
-  \caption{Sposób użycia maszyny stanowej}
+  \listingcaption{Sposób użycia maszyny stanowej}
   \label{listing:state-machine}
 \end{listing}
 
@@ -1376,7 +1380,7 @@ jak na listingu nr~\ref{listing:state-machine-transitions}.
 
 \begin{listing}
   \input{listing/state_machine_transitions}
-  \caption{Interakcja z maszyną stanową}
+  \listingcaption{Interakcja z maszyną stanową}
   \label{listing:state-machine-transitions}
 \end{listing}
 
@@ -1464,7 +1468,7 @@ wynik operacji na różnych wersjach języka \emph{Ruby}.
 
 \begin{listing}
   \input{listing/mb_chars}
-  \caption{Kodowanie znaków w różnych wersjach języka Ruby}
+  \listingcaption{Kodowanie znaków w różnych wersjach języka Ruby}
   \label{listing:mb-chars}
 \end{listing}
 
@@ -1498,7 +1502,7 @@ jest ona zdefiniowana w bibliotece standardowej.
 
 \begin{listing}
   \input{listing/monkey_patching}
-  \caption{Monkey patching umożliwiający uruchomienie aplikacji na wersji 1.8.6 języka Ruby}
+  \listingcaption{Monkey patching umożliwiający uruchomienie aplikacji na wersji 1.8.6 języka Ruby}
   \label{listing:monkey-patching}
 \end{listing}
 
@@ -1513,7 +1517,7 @@ nr~\ref{listing:rvm}.
 
 \begin{listing}
   \input{listing/rvm}
-  \caption{Instalacja gema rvm}
+  \listingcaption{Instalacja gema rvm}
   \label{listing:rvm}
 \end{listing}
 
@@ -1521,8 +1525,21 @@ nr~\ref{listing:rvm}.
 W chwili przełączenia jest ściągany i kompilowany kod źródłowy pożądanej wersji.
 Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw gemów.
 
-%\cleardoublepage
-%\listoflisting
+\cleardoublepage
+\chapter{Podsumowanie}
+Tendencje dzisiejszych aplikacji internetowych kierują się ku rozwiązywaniu problemów ze
+ściśle określonych dziedzin. Skupiają się na postawionym, pojedynczym zadaniu, starając
+się jak najlepiej zaspokoić oczekiwania internautów. Wszelkie ogólne portale, które
+rzekomo dają szeroki zasięg zastosowań i funkcji, coraz częsciej nie sprawdzają się w
+praktyce. Jest to powodowane obciążaniem użytkowników, koniecznością poświęcania dużej
+ilości czasu na wstępnej prekonfiguracji oraz przystosowaniu usługi do swoich potrzeb.
+
+
+\cleardoublepage
+\listoflisting
+\newpage
+\listoffigures
+\listoftables
 
 \cleardoublepage
 \bibliographystyle{plain}

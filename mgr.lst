@@ -1,0 +1,36 @@
+\contentsline {listing}{\numberline {1} Samokomentuj\IeC {\k a}cy si\IeC {\k e} kod}{11}
+\contentsline {listing}{\numberline {2} Konstruowanie zapyta\IeC {\'n} oraz wygenerowany kod SQL}{14}
+\contentsline {listing}{\numberline {3} Powi\IeC {\k a}zanie dw\IeC {\'o}ch obiekt\IeC {\'o}w ActiveRecord}{14}
+\contentsline {listing}{\numberline {4} Dost\IeC {\k e}pne metody po deklaracji asocjacji}{15}
+\contentsline {listing}{\numberline {5} Walidacja danych}{15}
+\contentsline {listing}{\numberline {6} Wywo\IeC {\l }ania zwrotne}{15}
+\contentsline {listing}{\numberline {7} Generator modelu oraz automatycznie utworzony plik migracji}{16}
+\contentsline {listing}{\numberline {8} Pzyk\IeC {\l }ad dost\IeC {\k e}pnych metod w ActiveSupport}{17}
+\contentsline {listing}{\numberline {9} Przyk\IeC {\l }ad testu jednostkowego}{21}
+\contentsline {listing}{\numberline {10} Przyk\IeC {\l }ad testu integracyjnego}{21}
+\contentsline {listing}{\numberline {11} Implementacja krok\IeC {\'o}w u\IeC {\.z}ytych w scenariuszu}{21}
+\contentsline {listing}{\numberline {12} Szablon w j\IeC {\k e}zyku Sass generuj\IeC {\k a}cy CSS}{22}
+\contentsline {listing}{\numberline {13} Instalacja Rubiego}{26}
+\contentsline {listing}{\numberline {14} Instalacja RubyGems}{26}
+\contentsline {listing}{\numberline {15} Instalacja systemu kontroli wersji Git}{26}
+\contentsline {listing}{\numberline {16} Instalacja gem\IeC {\'o}w, migracja bazy, uruchomienie test\IeC {\'o}w}{27}
+\contentsline {listing}{\numberline {17} Uruchomienie lokalnego serwera aplikacji}{27}
+\contentsline {listing}{\numberline {18} Ddziedziczenie STI w Ruby on Rails}{29}
+\contentsline {listing}{\numberline {19} Metoda obliczaj\IeC {\k a}ca maksymaln\IeC {\k a} ilo\IeC {\'s}\IeC {\'c} punkt\IeC {\'o}w mo\IeC {\.z}liw\IeC {\k a} do zdobycia dla konkretnego pytania}{30}
+\contentsline {listing}{\numberline {20} Zabezpieczenie rekordu przed usuni\IeC {\k e}ciem, je\IeC {\'s}li posiada powi\IeC {\k a}zania}{31}
+\contentsline {listing}{\numberline {21} Obs\IeC {\l }uga aktualizacji odpowiedzi przez studenta}{32}
+\contentsline {listing}{\numberline {22} Aktualizacja warto\IeC {\'s}ci odpowiedzi przed zapisem}{33}
+\contentsline {listing}{\numberline {23} Asocjacje polimorficzne}{34}
+\contentsline {listing}{\numberline {24} Import kont student\IeC {\'o}w z pliku YAML}{34}
+\contentsline {listing}{\numberline {25} Format danych atrybut\IeC {\'o}w studenta w pliku YAML}{35}
+\contentsline {listing}{\numberline {26} Spos\IeC {\'o}b u\IeC {\.z}ycia systemu autentykacji}{38}
+\contentsline {listing}{\numberline {27} Spos\IeC {\'o}b u\IeC {\.z}ycia mechanizmu tagowania}{39}
+\contentsline {listing}{\numberline {28} Mechanizm tagowania w kontek\IeC {\'s}cie grup}{39}
+\contentsline {listing}{\numberline {29} Szablon wykorzystywany przy generowaniu dokumentu PDF}{40}
+\contentsline {listing}{\numberline {30} Spos\IeC {\'o}b wykorzystania gema Paperclip}{41}
+\contentsline {listing}{\numberline {31} Wykorzystanie gema upraszczajac\IeC {\k e}go konstruowanie formularzy}{42}
+\contentsline {listing}{\numberline {32} Spos\IeC {\'o}b u\IeC {\.z}ycia maszyny stanowej}{43}
+\contentsline {listing}{\numberline {33} Interakcja z maszyn\IeC {\k a} stanow\IeC {\k a}}{43}
+\contentsline {listing}{\numberline {34} Kodowanie znak\IeC {\'o}w w r\IeC {\'o}\IeC {\.z}nych wersjach j\IeC {\k e}zyka Ruby}{45}
+\contentsline {listing}{\numberline {35} Monkey patching umo\IeC {\.z}liwiaj\IeC {\k a}cy uruchomienie aplikacji na wersji 1.8.6 j\IeC {\k e}zyka Ruby}{46}
+\contentsline {listing}{\numberline {36} Instalacja gema rvm}{46}
