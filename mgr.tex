@@ -92,11 +92,22 @@ szybko i w prosty sposób jesteśmy w stanie zrealizować zamierzony cel.
 
 
 Niniejsza praca, skierowana do wszelakiego rodzaju nauczycieli, próbuje dostarczyć
-narzędzie pomagające w przeprowadzaniu testów internetowych. Założeniem była przede
+narzędzie pomagające w przeprowadzaniu testów internetowych. Założeniem jest przede
 wszystkim prostota oraz przyjazność obsługi, tak aby każdy nowy użytkownik mógł od razu
 zrozumieć mechanikę i dostępne funkcje.
 
-\chapter{Istniejące systemy nauki zdalnej}
+
+Do realizacji powyższego celu został użyty framework \emph{Ruby on Rails}, który obecnie
+jest jednym z najczęściej używanych narzędzi do tworzenia złożonych aplikacji internetowych.
+Swoją popularność zawdzięcza między innymi niebagatelnemu podejściu do sposobu w jaki
+programista kształtuje swój kod. Dużą wagę przywiązuję się do jakości poprzez sugerowanie
+przyjętych konwencji, dzięki czemu utrzymanie odpowiedniego poziomu przychodzi łatwiej.
+Kolejną zaletą, za którą przemawia wybór tej technologii, jest szybkość tworzenia
+aplikacji. Wiele niezbędnych rzeczy, takich jak sesje, integralność z bazą danych,
+czy uwierzytelnienie przesyłanych danych od klienta jest gotowych do użycia bez konieczności
+konfiguracji.
+
+\chapter{Analiza istniejących systemów nauki zdalnej}
 \section{Moodle}
 \emph{Moodle}\footnote{Moodle -- Modular Object-Oriented Dynamic Learning Environment (ang.)}
 jest wolnym, wypuszczonym na licencji \emph{GNU GPL}\footnote{GNU GPL -- GNU General Public
@@ -1542,10 +1553,43 @@ Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw g
 
 \cleardoublepage
 \chapter{Podsumowanie}
-Zgodnie z założeniami, aplikacja skupia się wyłącznie na możliwości tworzenia testów
+W dzisiejszych czasach na popularności zyskują projekty tworzone na otwartych licencjach,
+gdzie każdy może może wnieść coś od siebie do istniejącego kodu. Główną siłą takiego
+podejścia jest zaangażowanie społeczności, która przecież jest końcowym odbiorcą, w
+poprawę jakości oraz rozwój nowych funkcji. Zawsze też mamy możliwość modyfikacji i
+dostosowania kodu do swoich indywidualnych potrzeb, co sprawia że wszelkie dostępne
+narzędzia stają się niezwykle elastyczne. Przykładem na dzień dzisiejszy, potwierdzającym
+powyższe rozważania, niech będzie statystyka udostępniona przez portal
+\emph{Gemcutter}\footnote{Gemcutter -- od 25 października 2009 roku oficjalny hosting gemów,
+dostępny również pod adresem \url{http://rubygems.org}} \cite{gemcutter}, która mówi o
+7016 ogólnodostępnych gemach.
+
+
+Niniejsza praca również została stworzona na otwartej licencji.
+Repozytorium z kodem aplikacji znajduje się na wspominanym już wcześniej GitHubie
+\cite{github-morgoth} i jest dostępne publicznie. Licencja \emph{GNU LGPL} nie tylko
+pozwala, ale wręcz zachęca do współpracy, dlatego wszelkie wniesione poprawki i rozwinięcia
+będą mile widziane.
+
+
+Zgodnie z założeniami, aplikacja skupia się wyłącznie na możliwości tworzenia egzaminów
 internetowych przez nauczycieli oraz rozwiązywaniu ich przez uczniów, co znacznie
 przyspiesza i ułatwia pracę w porównaniu do systemów typu \emph{Moodle}, gdzie trzeba
-przebrnąć przez dziesiątki odsyłaczy, aby przygotować egzamin.
+przebrnąć przez dziesiątki odsyłaczy, aby przygotować egzamin. Interfejs służący do
+nawigacji po stronie jest intuicyjny i zrozumiały dla nowego użytkownika.
+
+
+Kod aplikacji jest utrzymany w konwencjach przyjętych we frameworku \emph{Ruby on Rails},
+dzięki czemu zrozumienie go i ewentualny przyszły rozwój przez innych programistów nie
+powinen być trudny. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
+testami jednostkowymi, co przy obecnych standardach jest fundamentem każdego projektu.
+Dodatkowo, najważniejsze funkcje są testowane przy pomocy tzw. testów integracyjnych, które
+zapewniają spójność i poprawną współpracę poszczególnych elementów.
+Szata graficzna wykorzystuje ideę siatek -- strona jest podzielona na równe kolumny, które
+wyznaczają obszar funkcyjny poszczególnych elementów. Wszelkie wyrównania i marginesy są
+dostosowywane względem zadanej siatki, przez co zyskują na estetyce oraz standaryzują
+rozmieszczenie głównych komponentów.
+Wszystko to sprawia, że aplikacja jest gotowa do uruchomienia w wymiarze produkcyjnym.
 
 \cleardoublepage
 \listoflisting
