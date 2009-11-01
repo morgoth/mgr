@@ -107,6 +107,20 @@ aplikacji. Wiele niezbędnych rzeczy, takich jak sesje, integralność z bazą d
 czy uwierzytelnienie przesyłanych danych od klienta jest gotowych do użycia bez konieczności
 konfiguracji.
 
+
+Największym rynkiem pracy używającym \emph{Ruby on Rails} mogą się pochwalić Stany
+Zjednoczone, jednak Europa nie pozostaje z tyłu. Na Starym Kontynencie jest organizowanych
+wiele cyklicznych, masowych konferencji dotyczących zarówno samego języka \emph{Ruby} jak
+i omawianego frameworka. Również Polska, pomimo iż technologia ta wydaje się tu być ciągle
+niszowa, jest państwem które skupia wiele osób biorących czynny udział w organizowaniu
+grup tematycznych, takich jak \emph{WRUG}\footnote{WRUG -- Warsaw Ruby Users Group -- więcej
+na stronie internetowej \url{www.wrug.eu}}, \emph{KRUG}\footnote{KRUG -- Krakow Ruby User Group
+-- więcej na stronie internetowej \url{www.ruby.org.pl}} oraz \emph{SRUG}\footnote{SRUG -- Silesian Ruby
+Users' Group -- więcej na stronie internetowej \url{www.srug.pl}}. Potwierdzeniem niech
+będzie przyznanie organizacji konferencji \emph{EuRuKo}\footnote{EuRuKo -- European Ruby
+Conference -- coroczne spotkania na terenie Europy dotyczące języka Ruby} w 2010 roku w Krakowie.
+
+
 \chapter{Analiza istniejących systemów nauki zdalnej}
 \section{Moodle}
 \emph{Moodle}\footnote{Moodle -- Modular Object-Oriented Dynamic Learning Environment (ang.)}
@@ -288,7 +302,7 @@ systemu blogowego, uwzględniając takie dodatki jak dostępność poprzez kana�
 RSS\footnote{RSS -- Really Simple Syndication (ang.)} czy reprezentacja zasobów w postaci
 \emph{XML} \cite{blog-in-15-min}.\\
 Kolejną zaletą takiego podejścia, jest przejrzystość kodu. Dopóki postępujemy zgodnie ze
-wskazówkami, nasz kod nie powinien być trudny do zrozumienia przez innego programistę
+wskazówkami, nasz kod nie powinien być trudny do zrozumienia przez innego programistę,
 również zajmującego się tą technologią.\\
 Drugą ideą składającą się na całość tzw. \emph{Rails way} jest zapobieganie powtarzaniu
 samego siebie\footnote{DRY -- Don't Repeat Yourself (ang.)}. Jeśli w jakimś miejscu używamy
@@ -298,18 +312,18 @@ tzw. \emph{Mixinów}, możemy dodawać do interesujących nas klas czy modułów
 metod, upraszczając w ten sposób strukturę kodu.
 
 
-Po wygenerowaniu szkieletu projektu, dostajemy strukturę katalogów, które między innymi
-oddzwierciedlają wykorzystanie wzorca \emph{MVC}. Pliki odpowiedzialne za interakcję z
-bazą danych oraz główną logikę aplikacji znajdują się w katalogu \emph{models}. Część
+Po wygenerowaniu szkieletu projektu, dostajemy drzewo katalogów, które między innymi
+odzwierciedlają wykorzystanie wzorca \emph{MVC}. Pliki odpowiedzialne za interakcję z
+bazą danych oraz główną logikę aplikacji znajdują się w katalogu \texttt{models}. Część
 generująca widoki, czyli dokumenty \emph{HTML} również mają swoje określone miejsce w
-katalogu \emph{views}, natomiast część obsługująca akcje użytkownika przesyłane do serwera
+katalogu \texttt{views}, natomiast część obsługująca akcje użytkownika przesyłane do serwera
 oraz łącząca ze sobą poprzednio wymienione komponenty, jak nie trudno się domyślić, leży w
-katalogu \emph{controllers}. Wszystko to zapewnia nam odpowiednią separację kodu, dzięki
+katalogu \texttt{controllers}. Wszystko to zapewnia nam odpowiednią separację kodu, dzięki
 czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
 
 
 \subsection{Gemy}
-\emph{Ruby on Rails} składa się z kilku odrębnych \emph{gemów}\footnote{Gemy -- system
+\emph{Ruby on Rails} składa się z kilku odrębnych \texttt{gemów}\footnote{Gemy -- system
 paczek, bibliotek dostarczający nową funkcjonalność}, które mogą być również używane
 osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 
@@ -412,7 +426,7 @@ metody jak przedstawione na listingu nr~\ref{listing:activerecord-association-fi
 \end{listing}
 
 
-Walidatory zapewniają nam poprawność wprowadzanych danych, dzięki którym również
+Walidatory zapewniają poprawność wprowadzanych danych, dzięki którym również
 możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
 standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
 własne. Przykładowy sposób użycia przedstawia listing
@@ -426,7 +440,7 @@ nr~\ref{listing:activerecord-validations}.
 
 
 W podanym przykładzie pierwsza walidacja zapewnia nam obecność nazwy egzaminu,
-druga sprawdza czy czas trwania (\texttt{duration}) jest liczbą całkowitą większą od
+druga sprawdza czy czas trwania (\texttt{duration}) jest liczbą całkowitą, większą od
 zera. Ostatni walidator jest metodą zdefiniowaną przez nas, który ma być
 wywołany jedynie gdy pole ,,ilość pytań'' (\texttt{question\_number}) jest obecne.
 Zapewnia, że liczba ta nie może być większa niż ilość wszystkich dostępnych
@@ -461,7 +475,7 @@ wykonujemy interesujące nas akcje.
 Zmian schematu bazy danych dokonujemy poprzez migracje. Są to pliki z kodem \emph{Rubiego},
 w których definiujemy wprowadzane tabele oraz poszczególne kolumny. Świetnie sprawdzają
 się przy pracy w zespole, gdyż każdy plik jest oznaczony datą, a sama baza danych
-przechowuje informację o aktualnej wersji, dlatego nie ma tu konflitków i nie musimy
+przechowuje informację o aktualnej wersji, dlatego nie ma tu konfliktów i nie musimy
 przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka generatorów,
 które znacznie ułatwiają i przyspieszają pracę. Dodatkowo bazują one na konwencji -- nazwa
 modelu (klasy) w liczbie pojedynczej, natomiast nazwa kolumny w liczbie mnogiej, co
@@ -509,7 +523,7 @@ W ostatnim przykładzie widzimy metodę z pytajnikiem. Warto wspomnieć w tym
 momencie o konwencji jaka przyjęła się w środowisku języka \emph{Ruby}, gdzie
 właśnie metody zakończone pytajnikiem zwracają zawsze \texttt{true} lub
 \texttt{false}, natomiast kończące się wykrzyknikiem są ,,groźniejszą'' wersją metody
-bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację argumentu.
+bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację obiektu.
 
 \subsection{Internacjonalizacja}
 Poczynając od wersji 2.2, \emph{Ruby on Rails} ma wbudowany mechanizm internacjonalizacji.
@@ -529,7 +543,7 @@ znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom
 przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest
 \emph{CSRF}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
 napastnika pod sesję użytkownika. Jeśli osoba taka jest zalogowana, wystarczy że uruchomi
-odnośnik modyfikujący dane niedostępne bez aktywnej sesji. Innymi słowy zmusza się
+odnośnik modyfikujący dane niedostępne bez aktywnej sesji. Innymi słowy, zmusza się
 użytkownika do wysłania żądania \emph{HTTP} do serwera z jego przeglądarki, wykorzystując
 jego autentykację.\\
 Sposobem na przeciwdziałanie jest dołączanie do parametrów przesyłanych do serwera,
@@ -914,7 +928,7 @@ Chcąc pobrać aktualną wersję kodu aplikacji, musimy skorzystać z systemu ko
 Wydając polecenie z linii komend \texttt{git~clone git://github.com/morgoth/quiz.git},
 kopiujemy kod na lokalny komputer. Instalacja wymaganych gemów przebiega podobnie jak w
 systemie unixowym (opuszczając słowo \texttt{sudo}), więc podążamy za listingiem
-nr~\ref{listing:ubuntu_application}.
+nr~\ref{listing:ubuntu-application}.
 
 
 \cleardoublepage
