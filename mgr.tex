@@ -31,7 +31,7 @@
 \newlistof[chapter]{listing}{lst}{\listlistings}
 \newcommand{\listingcaption}[1]{
   \refstepcounter{listing}
-  \par\noindent{Listing \thelisting: #1}
+  \par\centering\noindent{Listing \thelisting: #1}
   \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
 }
 
@@ -732,7 +732,7 @@ Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumbe
 \end{listing}
 
 
-Za pomocą wyrażeń regularnych odnajdujemy przekazane w scenariuszu parametry, które
+Za pomocą wyrażeń regularnych odnajdujemy przekazane w danym kroku parametry, które
 posłużą nam do wygenerowania odpowiedniej treści. Do poruszania się po stronie w
 wirtualnej przeglądarce jest użyty gem \emph{Webrat}, który parsując dokument
 \emph{HTML} uzupełnia odpowiednie pola o przekazane atrybuty, a następnie symuluje
@@ -743,7 +743,7 @@ komunikację z serwerem przyjmując jego rzekomą odpowiedź.
 znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje wcięcia, tak więc podobnie
 jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
 szablonu jest bardziej przejrzysta i trudniej nam się pomylić, gdyż przy błędnej składni
-zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTML}, nawet jeśli zapomnimy
+zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTMLa}, nawet jeśli zapomnimy
 domnknąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
 wyjątku.\\
 \emph{Haml} nie jest ściśle związany z żadnym językiem programowania i może być używany
@@ -935,7 +935,7 @@ nr~\ref{listing:ubuntu-application}.
 \chapter{Implementacja}
 \section{Modele}
 Zgodnie ze wzorcem \emph{MVC} oraz konwencją \emph{Ruby on Rails} modele są odpowiedzialne
-za główną logikę biznesową aplikacji, dlatego też zostaną one przedstawione poniżej.
+za główną logikę biznesową aplikacji, dlatego też zostaną one przedstawione szczegółowo poniżej.
 
 \subsection{Użytkownik, nauczyciel, student}
 Model \emph{User} przechowuje informacje na temat zarejestrowanych użytkowników w
@@ -974,7 +974,7 @@ jednym~z:
 
 
 Mamy również możliwość tagowania każdego pytania, przez co sortowanie i odnalazienie
-właściwego powinno być prostsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
+właściwego powinno być łatwiejsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
 on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
 
 
@@ -1039,7 +1039,7 @@ klasy \emph{TeacherQuestion}, która została opisana w poprzednim podrozdziale.
 
 \subsection{Egzamin}
 Model \emph{Exam} łączy ten przygotowany przez nauczyciela (o którym można myśleć jako
-o szablonie, który jest taki sam dla wszystkich), z konkretnym studentem, dla którego są
+o szablonie, który jest taki sam dla wszystkich) z konkretnym studentem, dla którego są
 generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze stanów:
 
 \begin{itemize}
@@ -1071,7 +1071,7 @@ Pozwala to rozróżnić, na które pytanie student już odpowiedział. Po utworz
 generowane odpowiedzi, których kolejność również jest losowana. Przy próbie aktualizacji
 rekordu przez studenta, sprawdzamy czy egzamin nie powinien się zakończyć. Jeśli tak,
 do rekordu nie są wprowadzane zmiany (odpowiedź studenta nie zostaje uznana). Kod został
-przedstawiony na listingu nr~\ref{listing:manage-exam-and-answers}
+przedstawiony na listingu nr~\ref{listing:manage-exam-and-answers}.
 
 \begin{listing}
   \input{listing/manage_exam_and_answers}
@@ -1100,8 +1100,8 @@ przedstawiony na listingu nr~\ref{listing:calculate-points}.
 
 Jeśli wartością pola \texttt{value} jest ,,true'', oznacza to że została ona wybrana przez studenta, w
 takim przypadku przepisujemy wartość punktową zdefiniowaną przez nauczyciela, w przeciwnym
-razie wpisujemy 0. Jeśli pytanie było typu: porównanie do wzorca, za pomocą odległości
-Levenshteina, sprawdzamy czy oba napisy są odpowiednio podobne i znów analogicznie,
+razie wpisujemy 0. Jeśli pytanie było typu porównanie do wzorca, za pomocą odległości
+Levenshteina sprawdzamy czy oba napisy są odpowiednio podobne i znów, analogicznie
 uzupełniamy wartość punktową.
 
 \subsection{Ilustracja}
@@ -1119,7 +1119,7 @@ nr~\ref{listing:polymorphic}.
 \end{listing}
 
 
-Aby móc korzystać z polimorfizmu, tabela \texttt{pictures} musi posiadać kolumny
+Aby móc korzystać z polimorfizmu, tabela w bazie danych \texttt{pictures} musi posiadać kolumny
 \texttt{imageable\_type} oraz \texttt{imageable\_id}, które jednoznacznie identyfikują
 rekord nadrzędny. Diagram nr~\ref{fig:polymorphic} obrazuje ten mechanizm.
 
@@ -1223,7 +1223,7 @@ aplikacji.
 
 \section{Wykorzystane gemy}
 \subsection{Authlogic}\label{sec:authlogic}
-Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on do systemu autentykacji,
+Autorem gema \emph{Authlogic} jest Ben Johnson. Służy on jako system autentykacji,
 począwszy od mechanizmu rejestracji, poprzez zarządzanie sesją użytkownika, aż do
 zabezpieczeń przed próbami włamania na konto za pomocą tzw. \emph{Brute
 Force}\footnote{Brute Force (ang.) -- próba złamania hasła poprzez sukcesywne sprawdzanie
@@ -1240,7 +1240,7 @@ funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
 dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.\\
 Gem ten również zapewnia nam wszystkie niezbędnę walidacje, takie jak poprawność składni
 wprowadzanego adresu e-mailowego oraz loginu, zgodność hasła z potwierdzeniem, czy
-unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing:authlogic}
+unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing:authlogic}.
 
 \begin{listing}
   \input{listing/authlogic}
@@ -1305,7 +1305,7 @@ w podstawowy sposób wygląd dokumentu. Integracja z aplikacją railsową jest z
 poprzez plugin \texttt{prawnto}. Pliki zapisywane są z rozszerzeniem \texttt{.pdf.prawn},
 czyli zgodnie z konwencją, pierwszy element jest żądanym formatem odpowiedzi serwera,
 a drugi jest nazwą silnika generującego ostateczną postać dokumentu przesłanego do klienta.\\
-Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
+Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}.
 
 \begin{listing}
   \input{listing/prawn}
@@ -1314,14 +1314,14 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}
 \end{listing}
 
 \subsection{Paperclip}\label{sec:paperclip}
-\emph{Paperclip} jest gemem, który obsługuję ładowanie oraz obróbkę plików wysyłanych na
+\emph{Paperclip} jest gemem, który obsługuje ładowanie oraz obróbkę plików wysyłanych na
 serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
 czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
 jedynie zainstalowanej w systemie biblioteki \emph{ImageMagick}, poprzez którą są tworzone
 miniaturki czy innego rodzaju konwersje na plikach graficznych. Dostajemy również zestaw
 walidatorów, które mogą określać typ przesyłanego pliku oraz jego wielkość.\\
 W aplikacji gem ten został wykorzystany przy załączaniu ilustracji do pytań oraz odpowiedzi.
-Sposób użycia na listingu nr~\ref{listing:paperclip}
+Sposób użycia na listingu nr~\ref{listing:paperclip}.
 
 \begin{listing}
   \input{listing/paperclip}
@@ -1332,10 +1332,10 @@ Sposób użycia na listingu nr~\ref{listing:paperclip}
 
 W podanym przykładzie model \texttt{Picture} korzysta z metody \texttt{has\_attached\_file}
 dostarczonej przez \emph{Paperclipa}. Przed zapisaniem, ilustracja będzie poddana obróbce
-i zgodnie z kodem, wersja oryginalna zostanie przekształcona do wielkości 250 pikseli,
+i zgodnie z kodem, wersja oryginalna zostanie przekształcona do wielkości 250 pikseli
 jesli nie jest mniejsza oraz zostanie utworzona miniaturka o proporcjonalnych
 wielkościach, nie większych niż 50 piskeli. Możemy również zdefiniować ścieżkę, pod jaką
-ilustarcja będzie widziana z poziomu przeglądarki oraz docelowy folder w naszej
+ilustarcja będzie widziana z poziomu przeglądarki oraz docelowy folder
 składowania w naszej aplikacji. Walidacja zapewnia, że format przyjętego pliku będzie
 ograniczony tylko do \emph{JPEG}\footnote{JPEG -- nazwa jest akronimem od nazwy komitetu,
 który ustanowił ten standard -- Joint Photographic Experts Group (ang.)},
@@ -1427,7 +1427,7 @@ jak na listingu nr~\ref{listing:state-machine-transitions}.
 
 Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:state_machine}.
 
-\begin{figure}[ht]
+\begin{figure}[h!t]
   \begin{center}
     \includegraphics[width=0.3\linewidth]{images/state_machine.pdf}
   \end{center}
@@ -1439,7 +1439,9 @@ Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:st
 \section{Odległość Levenshteina}\label{sec:levenshtein}
 Jednym z rodzajów tworzonego pytania jest pole tekstowe. Po wyborze tego właśnie typu, w
 treści odpowiedzi wpisujemy wzorzec, który będzie porównany z odpowiedzią wpisaną przez
-studenta.\\
+studenta.
+
+
 Porównanie odbywa się na zasadzie przyrównywania kolejnych liter wzorca do otrzymanego
 rozwiązania. Pojawia się jednak problem z tzw. ,,literówkami''. Co w przypadku gdy student
 napisze dane słowo z dużej litery lub pomyli kolejność liter (często zdarzający się błąd)?
@@ -1454,7 +1456,9 @@ porównaniu:
 Do realizacji drugiego podpunktu została użyta odległość Levenshteina, która docelowo
 oblicza wartość liczbową pomiędzy dwoma ciągami znaków, dzięki czemu jesteśmy w stanie
 ocenić jak bardzo różnią się od siebie porównywane napisy.\\
-Definicję można przedstawić w następujący sposób: \cite{levenshtein}\\
+Definicję można przedstawić w następujący sposób: \cite{levenshtein}
+
+
 Odległością pomiędzy dwoma napisami jest najmniejsza liczba działań prostych,
 przeprowadzających jeden napis w drugi, gdzie działaniem prostym nazwiemy:
 \begin{itemize}
@@ -1473,7 +1477,7 @@ problemów z kodowaniem w różnych wersjach \emph{Rubiego}\footnote{Problem zos
 omówiony na stronie~\pageref{sec:ruby-versions}}. Aktualny kod znajduje się w pliku
 \texttt{lib/levenshtein.rb}.
 
-\section{Różnice pomiędzy wersjami Rubiego}\label{sec:ruby-version}
+\section{Różnice pomiędzy wersjami Rubiego}\label{sec:ruby-versions}
 Na dzień dzisiejszy najbardziej popularnymi wersjami języka \emph{Ruby} są:
 
 \begin{itemize}
@@ -1568,7 +1572,7 @@ Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw g
 \cleardoublepage
 \chapter{Podsumowanie}
 W dzisiejszych czasach na popularności zyskują projekty tworzone na otwartych licencjach,
-gdzie każdy może może wnieść coś od siebie do istniejącego kodu. Główną siłą takiego
+gdzie każdy może wnieść coś od siebie do istniejącego kodu. Główną siłą takiego
 podejścia jest zaangażowanie społeczności, która przecież jest końcowym odbiorcą, w
 poprawę jakości oraz rozwój nowych funkcji. Zawsze też mamy możliwość modyfikacji i
 dostosowania kodu do swoich indywidualnych potrzeb, co sprawia że wszelkie dostępne
@@ -1580,10 +1584,10 @@ dostępny również pod adresem \url{http://rubygems.org}} \cite{gemcutter}, kt�
 
 
 Niniejsza praca również została stworzona na otwartej licencji.
-Repozytorium z kodem aplikacji znajduje się na wspominanym już wcześniej GitHubie
-\cite{github-morgoth} i jest dostępne publicznie. Licencja \emph{GNU LGPL} nie tylko
-pozwala, ale wręcz zachęca do współpracy, dlatego wszelkie wniesione poprawki i rozwinięcia
-będą mile widziane.
+Repozytorium z kodem aplikacji znajduje się na wspominanym już wcześniej
+GitHubie\footnote{Adres repozytorium to \url{http://github.com/morgoth/quiz}} i jest dostępne
+publicznie. Licencja \emph{GNU GPL} nie tylko pozwala, ale wręcz zachęca do współpracy,
+dlatego wszelkie wniesione poprawki i rozwinięcia będą mile widziane.
 
 
 Zgodnie z założeniami, aplikacja skupia się wyłącznie na możliwości tworzenia egzaminów
