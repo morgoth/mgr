@@ -82,7 +82,7 @@
 Tendencje dzisiejszych aplikacji internetowych kierują się ku rozwiązywaniu problemów ze
 ściśle określonych dziedzin. Skupiają się na postawionym, pojedynczym zadaniu, starając
 się jak najlepiej zaspokoić oczekiwania internautów. Wszelkie ogólne portale, które
-rzekomo dają szeroki zasięg zastosowań, coraz częsciej nie sprawdzają się w
+rzekomo dają szeroki zasięg zastosowań, coraz częściej nie sprawdzają się w
 praktyce. Jest to powodowane obciążaniem użytkowników, koniecznością poświęcania dużej
 ilości czasu na wstępnej prekonfiguracji oraz przystosowaniu usługi do swoich potrzeb.
 Często musimy przedrzeć się przez gąszcze formularzy, systemów rejestracji i zakładek, aby
@@ -145,7 +145,7 @@ wszelkie konfiguracyjne rzeczy, takie jak sposób rejestracji, wybór motywów g
 prezentujących treść strony, statystyki, sesje, etc.
 Menu do zarządzania jest bardzo długie, a istotne, najczęściej konfigurowane opcje są
 przemieszane z rzadko używanymi elementami, co utrudnia skuteczną nawigację po serwisie.
-W pełni rozwinięty panel został przedsatwiony na ilustracji nr~\ref{fig:moodle_panel}.
+W pełni rozwinięty panel został przedstawiony na ilustracji nr~\ref{fig:moodle_panel}.
 
 \begin{figure}[ht]
   \begin{center}
@@ -262,7 +262,7 @@ Ciekawą własnością jest tzw. kacze typowanie\footnote{Duck typing (ang.)}, k
 rozpoznaniu typu poprzez zachowanie obiektu a nie jego deklaracji. Przykładowo: jeśli mamy
 funkcję przyjmującą argument, to nie musimy określać jakiego on będzie typu, dzięki czemu
 możemy wywołać na nim metodę (jeśli takową posiada), odpowiednią dla klasy obiektu. Nazwa
-wzięła się z powiedzienia ,,Jeśli chodzi jak kaczka i kwacze jak kaczka, to musi być
+wzięła się z powiedzenia ,,Jeśli chodzi jak kaczka i kwacze jak kaczka, to musi być
 kaczką''\footnote{''If it walks like a duck and quacks like a duck, I would call it a duck''
 -- James Whitcomb Riley (ang.)}
 
@@ -340,13 +340,13 @@ osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 naszej aplikacji. Jako generator widoków może być używany \emph{ERb}\footnote{ERb --
 Embedded Ruby (ang.) -- system szablonów umożliwiający zagnieżdżanie kodu Rubiego w
 dokumencie tekstowym}. Konfiguracja jest możliwa dla każdego środowiska -- odpowiednio w
-środowisku produkcyjnym mamy możliowość wpisania danych rzeczywistych serwera pocztowego,
+środowisku produkcyjnym mamy możliwość wpisania danych rzeczywistych serwera pocztowego,
 natomiast w deweloperskim oraz testowym, możemy zastąpić ją wersją próbną, która nie
-będzie próbowała się łączyć z serwerem pozctowym, natomiast cały mechanizm i logika
+będzie próbowała się łączyć z serwerem pocztowym, natomiast cały mechanizm i logika
 zostanie zachowana.
 
 
-\emph{ActionPack} jest odpowiedzialny za obłsugę kontrolerów oraz widoków. Przychodzące
+\emph{ActionPack} jest odpowiedzialny za obsługę kontrolerów oraz widoków. Przychodzące
 zapytanie z serwera jest wiązane z odpowiednią akcją kontrolera, przy pomocy tzw.
 \emph{Routingu}, który mapuje ścieżkę adresu na parametry przekazywane do aplikacji.
 Obecnie domyślny i preferowany sposób konstruowania ścieżek \emph{URL} jest zgodny z
@@ -363,7 +363,7 @@ protokołu \emph{HTTP}). W \emph{Ruby on Rails} sesja jest niczym innym jak tabl
 asocjacyjną, do której możemy się odwoływać za pomocą kluczy. Sposób
 przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może być
 składowany zarówno w bazie danych jak i w ciasteczku.\\
-Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jes to plik o
+Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jest to plik o
 tej samej nazwie co akcja, znajdujący się w katalogu \texttt{views} i podkatalogu
 odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy eksplicite).
 Rozszerzenie pliku składa się z nazwy żądanego formatu (html, js, xml, etc.) oraz systemu
@@ -372,7 +372,7 @@ szablonów, który ma zostać użyty (erb, haml, builder, etc.) np. \texttt{inde
 
 \emph{ActiveRecord} działa jako domyślne mapowanie
 obiektowo-relacyjne\footnote{ORM -- Object-Relational Mapping (ang.)},
-czyli odzworowanie logiki powiązanych ze sobą modeli na bazę danych.
+czyli odwzorowanie logiki powiązanych ze sobą modeli na bazę danych.
 Nazwa została wzięta z książki Martina Fowlera \cite{martin-fowler}, która
 właśnie opisuje powyższe zagadnienie. Moduł ten nie jest ściśle związany z żadną
 wersją bazy danych i może być z powodzeniem używany z \emph{SQLite},
@@ -448,9 +448,9 @@ pytań dla danego egzaminu. Symbol dodawanego błędu możemy następnie zlokali
 w plikach z tłumaczeniami.
 
 
-Kolejną przydatną rzeczą sa wywołania zwrotne -- pozwalają na manipulację
+Kolejną przydatną rzeczą są wywołania zwrotne -- pozwalają na manipulację
 atrybutami, przed lub po walidacji, utworzeniu, uaktualnieniu lub usunięciu
-obiektu z bazy dancyh. Dzięki temu możemy w dokładnie określonym momencie
+obiektu z bazy danych. Dzięki temu możemy w dokładnie określonym momencie
 wyzwolić odpowiednią logikę. Wywołania działają również przy deklarowanej
 asocjacji, więc dodatkowo dostajemy możliwość wywołania metod przy dodawaniu i
 usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
@@ -468,7 +468,7 @@ zapewnioną atomowość modelu. Jeśli powiązane modele również są modyfikow
 w chwili np. błędu walidacji, lub innego niepowodzenia, wszystkie zmiany są
 cofane do stanu pierwotnego. Innymi słowy, zmiany są wprowadzane do obiektów
 tylko jeśli wszystko jest przeprowadzone pomyślnie. Z transakcji możemy również
-korzystac jawnie, przekazując do metody \texttt{transaction} blok, w którym
+korzystać jawnie, przekazując do metody \texttt{transaction} blok, w którym
 wykonujemy interesujące nas akcje.
 
 
@@ -490,7 +490,7 @@ wygenerowany plik na listingu nr~\ref{listing:activerecord-migrations}.
 
 
 Ostatecznie zmiany wprowadzamy poprzez polecenie \texttt{rake db:migrate}\footnote{Rake --
-Ruby Make -- odpowiednik unixowego Make, pozwalający na użycie języka Ruby. Twórcą
+Ruby Make -- odpowiednik uniksowego Make, pozwalający na użycie języka Ruby. Twórcą
 jest Jim Weirich}. Domyślnie \texttt{railsy} dodają dwie tzw. magiczne kolumny
 \texttt{created\_at} oraz \texttt{updated\_at}, które są aktualizowane automatycznie, jak
 nie trudno się domyślić, przy utworzeniu obiektu oraz jego aktualizacji.
@@ -514,7 +514,7 @@ wykorzystania przedstawione na listingu nr~\ref{listing:activesupport}.
 
 \begin{listing}
   \input{listing/activesupport}
-  \listingcaption{Pzykład dostępnych metod w ActiveSupport}
+  \listingcaption{Przykład dostępnych metod w ActiveSupport}
   \label{listing:activesupport}
 \end{listing}
 
@@ -545,7 +545,7 @@ przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jes
 napastnika pod sesję użytkownika. Jeśli osoba taka jest zalogowana, wystarczy że uruchomi
 odnośnik modyfikujący dane niedostępne bez aktywnej sesji. Innymi słowy, zmusza się
 użytkownika do wysłania żądania \emph{HTTP} do serwera z jego przeglądarki, wykorzystując
-jego autentykację.\\
+jego uwierzytelnienie.\\
 Sposobem na przeciwdziałanie jest dołączanie do parametrów przesyłanych do serwera,
 unikalnego tokena, który jednoznacznie identyfikuje użytkownika. Token ten jest umieszczany
 automatycznie w formularzach, gdzie wysyłamy żądania metodą \emph{POST}. Następnie po
@@ -576,7 +576,7 @@ zarządzania bazą danych.
 
 \emph{SQLite} świetnie sprawdza się przy rozwoju aplikacji, gdyż baza danych jest trzymana
 w jednym pliku umieszczonym w dogodnym dla nas miejscu. Nie musimy się przejmować
-rozporzązaniem prawami dostępu czy zarządzaniem użytkownikami, a jeśli potrzebujemy nagle
+rozporządzaniem prawami dostępu czy zarządzaniem użytkownikami, a jeśli potrzebujemy nagle
 wyrzucić istniejącą bazę, sprowadza się to po prostu do usunięcia danego pliku.
 Co ciekawe \emph{SQLite} wydajnościowo wypada bardzo dobrze w przypadku jednego
 użytkownika, dlatego jest używany w systemach wbudowanych\footnote{Embedded system (ang.) --
@@ -610,7 +610,7 @@ oraz uniezależnieniu frameworka od konkretnej biblioteki \emph{ORM} oraz \emph{
 }. \emph{Merb} nastawiony był również na większą modularność, sam w sobie nie dawał tak
 dużej funkcjonalności jak \emph{RoR}, ale rozszerzenie o nowe możliwości miało być
 prostsze i wspierane przez zespół pracowników czuwających nad głównym kodem.\\
-W dniu 23 grudnia 2008 roku została ogłszona wiadomość \cite{rails-merb} o połączeniu obu zespołów,
+W dniu 23 grudnia 2008 roku została ogłoszona wiadomość \cite{rails-merb} o połączeniu obu zespołów,
 które razem skupią się na przeniesieniu najlepszych rzeczy z obu frameworków do jednego,
 wypuszczonego pod nazwą \emph{Ruby~on~Rails~3.0}. Pierwszej wersji możemy się spodziewać
 pod koniec 2009 roku. Informacja ta wzbudziła wiele emocji w środowisku deweloperskim, co
@@ -658,9 +658,9 @@ obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia ta
   \label{table:rest}
 \end{table}
 
-Jeśli trzymamy się przyjętych konwencji, to pzykładowy ciąg zdarzeń dla usunięcia danego
+Jeśli trzymamy się przyjętych konwencji, to przykładowy ciąg zdarzeń dla usunięcia danego
 obiektu np. użytkownika, wyglądałby następująco: na serwer jest przesyłane żądanie pod
-adresem \texttt{users/1}, gdzie \texttt{1} jest identyfikatorem osobnika, którego chemy
+adresem \texttt{users/1}, gdzie \texttt{1} jest identyfikatorem osobnika, którego chcemy
 usunąć z bazy danych. Żądanie jest przesyłane metodą \emph{DELETE}, następnie po stronie
 naszej aplikacji, mapowane na akcję \texttt{destroy} w kontrolerze \emph{UsersController},
 aż w końcu przy użyciu \emph{ActiveRecord} jest generowane zapytanie \emph{SQL}, które
@@ -677,14 +677,14 @@ kolekcji poprzez format \emph{XML} lub \emph{JSON}.
 
 \section{Testy jednostkowe}
 \emph{Shoulda} jest biblioteką służącą do przeprowadzania testów jednostkowych w oparciu o
-\emph{BDD}\footnote{BDD -- Behavior Driven Development (ang.)}. Ideą takiego podejścia
+\emph{BDD}\footnote{BDD -- Behaviour Driven Development (ang.)}. Ideą takiego podejścia
 jest pisanie testów jeszcze przed stworzeniem kodu aplikacji, który opisuje funkcjonalność
 jakiej mamy się spodziewać. Następnie piszemy kod właściwy, w taki sposób aby test
 zakończył się powodzeniem. Później możemy zająć się refaktoryzacją, zabezpieczając się
 cały czas istniejącymi testami, przed ewentualnym naruszeniem integralności kodu całej
 aplikacji. Testy jednostkowe powinny zapewnić poprawne działanie tworzonych metod w
 obrębie tylko jednej klasy. Jeśli jednak istnieją powiązania z innymi modelami, powinniśmy
-się zastanowić nad użyciem jendej z bibliotek \emph{mockowania}\footnote{mock -- symulacja
+się zastanowić nad użyciem jednej z bibliotek \emph{mockowania}\footnote{mock -- symulacja
 zachowania prawdziwych obiektów w celach testowych}.\\
 \emph{Shoulda} jest rozszerzeniem standardowej biblioteki testującej języka \emph{Ruby}
 \emph{Test::Unit}, która przynosi wygodniejszą składnie oraz nowe typy asercji.
@@ -698,7 +698,7 @@ Przykładowy test na listingu nr~\ref{listing:shoulda}.
 
 
 Testujemy tutaj przejście stanu egzaminu (implementowanego za pomocą maszyny stanowej,
-więcej na stronie nr~\pageref{sec:state_machine}) w ropoczęty, po którym powinna być
+więcej na stronie nr~\pageref{sec:state_machine}) w rozpoczęty, po którym powinna być
 zachowana w bazie danych data i czas. W metodzie \texttt{setup}, która przygotowuje
 dostępne obiekty w obrębie danego kontekstu dla każdego testu jednostkowego, przykładowy
 rekord został utworzony przy pomocy gema \texttt{factory\_girl}. Zastępuje on domyślny
@@ -744,7 +744,7 @@ znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje w
 jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
 szablonu jest bardziej przejrzysta i trudniej nam się pomylić, gdyż przy błędnej składni
 zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTMLa}, nawet jeśli zapomnimy
-domnknąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
+domknąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
 wyjątku.\\
 \emph{Haml} nie jest ściśle związany z żadnym językiem programowania i może być używany
 również we frameworkach opartych o \emph{Python}, \emph{PHP} czy \emph{.NET}, co czyni
@@ -771,13 +771,13 @@ miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
 \section{Blueprint i Compass}\label{sec:compass}
 \emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
 dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografię,
-listy, tabele, etc. Używamy go popzez dołączenie odpowiednich klas lub identyfikatorów do
+listy, tabele, etc. Używamy go poprzez dołączenie odpowiednich klas lub identyfikatorów do
 znaczników \emph{HTMLa}. Zyskujemy automatyczne stylowanie, które oparte jest na
 najlepszych doświadczeniach deweloperskich.\\
 \emph{Blueprint} stara się ustandaryzować podział strony na najczęściej spotykane sekcje,
 takie jak nagłówek, nawigacja, treść, stopka, a które mają mieć swoje odpowiednie
 znaczniki w przygotowywanej 5 wersji języka \emph{HTML}. Ciekawym pomysłem jest
-stylowanie względem siatki, która rodziela stronę na kilkanaście pasów. Wszelkie marginesy
+stylowanie względem siatki, która rozdziela stronę na kilkanaście pasów. Wszelkie marginesy
 oraz przesunięte elementy są właśnie dostosowywane do rozmiarów tychże części, dzięki czemu
 estetyka strony jest zachowana.
 
@@ -811,7 +811,7 @@ Document Object Model (ang.)}, wykorzystując wygodne w użyciu selektory. Kolej
 funkcjonalnością jest komunikacja z serwerem za pomocą technologii
 \emph{AJAX}\footnote{AJAX -- Asynchronous JavaScript and XML (ang.)}, która sprowadza się
 jedynie do wywołania odpowiedniej funkcji. Tworzenie własnych rozszerzeń nie sprawia
-problemu, dzięki czemu ilość dostępnych dodaktów jest ogromna.
+problemu, dzięki czemu ilość dostępnych dodatków jest ogromna.
 
 \section{Git}
 \emph{Git} jest rozproszonym systemem kontroli wersji stworzonym przez Linus Torvaldsa w 2005 roku.
@@ -906,7 +906,7 @@ uruchamiamy i podążamy krokami wyznaczonymi przez przyjazny kreator.
 Po drodze zaznaczamy opcję ,,enable rubygems''. Po instalacji
 (domyślnie do folderu C:/ruby), sprawdzamy czy katalog z plikami binarnymi jest widoczny
 ze zmiennej środowiskowej \texttt{PATH}, wydając komendę z linii poleceń \texttt{ruby~-v},
-otrzymując jednocześnie werjsę wydania. Następnie upewniamy się, że pakiet
+otrzymując jednocześnie wersję wydania. Następnie upewniamy się, że pakiet
 \texttt{RubyGems} również jest dostępny poprzez komendę \texttt{gem~-v}. Jeśli wszystko
 przebiegło pomyślnie, aktualizujemy pakiet poprzez \texttt{gem~update~--system}. Kolejnym
 krokiem jest zapewnienie obsługi bazy danych \emph{SQLite}, w tym celu pobieramy dwa pliki
@@ -927,7 +927,7 @@ Chcąc pobrać aktualną wersję kodu aplikacji, musimy skorzystać z systemu ko
 \emph{Git}. W tym celu instalujemy program dostępny na stronie \cite{git-windows}.
 Wydając polecenie z linii komend \texttt{git~clone git://github.com/morgoth/quiz.git},
 kopiujemy kod na lokalny komputer. Instalacja wymaganych gemów przebiega podobnie jak w
-systemie unixowym (opuszczając słowo \texttt{sudo}), więc podążamy za listingiem
+systemie uniksowym (opuszczając słowo \texttt{sudo}), więc podążamy za listingiem
 nr~\ref{listing:ubuntu-application}.
 
 
@@ -940,7 +940,7 @@ za główną logikę biznesową aplikacji, dlatego też zostaną one przedstawio
 \subsection{Użytkownik, nauczyciel, student}
 Model \emph{User} przechowuje informacje na temat zarejestrowanych użytkowników w
 portalu. Poza kolumnami dotyczącymi imienia i nazwiska, tabela posiada również wszystkie
-niezbędnę pola potrzebne do systemu autentykacji, który został zbudowany przy użyciu
+niezbędne pola potrzebne do systemu autentykacji, który został zbudowany przy użyciu
 biblioteki \emph{Authlogic} opisanej na stronie~\pageref{sec:authlogic}. Jest to klasa
 nadrzędna, po której za pomocą mechanizmu \emph{STI}\footnote{STI -- Single Table
 Inheritance (ang.)}, dziedziczą modele \emph{Teacher} oraz \emph{Student}. Oznacza to, że
@@ -950,7 +950,7 @@ nauczyciela, informacja o typie obiektu jest przechowywana w kolumnie \texttt{ty
 
 \begin{listing}
   \input{listing/sti}
-  \listingcaption{Ddziedziczenie STI w Ruby on Rails}
+  \listingcaption{Dziedziczenie STI w Ruby on Rails}
   \label{listing:sti}
 \end{listing}
 
@@ -973,13 +973,13 @@ jednym~z:
 \end{itemize}
 
 
-Mamy również możliwość tagowania każdego pytania, przez co sortowanie i odnalazienie
+Mamy również możliwość tagowania każdego pytania, przez co sortowanie i odnalezienie
 właściwego powinno być łatwiejsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
 on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
 
 
 Klasa posiada również metodę zwracającą największy możliwy wynik punktowy dla danego
-pytania. Jest to istotne w obliczaniu końcowego wyniku procentowego. Lising
+pytania. Jest to istotne w obliczaniu końcowego wyniku procentowego. Listing
 nr~\ref{listing:max-points} przedstawia ciało tejże metody.
 
 \begin{listing}
@@ -990,7 +990,7 @@ nr~\ref{listing:max-points} przedstawia ciało tejże metody.
 
 
 Metoda dla pytania typu jednokrotnego wyboru, zwraca maksymalną wartość ze zbioru
-podrzędnych odpowiedzi. Dla kazdego innego typu są brane pod uwagę tylko punkty dodatnie,
+podrzędnych odpowiedzi. Dla każdego innego typu są brane pod uwagę tylko punkty dodatnie,
 które następnie są sumowane.
 
 \subsection{Odpowiedź nauczycielska}
@@ -1034,7 +1034,7 @@ nr~\ref{listing:exam-destroyable}.
 Wystarczy, że metoda \texttt{destroyable?} zwróci fałsz, a rekord nie zostanie usunięty.
 Klasa \emph{TeacherExam} posiada również metodę, która zwraca maksymalną ilość punktów
 możliwych do zdobycia z całości egzaminu. Sprowadza się ona do iteracji po powiązanych
-pytaniach i zsumowaniu wartości zwracanych przez motodę wywołaną na obiektach
+pytaniach i zsumowaniu wartości zwracanych przez metodę wywołaną na obiektach
 klasy \emph{TeacherQuestion}, która została opisana w poprzednim podrozdziale.
 
 \subsection{Egzamin}
@@ -1108,7 +1108,7 @@ uzupełniamy wartość punktową.
 Klasa \emph{Picture} pozwala na ładowanie plików graficznych oraz ich obróbkę dzięki
 bibliotece \emph{Paperclip}, opisanej dokładniej na stronie~\pageref{sec:paperclip}.
 Model ten jest w relacji polimorficznej do pytania oraz odpowiedzi. Pozwala to na
-uniezależnienie rekordu od konretnego typu ,,rodzica'', informacja ta jest po prostu
+uniezależnienie rekordu od konkretnego typu ,,rodzica'', informacja ta jest po prostu
 zapisywana w odpowiedniej kolumnie. Implementacja została przestawiona na listingu
 nr~\ref{listing:polymorphic}.
 
@@ -1161,7 +1161,7 @@ konwencją, została stworzona poprzez przekształcenie nazwy modelu do liczby m
 języku angielskim. Wszelkie połączenia pomiędzy kolumnami są ustanawiane z poziomu
 aplikacji, dlatego też nie ma potrzeby tworzenia kluczy obcych w bazie danych. Aktualny schemat, z
 tabelami, kolumnami oraz ich typami można podejrzeć w pliku \texttt{db/schema.rb}.
-Ilustarcja nr~\ref{fig:db_schema} przedstawia strukturę powiązań tabel dotyczących
+Ilustracja nr~\ref{fig:db_schema} przedstawia strukturę powiązań tabel dotyczących
 egzaminu.
 
 \begin{figure}[ht]
@@ -1175,7 +1175,7 @@ egzaminu.
 \section{Szata graficzna}
 Praca nad wyglądem strony internetowej jest zupełnie różna od części dotyczącej
 programowania. Rzadko kiedy zdarza się, aby programista łączył te dwie umiejętności w
-sposób zadowalający, dlatego w miarę możliwośći, dąży się do jak największej separacji obu
+sposób zadowalający, dlatego w miarę możliwości, dąży się do jak największej separacji obu
 dziedzin w obrębie wykonywanego projektu. Główną zasadą jest powstrzymywanie się od
 umieszczania elementów stylów w kodzie strony. Odpowiedzialność za to przejmują kaskadowe
 arkusze stylów (\emph{CSS}), które poprzez klasy oraz identyfikatory odnoszą się do
@@ -1230,7 +1230,7 @@ Force}\footnote{Brute Force (ang.) -- próba złamania hasła poprzez sukcesywne
 wszystkich dostępnych możliwości}.
 
 
-Przy tworzeniu tabeli użytkowników jest zalecane umieszczenie kilku dodaktowych kolumn,
+Przy tworzeniu tabeli użytkowników jest zalecane umieszczenie kilku dodatkowych kolumn,
 które automatycznie się aktualizują i będą przechowywać takie informacje jak: ilość
 logowań, ostatni czas aktywności, ostatni adres \emph{IP} komputera z którego nastąpiło
 logowanie, etc.\\
@@ -1238,7 +1238,7 @@ Hasło użytkownika przed zapisaniem do bazy danych jest łączone z tzw. ,,sol�
 dodatkowym ciągiem znaków, zapisywanych również w bazie danych, a następnie przeliczane
 funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
 dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.\\
-Gem ten również zapewnia nam wszystkie niezbędnę walidacje, takie jak poprawność składni
+Gem ten również zapewnia nam wszystkie niezbędne walidacje, takie jak poprawność składni
 wprowadzanego adresu e-mailowego oraz loginu, zgodność hasła z potwierdzeniem, czy
 unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing:authlogic}.
 
@@ -1255,7 +1255,7 @@ jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany 
 dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
 
 \subsection{Acts as list}\label{sec:acts_as_list}
-\emph{Acts as list} umożliwia nam dołączęnie do modelu funkcjonalność listy, czyli
+\emph{Acts as list} umożliwia nam dołączenie do modelu funkcjonalność listy, czyli
 usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
 wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
 Dla każdego studenta, z puli dostępnych pytań, jest losowana kolejność pojawienia się ich w
@@ -1282,7 +1282,7 @@ Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging
 
 W aplikacji tagowanie zostało wykorzystane w klasie \texttt{TeacherQuestion}, tak aby
 każdy nauczyciel miał wygodny mechanizm określania dziedziny tworzonego przez siebie
-pytania. W analgoiczny sposób tagi zostały dodane do modelu \texttt{Student}, aby móc
+pytania. W analogiczny sposób tagi zostały dodane do modelu \texttt{Student}, aby móc
 łatwo przydzielić ich do odpowiednich grup. Na listingu nr~\ref{listing:tagging-users}
 kontekstem tagowania są grupy, a właścicielem nauczyciel.
 
@@ -1300,7 +1300,7 @@ renderowanych widokach, które możemy stylować za pomocą klas \emph{CSS}.
 \subsection{Prawn}
 \emph{Prawn} jest odpowiedzialny za generowanie dokumentów w formacie
 \emph{PDF}\footnote{PDF -- Portable Document Format (ang.)}. Dostarcza on prosty format
-szablonu, w którym mozemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując
+szablonu, w którym możemy zagnieżdżać kod \emph{Rubiego} jednocześnie stylując
 w podstawowy sposób wygląd dokumentu. Integracja z aplikacją railsową jest zapewniona
 poprzez plugin \texttt{prawnto}. Pliki zapisywane są z rozszerzeniem \texttt{.pdf.prawn},
 czyli zgodnie z konwencją, pierwszy element jest żądanym formatem odpowiedzi serwera,
@@ -1333,9 +1333,9 @@ Sposób użycia na listingu nr~\ref{listing:paperclip}.
 W podanym przykładzie model \texttt{Picture} korzysta z metody \texttt{has\_attached\_file}
 dostarczonej przez \emph{Paperclipa}. Przed zapisaniem, ilustracja będzie poddana obróbce
 i zgodnie z kodem, wersja oryginalna zostanie przekształcona do wielkości 250 pikseli
-jesli nie jest mniejsza oraz zostanie utworzona miniaturka o proporcjonalnych
-wielkościach, nie większych niż 50 piskeli. Możemy również zdefiniować ścieżkę, pod jaką
-ilustarcja będzie widziana z poziomu przeglądarki oraz docelowy folder
+jeśli nie jest mniejsza oraz zostanie utworzona miniaturka o proporcjonalnych
+wielkościach, nie większych niż 50 pikseli. Możemy również zdefiniować ścieżkę, pod jaką
+ilustracja będzie widziana z poziomu przeglądarki oraz docelowy folder
 składowania w naszej aplikacji. Walidacja zapewnia, że format przyjętego pliku będzie
 ograniczony tylko do \emph{JPEG}\footnote{JPEG -- nazwa jest akronimem od nazwy komitetu,
 który ustanowił ten standard -- Joint Photographic Experts Group (ang.)},
@@ -1370,14 +1370,14 @@ formularzy w railsach, dostarczając prostszy interfejs, na rzecz zdefiniowanej 
 autora struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
 w klasach, potrafi odnaleźć odpowiednią kolekcję istniejących obiektów, przy polu wyboru
 formularza. Etykiety opisujące wprowadzane dane korzystają z lokalizowanych nazw atrybutów
-poszczególnych modeli. Typ wyświetlonego pola formularza jest ropoznawany na podstawie
+poszczególnych modeli. Typ wyświetlonego pola formularza jest rozpoznawany na podstawie
 odpowiadającej mu kolumnie w bazie danych. Wszystko to sprawia, że zbudowanie podstawowego
 formularza sprowadza się do kilku linijek kodu. Przykład na listingu
 nr~\ref{listing:formtastic}.
 
 \begin{listing}
   \input{listing/formtastic}
-  \listingcaption{Wykorzystanie gema upraszczajacęgo konstruowanie formularzy}
+  \listingcaption{Wykorzystanie gema upraszczającego konstruowanie formularzy}
   \label{listing:formtastic}
 \end{listing}
 
@@ -1409,11 +1409,11 @@ funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
 
 Egzamin może znajdować się w trzech stanach: \texttt{prepared}, \texttt{started} oraz
 \texttt{finished}, pomiędzy którymi możemy się przemieszczać przy pomocy zdefiniowanych
-przejść. Dodatkowo przy proóbie przejścia \texttt{start} oraz \texttt{try\_finish}
+przejść. Dodatkowo przy próbie przejścia \texttt{start} oraz \texttt{try\_finish}
 sprawdzamy warunki, jeśli zwrócą fałsz, obiekty pozostaną w swoim poprzednim stanie.
 Możemy również uruchomić dodatkową logikę za pomocą wywołań podobnych do tych dostępnych w
 \emph{ActiveRecord}, tyle że opierających się na przejściach. I tak przy wystartowaniu
-testu wywołujemy metodę, która ustawia aktualną datę i czas w atrubucie rekordu,
+testu wywołujemy metodę, która ustawia aktualną datę i czas w atrybucie rekordu,
 analogicznie rzecz się ma przy zakończeniu testu.\\
 Przykładowa interakcja z maszyną stanową przy tak zdefiniowanej strukturze może wyglądać
 jak na listingu nr~\ref{listing:state-machine-transitions}.
@@ -1468,7 +1468,7 @@ przeprowadzających jeden napis w drugi, gdzie działaniem prostym nazwiemy:
 \end{itemize}
 
 
-Mając obliczoną odległość pomiędzy wzrocem a odpowiedzią, mierzymy długość wzorca i
+Mając obliczoną odległość pomiędzy wzorcem a odpowiedzią, mierzymy długość wzorca i
 dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uznajemy odpowiedź
 za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz \cite{nerdquiz},
 gdzie zastosowany jest podobny mechanizm oceny. Autorem kodu implementującego algorytm jest
@@ -1500,7 +1500,7 @@ ciągiem bajtów, przez co np. polskie litery były traktowane jako ,,dłuższe'
 standardowe mieszczące się w kodzie \emph{ASCII}\footnote{ASCII -- American Standard Code
 for Information Interchange (ang.) -- 7-bitowy kod reprezentujący litery z alfabetu
 angielskiego, cyfry, znaki przestankowe oraz kilka symboli}. Naturalnie powodowało to wiele
-niedogodności, framework \emph{Ruby on Rails} wprowadził własne metody, które eleminowały
+niedogodności, framework \emph{Ruby on Rails} wprowadził własne metody, które eliminowały
 ten problem, jednak nadal trzeba było pamiętać o używaniu ich eksplicite. Biblioteka
 \emph{ActiveSupport} dostarcza \texttt{mb\_chars}, która wywołana na obiekcie typu
 \texttt{String}, zwraca jego reprezentację w \emph{Unikodzie}\footnote{Unicode --
@@ -1599,7 +1599,7 @@ nawigacji po stronie jest intuicyjny i zrozumiały dla nowego użytkownika.
 
 Kod aplikacji jest utrzymany w konwencjach przyjętych we frameworku \emph{Ruby on Rails},
 dzięki czemu zrozumienie go i ewentualny przyszły rozwój przez innych programistów nie
-powinen być trudny. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
+powinien być trudny. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
 testami jednostkowymi, co przy obecnych standardach jest fundamentem każdego projektu.
 Dodatkowo, najważniejsze funkcje są testowane przy pomocy tzw. testów integracyjnych, które
 zapewniają spójność i poprawną współpracę poszczególnych elementów.
