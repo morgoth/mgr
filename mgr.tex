@@ -83,27 +83,26 @@ Tendencje dzisiejszych aplikacji internetowych kierują się ku rozwiązywaniu p
 ściśle określonych dziedzin. Skupiają się na postawionym, pojedynczym zadaniu, starając
 się jak najlepiej zaspokoić oczekiwania internautów. Wszelkie ogólne portale, które
 rzekomo dają szeroki zasięg zastosowań, coraz częściej nie sprawdzają się w
-praktyce. Jest to powodowane obciążaniem użytkowników, koniecznością poświęcania dużej
-ilości czasu na wstępnej prekonfiguracji oraz przystosowaniu usługi do swoich potrzeb.
-Często musimy przedrzeć się przez gąszcze formularzy, systemów rejestracji i zakładek, aby
-móc wykorzystać jedną, interesującą nas funkcję. Wszystko to sprawia, że na popularności
+praktyce. Jest to powodowane obciążaniem użytkowników koniecznością poświęcania dużej
+ilości czasu na wstępnej konfiguracji oraz przystosowaniu usługi do swoich potrzeb.
+Często trzeba przedrzeć się przez gąszcze formularzy, systemów rejestracji i zakładek, aby
+móc wykorzystać jedną, interesującą funkcję. Wszystko to sprawia, że na popularności
 zyskują małe aplikacje, serwujące minimalistyczny, przejrzysty interfejs, dzięki któremu
-szybko i w prosty sposób jesteśmy w stanie zrealizować zamierzony cel.
+szybko i w prosty sposób użytkownik jest w stanie zrealizować zamierzony cel.
 
 
 Niniejsza praca, skierowana do wszelakiego rodzaju nauczycieli, próbuje dostarczyć
 narzędzie pomagające w przeprowadzaniu testów internetowych. Założeniem jest przede
 wszystkim prostota oraz przyjazność obsługi, tak aby każdy nowy użytkownik mógł od razu
-zrozumieć mechanikę i dostępne funkcje.
+zrozumieć sposób działania oraz dostrzec dostępne funkcje.
 
 
 Do realizacji powyższego celu został użyty framework \emph{Ruby on Rails}, który obecnie
 jest jednym z najczęściej używanych narzędzi do tworzenia złożonych aplikacji internetowych.
-Swoją popularność zawdzięcza między innymi niebagatelnemu podejściu do sposobu w jaki
-programista kształtuje swój kod. Dużą wagę przywiązuję się do jakości poprzez sugerowanie
+Dużą wagę przywiązuję się do jakości kodu poprzez sugerowanie programiście
 przyjętych konwencji, dzięki czemu utrzymanie odpowiedniego poziomu przychodzi łatwiej.
 Kolejną zaletą, za którą przemawia wybór tej technologii, jest szybkość tworzenia
-aplikacji. Wiele niezbędnych rzeczy, takich jak sesje, integralność z bazą danych,
+aplikacji. Wiele niezbędnych rzeczy, takich jak sesje, interakcję z bazą danych,
 czy uwierzytelnienie przesyłanych danych od klienta jest gotowych do użycia bez konieczności
 konfiguracji.
 
@@ -112,7 +111,7 @@ Największym rynkiem pracy używającym \emph{Ruby on Rails} mogą się pochwali
 Zjednoczone, jednak Europa nie pozostaje z tyłu. Na Starym Kontynencie jest organizowanych
 wiele cyklicznych, masowych konferencji dotyczących zarówno samego języka \emph{Ruby} jak
 i omawianego frameworka. Również Polska, pomimo iż technologia ta wydaje się tu być ciągle
-niszowa, jest państwem które skupia wiele osób biorących czynny udział w organizowaniu
+niszowa, jest państwem, które skupia wiele osób biorących czynny udział w organizowaniu
 grup tematycznych, takich jak \emph{WRUG}\footnote{WRUG -- Warsaw Ruby Users Group -- więcej
 na stronie internetowej \url{www.wrug.eu}}, \emph{KRUG}\footnote{KRUG -- Krakow Ruby User Group
 -- więcej na stronie internetowej \url{www.ruby.org.pl}} oraz \emph{SRUG}\footnote{SRUG -- Silesian Ruby
@@ -124,11 +123,11 @@ Conference -- coroczne spotkania na terenie Europy dotyczące języka Ruby} w 20
 \chapter{Analiza istniejących systemów nauki zdalnej}
 \section{Moodle}
 \emph{Moodle}\footnote{Moodle -- Modular Object-Oriented Dynamic Learning Environment (ang.)}
-jest wolnym, wypuszczonym na licencji \emph{GNU GPL}\footnote{GNU GPL -- GNU General Public
+jest wolnym, zrealizowanym na licencji \emph{GNU GPL}\footnote{GNU GPL -- GNU General Public
 Licence (ang.) -- licencja stworzona przez Richarda Stallmana oraz Ebena Moglena na potrzeby
 projektu GNU} oprogramowaniem przeznaczonym do edukacji za pośrednictwem internetu. Twórcą
 jest Martin Dougiamas, którego imię początkowo było rozszerzeniem pierwszej litery nazwy
-tegoż systemu. Został on zaprojektowany aby pomóc w organizacji kursów przez nauczycieli,
+tegoż systemu. Został on zaprojektowany, aby pomóc w organizacji kursów przez nauczycieli,
 z bogatą możliwością interakcji z uczestnikami. Kod jest pisany w języku
 \emph{PHP}\footnote{PHP -- PHP Hypertext Preprocessor (ang.)} w oparciu o serwer \emph{HTTP}
 \emph{Apache} oraz o system zarządzania bazą danych. Może być uruchamiany na dowolnym
@@ -139,11 +138,11 @@ państwach \cite{moodle-statistics}.
 
 Podstawowa funkcjonalność jest bardzo duża, poczynając od zarządzania uczestnikami kursu
 po wymyślne konstruowanie treści strony. W zależności od pełnionej roli w systemie, po
-zalogowaniu, dostajemy dostęp do różnych opcji. Konto administratora ma największe
+zalogowaniu dostępne są różne opcje. Konto administratora ma największe
 uprawnienia, jest odpowiedzialne za zarządzanie użytkownikami, określaniem ich ról oraz
-wszelkie konfiguracyjne rzeczy, takie jak sposób rejestracji, wybór motywów graficznych
+wszelkie konfiguracyjne atrybuty, takie jak sposób rejestracji, wybór motywów graficznych
 prezentujących treść strony, statystyki, sesje, etc.
-Menu do zarządzania jest bardzo długie, a istotne, najczęściej konfigurowane opcje są
+Menu do zarządzania jest bardzo rozbudowane, a istotne, najczęściej konfigurowane opcje są
 przemieszane z rzadko używanymi elementami, co utrudnia skuteczną nawigację po serwisie.
 W pełni rozwinięty panel został przedstawiony na ilustracji nr~\ref{fig:moodle_panel}.
 
@@ -160,17 +159,17 @@ Moduł do konstruowania i przeprowadzania testów umożliwia tworzenie pytań ro
 wielokrotnego lub jednokrotnego wyboru, wyliczeniowych, a nawet otwartych. Minusem tych
 ostatnich jest to, że test nie może zostać oceniony automatycznie, punkty muszą zostać
 przyznane przez osobę odpowiedzialną za jego przygotowanie. Mając do dyspozycji bank
-pytań, możemy przygotować test, decydując o dacie rozpoczęcia, czasu trwania, kolejności
+pytań, możemy przygotować test, decydując o dacie rozpoczęcia, czasie trwania, kolejności
 wyświetlanych odpowiedzi, czy ilości podejść. Mnogość opcji konfiguracji sprawia, że
 stworzenie nowego rekordu zajmuje dużo czasu, co zdecydowanie obniża motywację podjęcia
 takowej próby.
 
 
 Jako że \emph{Moodle} jest wolnym oprogramowaniem, powstało wiele rozszerzeń
-dostarczających nowe funkcje. Między innymi takie jak:
+dostarczających nowe możliwości. Między innymi takie jak:
 
 \begin{itemize}
-  \item{różne metody autentykacji}
+  \item{różnorodne metody uwierzytelnienia}
   \item{motywy graficzne}
   \item{czat}
   \item{kalendarz}
@@ -184,7 +183,7 @@ Podsumowując, \emph{Moodle} jest bardzo rozbudowanym systemem. przeznaczonym dl
 grup. Zawiera w sobie wiele modułów, które są integralnymi elementami całego systemu, dlatego
 nie mamy możliwości skupienia się tylko na części do przeprowadzania testów -- musimy
 również obsłużyć wszystkie pozostałe funkcje, takie jak forum, tworzenie personalnych
-stron, szczegółowe konfiguracje zarządzania treścią, etc. Powoduje to spore zużycie
+stron, szczegółową konfigurację zarządzania treścią, etc. Powoduje to spore zużycie
 zasobów serwera na rzeczach, które de facto nie są używane.
 
 \section{OLAT}
