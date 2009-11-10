@@ -338,14 +338,14 @@ osobno, poza frameworkiem (nie posiadają zależności między sobą). Są to:
 naszej aplikacji. Jako generator widoków może być używany \emph{ERb}\footnote{ERb --
 Embedded Ruby (ang.) -- system szablonów umożliwiający zagnieżdżanie kodu Rubiego w
 dokumencie tekstowym}. Konfiguracja jest możliwa dla każdego środowiska -- odpowiednio w
-środowisku produkcyjnym mamy możliwość wpisania danych rzeczywistych serwera pocztowego,
-natomiast w deweloperskim oraz testowym, możemy zastąpić ją wersją próbną, która nie
+środowisku produkcyjnym wpisuje się dane rzeczywiste serwera pocztowego,
+natomiast w deweloperskim oraz testowym, można zastąpić ją wersją próbną, która nie
 będzie próbowała się łączyć z serwerem pocztowym, natomiast cały mechanizm i logika
-zostanie zachowana.
+zostaną zachowane.
 
 
-\emph{ActionPack} jest odpowiedzialny za obsługę kontrolerów oraz widoków. Przychodzące
-zapytanie z serwera jest wiązane z odpowiednią akcją kontrolera, przy pomocy tzw.
+\emph{ActionPack} obsługuje kontrolery oraz widoki. Przychodzące
+zapytanie z serwera jest wiązane z odpowiednią akcją kontrolera za pomocą tzw.
 \emph{Routingu}, który mapuje ścieżkę adresu na parametry przekazywane do aplikacji.
 Obecnie domyślny i preferowany sposób konstruowania ścieżek \emph{URL} jest zgodny z
 \emph{REST}.\footnote{REST -- Representational State Transfer (ang.) -- reprezentacja zasobu
@@ -354,13 +354,13 @@ Wywołana akcja musi zwrócić odpowiedź, bądź to w postaci wyrenderowanego w
 przekierowania czy też kodu błędu zgodnego z protokołem \emph{HTTP}. Ciekawym mechanizmem,
 którym dysponuje moduł \emph{ActionController} są filtry. Pozwalają one na wyzwolenie
 logiki przed lub po odwołaniu się do docelowej akcji. Często wykorzystywane są przy
-autentykacji, gdzie chcemy zabezpieczyć treść strony przed niepowołanymi osobami. W tym
+uwierzytelnieniu, aby zabezpieczyć treść strony przed niepowołanymi osobami. W tym
 miejscu mamy też dostęp do ,,ciasteczek''\footnote{Cookies (ang.) -- niewielkie informacje
 tekstowe przechowywane po stronie klienta} i sesji (rozwiązanie problemu bezstanowości
 protokołu \emph{HTTP}). W \emph{Ruby on Rails} sesja jest niczym innym jak tablicą
 asocjacyjną, do której możemy się odwoływać za pomocą kluczy. Sposób
-przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny i może być
-składowany zarówno w bazie danych jak i w ciasteczku.\\
+przechowywania sesji pomiędzy kolejnymi żądaniami jest konfigurowalny. Może ona być
+zapisywana zarówno w bazie danych jak i w ciasteczku.\\
 Najczęściej po wykonaniu akcji jest renderowany widok, zgodnie z konwencją jest to plik o
 tej samej nazwie co akcja, znajdujący się w katalogu \texttt{views} i podkatalogu
 odpowiadającemu nazwie kontrolera (oczywiście jest możliwe przekazanie nazwy eksplicite).
@@ -386,19 +386,19 @@ Przykład przedstawiony na listingu nr~\ref{listing:activerecord-finders}.
 \end{listing}
 
 
-Jak widzimy, w prosty sposób możemy konstruować zapytania, nie dotykając w ogóle
+Jak można zauważyć, w prosty sposób konstruuje się zapytania, nie dotykając w ogóle
 czystego \emph{SQLa}. Drugi i trzeci przykład wygenerowały to samo zapytanie.
 Składnia tego ostatniego jest przyjemniejsza dla oka, a umożliwiają nam je tzw.
 dynamiczne findery, które za pomocą metaprogramowania są tworzone w ,,locie''.
 Jest to cecha języka \emph{Ruby}. Możemy przechwycić wywołanie nieistniejącej
 metody na obiekcie, poprzez przedefiniowanie funkcji \emph{method\_missing},
 która jako argumenty przyjmuje kolejno: symbol wywołanej metody, oraz wszystkie
-pozostałe argumenty przekazane do niej. W powyższym przykładzie, symbol
+pozostałe argumenty przekazane do niej. W powyższym przykładzie symbol
 \emph{:find\_by\_login} jest parsowany do słów \emph{find\_by} oraz \emph{login}, który
 następnie próbuje zostać odnaleziony jako kolumna w tabeli odpowiadającej klasie
 \emph{User}. Jeśli to się powiedzie, konstruowane jest zapytanie \emph{SQL}
 wykorzystujące argument \emph{johndoe} jako parametr wywołania.\\
-Kolejnym elementem zbudowanym na metaprogramowaniu są asocjacje. Powiązanie
+Kolejnym elementem stworzonym za pomocą metaprogramowania są asocjacje. Powiązanie
 dwóch obiektów sprowadza się do jednej linijki kodu w ciele klasy, jak na
 listingu nr~\ref{listing:activerecord-association}.
 
@@ -424,8 +424,8 @@ metody jak przedstawione na listingu nr~\ref{listing:activerecord-association-fi
 \end{listing}
 
 
-Walidatory zapewniają poprawność wprowadzanych danych, dzięki którym również
-możemy poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
+Walidatory zapewniają poprawność wprowadzanych danych, dzięki którym można
+również poinformować użytkownika o rodzaju błędu. Mamy do dyspozycji szereg
 standardowych metod, najczęściej używanych, ale również możemy tworzyć swoje
 własne. Przykładowy sposób użycia przedstawia listing
 nr~\ref{listing:activerecord-validations}.
@@ -439,8 +439,8 @@ nr~\ref{listing:activerecord-validations}.
 
 W podanym przykładzie pierwsza walidacja zapewnia nam obecność nazwy egzaminu,
 druga sprawdza czy czas trwania (\texttt{duration}) jest liczbą całkowitą, większą od
-zera. Ostatni walidator jest metodą zdefiniowaną przez nas, który ma być
-wywołany jedynie gdy pole ,,ilość pytań'' (\texttt{question\_number}) jest obecne.
+zera. Ostatni walidator jest metodą zdefiniowaną przez programistę i jest on
+wywoływany jedynie gdy wartość pola ,,ilość pytań'' (\texttt{question\_number}) nie jest pusta.
 Zapewnia, że liczba ta nie może być większa niż ilość wszystkich dostępnych
 pytań dla danego egzaminu. Symbol dodawanego błędu możemy następnie zlokalizować
 w plikach z tłumaczeniami.
@@ -451,8 +451,8 @@ atrybutami, przed lub po walidacji, utworzeniu, uaktualnieniu lub usunięciu
 obiektu z bazy danych. Dzięki temu możemy w dokładnie określonym momencie
 wyzwolić odpowiednią logikę. Wywołania działają również przy deklarowanej
 asocjacji, więc dodatkowo dostajemy możliwość wywołania metod przy dodawaniu i
-usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
-\ref{listing:activerecord-callbacks}.
+usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} znajdują się na listingu
+nr~\ref{listing:activerecord-callbacks}.
 
 \begin{listing}
   \input{listing/activerecord_callbacks}
@@ -461,8 +461,8 @@ usuwaniu powiązanych obiektów. Przykładowe \texttt{callbacki} na listingu nr~
 \end{listing}
 
 
-Operowanie atrybutami w podany sposób jest bardzo wygodne, szczególnie że mamy
-zapewnioną atomowość modelu. Jeśli powiązane modele również są modyfikowane, to
+Operowanie atrybutami w podany sposób jest bardzo wygodne, szczególnie że jest
+zapewniona atomowość modelu. Jeśli powiązane modele również są modyfikowane, to
 w chwili np. błędu walidacji, lub innego niepowodzenia, wszystkie zmiany są
 cofane do stanu pierwotnego. Innymi słowy, zmiany są wprowadzane do obiektów
 tylko jeśli wszystko jest przeprowadzone pomyślnie. Z transakcji możemy również
@@ -477,8 +477,8 @@ przechowuje informację o aktualnej wersji, dlatego nie ma tu konfliktów i nie 
 przejmować się kolejnością wprowadzanych zmian. Mamy do dyspozycji kilka generatorów,
 które znacznie ułatwiają i przyspieszają pracę. Dodatkowo bazują one na konwencji -- nazwa
 modelu (klasy) w liczbie pojedynczej, natomiast nazwa kolumny w liczbie mnogiej, co
-minimalizuje możliwość popełnienia błędu z naszej strony. Przykładowe polecenie, oraz
-wygenerowany plik na listingu nr~\ref{listing:activerecord-migrations}.
+minimalizuje możliwość popełnienia błędu przez programistę. Przykładowe polecenie oraz
+wygenerowany plik znajduje się na listingu nr~\ref{listing:activerecord-migrations}.
 
 \begin{listing}
   \input{listing/activerecord_migrations}
@@ -491,7 +491,7 @@ Ostatecznie zmiany wprowadzamy poprzez polecenie \texttt{rake db:migrate}\footno
 Ruby Make -- odpowiednik uniksowego Make, pozwalający na użycie języka Ruby. Twórcą
 jest Jim Weirich}. Domyślnie \texttt{railsy} dodają dwie tzw. magiczne kolumny
 \texttt{created\_at} oraz \texttt{updated\_at}, które są aktualizowane automatycznie, jak
-nie trudno się domyślić, przy utworzeniu obiektu oraz jego aktualizacji.
+nie trudno się domyślić przy utworzeniu obiektu oraz jego aktualizacji.
 
 
 \emph{ActiveResource} jest biblioteką umożliwiającą komunikację z innymi
@@ -500,7 +500,7 @@ aplikacjami railsowymi niemal przy tej samej składni jaka jest dostępna w \emp
 możemy korzystać z jego \emph{API},\footnote{API -- Application Programming
 Interface (ang.) -- tutaj interfejs do komunikacji ze zdalną aplikacją} o ile
 jest zgodne z konwencją REST\footnote{więcej na stronie~\pageref{sec:rest}}.
-Moduł jest oparty o reprezentację zasobów w postaci \emph{XML} lub
+Moduł jest oparty o prezentację zasobów w postaci \emph{XML} lub
 \emph{JSON}\footnote{JSON -- JavaScript Object Notation -- tekstowy format wymiany
 danych, będący podzbiorem języka JavaScript}.
 
@@ -508,7 +508,7 @@ danych, będący podzbiorem języka JavaScript}.
 \emph{ActiveResource} przynosi między innymi rozszerzenia biblioteki
 standardowej o nowe metody, ułatwiające konwersję lub kalkulację na podstawowych
 typach, takich jak \texttt{String}, \texttt{Date} czy \texttt{Numeric}. Przykłady
-wykorzystania przedstawione na listingu nr~\ref{listing:activesupport}.
+wykorzystania zostały przedstawione na listingu nr~\ref{listing:activesupport}.
 
 \begin{listing}
   \input{listing/activesupport}
@@ -525,11 +525,12 @@ bez wykrzyknika, co na przykład może oznaczać trwałą modyfikację obiektu.
 
 \subsection{Internacjonalizacja}
 Poczynając od wersji 2.2, \emph{Ruby on Rails} ma wbudowany mechanizm internacjonalizacji.
-Tłumaczenie słów w widokach odbywa się poprzez wywołanie metody \texttt{translate
-} aliasowanej do \texttt{t()} na kluczu, który następnie możemy zdefiniować w plikach z
-naszym tłumaczeniem. Dodatkowo możemy tłumaczyć nazwy modeli, atrybutów, czy błędy
+Tłumaczenie słów w widokach odbywa się poprzez wywołanie metody \texttt{translate}
+aliasowanej do \texttt{t()} na słowie, które de facto jest kluczem. Następnie w plikach z
+tłumaczeniem owemu kluczowi jest przypisywana konkretna, lokalizowana wartość.
+Dodatkowo możemy tłumaczyć nazwy modeli i atrybutów oraz błędy
 walidacji. Pliki z tłumaczeniem mogą być z rozszerzeniem \texttt{.rb}, wtedy zapisujemy je
-w postaci tablic asocjacyjnych języka \emph{Ruby} lub rozszerzeniem \texttt{.yml}.
+w postaci tablic asocjacyjnych języka \emph{Ruby} lub z rozszerzeniem \texttt{.yml}.
 \emph{YAML}\footnote{YAML -- YAML Ain't Markup Language (ang.)} jest językiem formalnym
 przeznaczonym do reprezentowania zbioru danych. Jego główną zaletą jest czytelność,
 przeciwnie jak to jest w przypadku \emph{XMLa}. Nie ma tu otwieranych i zamykanych
@@ -537,7 +538,7 @@ znaczników, gdyż struktura bazuje na wcięciach, określając tym samym poziom
 
 
 \subsection{Bezpieczeństwo aplikacji}
-\emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające nam zabezpieczyć się
+\emph{Ruby on Rails} ma wbudowane mechanizmy oraz metody pomagające zabezpieczyć się
 przed najbardziej znanymi próbami ataku na naszą aplikację. Jednym z nich jest
 \emph{CSRF}\footnote{CSRF -- Cross-site request forgery (ang.)}, który polega na podszyciu się
 napastnika pod sesję użytkownika. Jeśli osoba taka jest zalogowana, wystarczy że uruchomi
@@ -555,7 +556,7 @@ sprowadza się do umieszczenia w kontrolerze głównym linijki: \texttt{protect\
 
 Kolejnym sposobem ataku może być tzw. \emph{XSS}\footnote{XSS -- Cross-site scripting
 (ang.)} polegający na osadzeniu, w treści kodu strony, skryptu (najczęściej
-javascriptowego), który może wyciągnąć z bazy danych poufne informacje. Przykładem niech
+javascriptowego), który może wydobyć z bazy danych poufne informacje. Przykładem niech
 będzie serwis, na którym każdy użytkownik może pozostawić komentarz. Jeśli nie jest on
 zabezpieczony, możemy wkleić kod, który przy kolejnym wyświetleniu strony, będzie potraktowany
 przez naszą aplikację jako regularny kawałek kodu aplikacji, a więc zostanie wykonany.\\
@@ -575,13 +576,13 @@ zarządzania bazą danych.
 \emph{SQLite} świetnie sprawdza się przy rozwoju aplikacji, gdyż baza danych jest trzymana
 w jednym pliku umieszczonym w dogodnym dla nas miejscu. Nie musimy się przejmować
 rozporządzaniem prawami dostępu czy zarządzaniem użytkownikami, a jeśli potrzebujemy nagle
-wyrzucić istniejącą bazę, sprowadza się to po prostu do usunięcia danego pliku.
+usunąć istniejącą bazę, sprowadza się to po prostu do usunięcia danego pliku.
 Co ciekawe \emph{SQLite} wydajnościowo wypada bardzo dobrze w przypadku jednego
 użytkownika, dlatego jest używany w systemach wbudowanych\footnote{Embedded system (ang.) --
 system komputerowy specjalnego przeznaczenia, który staje się integralną częścią
 obsługiwanego przez niego sprzętu \cite{embedded-system}} takich jak telefony komórkowe
 czy urządzenia \emph{AGD}. Jednak przy obsłudze strony internetowej, gdzie jednoczesnych zapytań
-skierowanych do bazy danych może być dużo, jest potrzebny osobny, odrębny serwer. Jednym
+skierowanych do bazy danych może być dużo, jest potrzebny osobny serwer. Jednym
 z najczęściej spotykanych wyborów jest \emph{PostgreSQL} lub \emph{MySQL}. Konfiguracja
 po stronie railsów wymaga jedynie określenia nazwy użytkownika i ewentualnego hasła, które
 zapisujemy w pliku \texttt{config/database.yml}.
@@ -593,7 +594,7 @@ znanego również jako \texttt{mod\_rails} lub \texttt{mod\_rack}, rekomendowany
 jednocześnie najczęściej używanym jest serwer \emph{Apache}.
 
 
-\emph{Phsuion Passenger} jest modułem, dostępnym jako \texttt{gem}, który umożliwia
+\emph{Phusion Passenger} jest modułem, dostępnym jako \texttt{gem}, który umożliwia
 uruchomienie aplikacji pisanych w języku \emph{Ruby} opartych o bibliotekę \emph{Rack} na
 serwerze \emph{HTTP} \emph{Apache}. \emph{Rack} z kolei, również w postaci \texttt{gema},
 dostarcza uniwersalny interfejs do naszego kodu, dzięki któremu wszelkie serwery
@@ -601,21 +602,21 @@ wspierające \emph{Rubiego} mogą go hostować.
 
 
 \subsection{Merb + Ruby on Rails}
-\emph{Merb} początkowo był małym frameworkiem napisanym w języku \emph{Ruby}, by w
+\emph{Merb} początkowo był małym frameworkiem napisanym w języku \emph{Ruby}, aby w
 przeciągu kilku lat rozwinąć się i konkurować ze swoim starszym bratem \emph{Ruby on
 Rails}. Twórcą jest Ezra Zygmuntowicz, który skupił się na szybkości działania aplikacji
-oraz uniezależnieniu frameworka od konkretnej biblioteki \emph{ORM} oraz \emph{JavaScript
-}. \emph{Merb} nastawiony był również na większą modularność, sam w sobie nie dawał tak
+oraz uniezależnieniu frameworka od konkretnej biblioteki \emph{ORM} oraz \emph{JavaScript}.
+\emph{Merb} nastawiony był również na większą modularność, sam w sobie nie dawał tak
 dużej funkcjonalności jak \emph{RoR}, ale rozszerzenie o nowe możliwości miało być
 prostsze i wspierane przez zespół pracowników czuwających nad głównym kodem.\\
 W dniu 23 grudnia 2008 roku została ogłoszona wiadomość \cite{rails-merb} o połączeniu obu zespołów,
 które razem skupią się na przeniesieniu najlepszych rzeczy z obu frameworków do jednego,
 wypuszczonego pod nazwą \emph{Ruby~on~Rails~3.0}. Pierwszej wersji możemy się spodziewać
 pod koniec 2009 roku. Informacja ta wzbudziła wiele emocji w środowisku deweloperskim, co
-oczywiście też przeniosło się na promocję samych railsów. Obecnie, framework ten jest
+oczywiście przeniosło się też na promocję samych railsów. Obecnie, framework ten jest
 jednym z najpopularniejszych i większość startujących, głównie opensourcowych,
 projektów wybiera właśnie \emph{Ruby on Rails}.\\
-Zmiany jakich spodziewamy się wraz z wydaniem wersji 3.0 to przede wszystkim większa
+Spodziewane zmiany wraz z wydaniem wersji 3.0 to przede wszystkim większa
 wydajność oraz niezależność. Będzie możliwy swobodny wybór bibliotek odpowiedzialnych za
 \emph{JavaScript}, \emph{ORM}, silnik szablonów oraz moduł testujący. Twórcy zapewniają
 również, że migracja aplikacji pisanych we wcześniejszych wersjach oraz \emph{Merbie} do nowej
@@ -636,8 +637,7 @@ metody \emph{GET}. \emph{POST} służy do tworzenia nowych obiektów, \emph{PUT}
 modyfikacji, natomiast \emph{DELETE} do usuwania.\\
 Łączy się to wszystko świetnie z wykorzystaniem \emph{CRUD}\footnote{CRUD -- create, read,
 update and delete (ang.)}, który sprowadza się do podstawowych akcji wykonywanych na
-obiektach połączonych z bazą danych. Zestawienie oraz koneksję przestawia tabela nr
-\ref{table:rest}.
+obiektach połączonych z bazą danych. Zestawienie przedstawia tabela nr \ref{table:rest}.
 
 \begin{table}[htcb]
   \begin{center}
@@ -660,15 +660,15 @@ Jeśli trzymamy się przyjętych konwencji, to przykładowy ciąg zdarzeń dla u
 obiektu np. użytkownika, wyglądałby następująco: na serwer jest przesyłane żądanie pod
 adresem \texttt{users/1}, gdzie \texttt{1} jest identyfikatorem osobnika, którego chcemy
 usunąć z bazy danych. Żądanie jest przesyłane metodą \emph{DELETE}, następnie po stronie
-naszej aplikacji, mapowane na akcję \texttt{destroy} w kontrolerze \emph{UsersController},
+aplikacji mapowane na akcję \texttt{destroy} w kontrolerze \emph{UsersController},
 aż w końcu przy użyciu \emph{ActiveRecord} jest generowane zapytanie \emph{SQL}, które
 ostatecznie usuwa obiekt z bazy.\\
 Warto wspomnieć w tym momencie, że przeglądarki obecnie nie wspierają wysyłania żądań
-\emph{PUT} oraz \emph{DELETE}, co jednak railsy załatwiają sobie poprzez dodanie do
+\emph{PUT} oraz \emph{DELETE}, co jednak railsy załatwiają poprzez dodanie do
 formularza ukrytego pola z nazwą docelowej metody, używając żądania \emph{POST}.\\
 Domyślnym sposobem budowania aplikacji w \emph{Ruby on Rails} poczynając od wersji 2.0
-jest właśnie \emph{REST}, który ma też duże znaczenie w przypadku wykorzystania \emph
-{ActiveResource}, czyli budowania \emph{API} w celu udostępnienia zasobów dla innych
+jest właśnie \emph{REST}, który ma też duże znaczenie w przypadku wykorzystania \emph{ActiveResource},
+czyli budowania \emph{API} w celu udostępnienia zasobów dla innych
 serwisów. Sprowadza się to praktycznie tylko do przedstawienia konkretnego obiektu lub
 kolekcji poprzez format \emph{XML} lub \emph{JSON}.
 
@@ -685,8 +685,8 @@ obrębie tylko jednej klasy. Jeśli jednak istnieją powiązania z innymi modela
 się zastanowić nad użyciem jednej z bibliotek \emph{mockowania}\footnote{mock -- symulacja
 zachowania prawdziwych obiektów w celach testowych}.\\
 \emph{Shoulda} jest rozszerzeniem standardowej biblioteki testującej języka \emph{Ruby}
-\emph{Test::Unit}, która przynosi wygodniejszą składnie oraz nowe typy asercji.
-Przykładowy test na listingu nr~\ref{listing:shoulda}.
+\emph{Test::Unit}, która dostarcza wygodniejszą składnię oraz nowe typy asercji.
+Przykładowy test znajduje się na listingu nr~\ref{listing:shoulda}.
 
 \begin{listing}
   \input{listing/shoulda}
@@ -695,11 +695,11 @@ Przykładowy test na listingu nr~\ref{listing:shoulda}.
 \end{listing}
 
 
-Testujemy tutaj przejście stanu egzaminu (implementowanego za pomocą maszyny stanowej,
+Testowane jest przejście stanu egzaminu (implementowanego za pomocą maszyny stanowej,
 więcej na stronie nr~\pageref{sec:state_machine}) w rozpoczęty, po którym powinna być
 zachowana w bazie danych data i czas. W metodzie \texttt{setup}, która przygotowuje
 dostępne obiekty w obrębie danego kontekstu dla każdego testu jednostkowego, przykładowy
-rekord został utworzony przy pomocy gema \texttt{factory\_girl}. Zastępuje on domyślny
+rekord został utworzony za pomocą gema \texttt{factory\_girl}. Zastępuje on domyślny
 system tworzenia railsowych obiektów testowych, wczytywanych z plików \emph{YAML}, na
 rzecz dynamicznie tworzonych obiektów w ciele testu.
 
@@ -709,7 +709,7 @@ internetowej \cite{cucumber}} zalicza się do tzw. \emph{Scenario Driven Develop
 służy do testowania funkcjonalności ostatecznej -- tej widocznej dla użytkownika. Polega
 na napisaniu scenariusza, który zawiera poszczególne akcje użytkownika wykonywane z
 poziomu przeglądarki. Składnia ogranicza się do kilku słów kluczowych, które poprzedzają
-dowolny tekst opisujący zdarzenia. Następnie przy pomocy wyrażeń regularnych tekst jest
+dowolny tekst opisujący zdarzenia. Następnie za pomocą wyrażeń regularnych tekst jest
 mapowany na definicję metod, pisanych już w języku \emph {Ruby}. Przykład można zobaczyć
 na listingu nr~\ref{listing:cucumber}.
 
@@ -721,7 +721,7 @@ na listingu nr~\ref{listing:cucumber}.
 
 
 Każda linijka jest osobnym krokiem, które są definiowane w plikach pomocniczych.
-Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumber-steps}.
+Przykładową implementację kroków przedstawia listing nr~\ref{listing:cucumber-steps}.
 
 \begin{listing}
   \input{listing/cucumber_steps}
@@ -730,8 +730,8 @@ Przykładową implementacją kroków przedstawia listing nr~\ref{listing:cucumbe
 \end{listing}
 
 
-Za pomocą wyrażeń regularnych odnajdujemy przekazane w danym kroku parametry, które
-posłużą nam do wygenerowania odpowiedniej treści. Do poruszania się po stronie w
+Za pomocą wyrażeń regularnych odnajdywane są przekazane w danym kroku parametry, które
+posłużą do wygenerowania odpowiedniej treści. Do poruszania się po stronie w
 wirtualnej przeglądarce jest użyty gem \emph{Webrat}, który parsując dokument
 \emph{HTML} uzupełnia odpowiednie pola o przekazane atrybuty, a następnie symuluje
 komunikację z serwerem przyjmując jego rzekomą odpowiedź.
@@ -740,8 +740,8 @@ komunikację z serwerem przyjmując jego rzekomą odpowiedź.
 \emph{Haml}\footnote{Haml -- HTML Abstraction Markup Language (ang.)} jest językiem
 znaczników, który opisuje \emph{HTML} i \emph{XHTML}. Składnia wykorzystuje wcięcia, tak więc podobnie
 jak w języku \emph{Python} nie musimy domykać raz otwartych tagów. Dzięki temu struktura
-szablonu jest bardziej przejrzysta i trudniej nam się pomylić, gdyż przy błędnej składni
-zostanie zwrócony wyjątek. Jak wiemy, w przypadku \emph{HTMLa}, nawet jeśli zapomnimy
+szablonu jest bardziej przejrzysta i trudniej jest się pomylić, gdyż przy błędnej składni
+zostanie zwrócony wyjątek. Jak wiadomo, w przypadku \emph{HTMLa}, nawet jeśli zapomni się
 domknąć tag, to dokument i tak będzie wyświetlony w przeglądarce, błędy nie zwracają
 wyjątku.\\
 \emph{Haml} nie jest ściśle związany z żadnym językiem programowania i może być używany
@@ -755,9 +755,9 @@ z biblioteką \emph{Haml} i służy do generowania kaskadowych arkuszy stylów (
 wszelkie tagi są domykane automatycznie. Dodatkową zaletą poza przejrzystością i
 zwięzłością języka, jest dostępność zmiennych, na których możemy wykonywać operacje
 matematyczne. Przykładowo, jeśli mamy zdefiniowany jeden kolor i chcemy uzyskać np.
-jaśniejszy, wystarczy że odejmiemy odpowiednią wartość od głównego. Kolejną cechą jest
-obecność tzw. \texttt{mixinów}, dzięki którym możemy używać jednego fragmentu kodu w wielu
-miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
+jaśniejszy, wystarczy że odejmiemy odpowiednią liczbę od głównego. Kolejną cechą jest
+obecność tzw. \texttt{mixinów}, dzięki którym można używać jednego fragmentu kodu w wielu
+miejscach, bez powtarzania. Przykład znajduje się na listingu nr~\ref{listing:sass}.
 
 \begin{listing}
   \input{listing/sass}
@@ -768,28 +768,28 @@ miejscach, bez powtarzania. Przykład na listingu nr~\ref{listing:sass}
 
 \section{Blueprint i Compass}\label{sec:compass}
 \emph{Blueprint} jest frameworkiem \emph{CSS}, który posiada wiele gotowych arkuszy stylów
-dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografię,
+dotyczących poszczególnych sekcji strony internetowej, takich jak formularze, typografia,
 listy, tabele, etc. Używamy go poprzez dołączenie odpowiednich klas lub identyfikatorów do
 znaczników \emph{HTMLa}. Zyskujemy automatyczne stylowanie, które oparte jest na
 najlepszych doświadczeniach deweloperskich.\\
 \emph{Blueprint} stara się ustandaryzować podział strony na najczęściej spotykane sekcje,
-takie jak nagłówek, nawigacja, treść, stopka, a które mają mieć swoje odpowiednie
+takie jak nagłówek, nawigacja, treść, stopka, które mają mieć swoje odpowiednie
 znaczniki w przygotowywanej 5 wersji języka \emph{HTML}. Ciekawym pomysłem jest
 stylowanie względem siatki, która rozdziela stronę na kilkanaście pasów. Wszelkie marginesy
-oraz przesunięte elementy są właśnie dostosowywane do rozmiarów tychże części, dzięki czemu
+oraz przesunięte elementy są dostosowywane do rozmiarów tychże części, dzięki czemu
 estetyka strony jest zachowana.
 
 
 \emph{Compass}\footnote{Twórcą jest Chris Eppstein, więcej na stronie internetowej
 \cite{compass}} jest narzędziem napisanym w języku \emph{Ruby}, wykorzystującym język
 \emph{Sass} oraz łączącym kilka najpopularniejszych frameworków \emph{CSS}, w tym
-\emph{Blueprinta}. Jego główną cechą jest to, że nie musimy dodawać określonych klas i
+\emph{Blueprinta}. Jego główną cechą jest to, że nie trzeba dodawać określonych klas i
 identyfikatorów do znaczników \emph{HTMLa}, aby korzystać z dobrodziejstw gotowych stylów.
-To my podporządkowujemy zebrane arkusze pod naszą strukturę strony. Głównie za sprawą
-dostępnych w \emph{Sassie} \texttt{mixinów}, jesteśmy w stanie dodawać pojedyncze,
-interesujące nas fragmenty gotowych rozwiązań.\\
-Automatycznie dostajemy również wersję arkuszy stylów do druku strony i pod \emph{Internet
-Explorera}, który niestety nie trzyma się przyjętych przez \emph{W3C}\footnote{W3C -- The
+To programista podporządkowuje zebrane arkusze pod strukturę strony. Głównie za sprawą
+dostępnych w \emph{Sassie} \texttt{mixinów} jest możliwe dodawanie pojedynczych
+fragmentów gotowych rozwiązań.\\
+Automatycznie dostajemy również wersję arkuszy stylów do druku strony i dla przeglądarki \emph{Internet
+Explorer}, która niestety nie trzyma się przyjętych przez \emph{W3C}\footnote{W3C -- The
 World Wide Web Consortium (ang.) -- organizacja zajmująca się ustanawianiem standardów pisania i
 przesyłu stron WWW} standardów i często trzeba korygować jej niedoskonałości. Dotyczy to
 zwłaszcza starszych wersji przeglądarek \emph{IE}, które na szczęście wychodzą powoli z
@@ -817,7 +817,7 @@ Został on napisany na potrzeby rozwoju jądra \emph{Linux}, jednak obecnie jest
 przez wiele znanych projektów, choćby takich jak: \emph{Android}, \emph{Amarok}, \emph{Perl},
 czy \emph{Ruby on Rails}. Głównym celem była szybkość działania oraz nie powtarzanie błędów
 zaistniałych w \emph{CVS}\footnote{CVS -- Concurrent Versions System (ang.)}.
-Każdy katalog roboczy jest kompletnym repozytorium, który nie jest uzależniony od dostępu
+Każdy katalog roboczy jest kompletnym repozytorium, które nie jest uzależnione od dostępu
 do sieci czy centralnego serwera, co sprawia że świetnie sprawdza się również przy projekcie
 prowadzonym tylko przez jedną osobę.\\
 Jedną z możliwości hostowania repozytoriów oferuje \emph{GitHub} \cite{github}, który jest
@@ -1047,7 +1047,7 @@ generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze st
 \end{itemize}
 
 
-Zostało to zrealizowane przy pomocy maszyny stanowej, opisanej dokładniej na
+Zostało to zrealizowane za pomocą maszyny stanowej, opisanej dokładniej na
 stronie~\pageref{sec:state_machine}. Student, do którego został przypisany egzamin, może
 go rozpocząć, o ile pozwala mu na to data startu. Po zakończeniu testu, zapisywany jest
 dokładny czas, co pozwala później obliczyć statystyki. Na obiekcie można również wywołać
@@ -1406,7 +1406,7 @@ funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
 
 
 Egzamin może znajdować się w trzech stanach: \texttt{prepared}, \texttt{started} oraz
-\texttt{finished}, pomiędzy którymi możemy się przemieszczać przy pomocy zdefiniowanych
+\texttt{finished}, pomiędzy którymi możemy się przemieszczać za pomocą zdefiniowanych
 przejść. Dodatkowo przy próbie przejścia \texttt{start} oraz \texttt{try\_finish}
 sprawdzamy warunki, jeśli zwrócą fałsz, obiekty pozostaną w swoim poprzednim stanie.
 Możemy również uruchomić dodatkową logikę za pomocą wywołań podobnych do tych dostępnych w
@@ -1599,7 +1599,7 @@ Kod aplikacji jest utrzymany w konwencjach przyjętych we frameworku \emph{Ruby 
 dzięki czemu zrozumienie go i ewentualny przyszły rozwój przez innych programistów nie
 powinien być trudny. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
 testami jednostkowymi, co przy obecnych standardach jest fundamentem każdego projektu.
-Dodatkowo, najważniejsze funkcje są testowane przy pomocy tzw. testów integracyjnych, które
+Dodatkowo, najważniejsze funkcje są testowane za pomocą tzw. testów integracyjnych, które
 zapewniają spójność i poprawną współpracę poszczególnych elementów.
 Szata graficzna wykorzystuje ideę siatek -- strona jest podzielona na równe kolumny, które
 wyznaczają obszar funkcyjny poszczególnych elementów. Wszelkie wyrównania i marginesy są
