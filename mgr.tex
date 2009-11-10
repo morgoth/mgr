@@ -183,15 +183,15 @@ Podsumowując, \emph{Moodle} jest bardzo rozbudowanym systemem. przeznaczonym dl
 grup. Zawiera w sobie wiele modułów, które są integralnymi elementami całego systemu, dlatego
 nie mamy możliwości skupienia się tylko na części do przeprowadzania testów -- musimy
 również obsłużyć wszystkie pozostałe funkcje, takie jak forum, tworzenie personalnych
-stron, szczegółową konfigurację zarządzania treścią, etc. Powoduje to spore zużycie
-zasobów serwera na rzeczach, które de facto nie są używane.
+stron, szczegółową konfigurację zarządzania treścią, etc. Powoduje to obciążenie
+serwera przez usługi, które de facto nie są używane.
 
 \section{OLAT}
 \emph{OLAT}\footnote{OLAT -- Online Learning And Training (ang.)} jest internetowym
 systemem zdalnej nauki dostępnym na wolnej licencji. Jest rozwijany od 1999 roku, głównie
 na uniwersytecie w Zurychu. Całość została napisana w języku \emph{Java} i do uruchomienia
 po stronie klienta wymaga maszyny wirtualnej. Wraz z kolejnymi latami rozwoju, platforma
-przybierała nowe funkcjonalności i obecnie częściami składowymi są między innymi:
+była wzbogacana o nowe funkcje i obecnie częściami składowymi są między innymi:
 
 \begin{itemize}
   \item{zarządzanie treścią}
@@ -219,8 +219,8 @@ Wiele znanych uczelni z powodzeniem wdrożyło system \emph{OLAT} do codziennego
 Statystyki na głównej stronie przedstawiają około 150 instalacji na świecie~\cite{olat}.
 Pomimo, że główny kod pisany jest w \emph{Javie}, to jednak procentowo, więcej linii kodu
 zawierają skrypty \emph{JavaScriptowe}. Służą one do obsługi interfejsu użytkownika,
-dlatego też przy wyłączonym interpreterze w przeglądarce, praktycznie żadna funkcjonalność
-nie działa.
+dlatego też przy wyłączonym interpreterze w przeglądarce, praktycznie żadna funkcja nie
+może zostać użyta.
 
 
 Cała aplikacja jest obszernym narzędziem, przeznaczonym dla większych grup użytkowników.
@@ -266,26 +266,25 @@ kaczką''\footnote{''If it walks like a duck and quacks like a duck, I would cal
 -- James Whitcomb Riley (ang.)}
 
 
-Kolejną cechą, która jest jedną z najsilniejszych, jest metaprogramowanie. Nie tyle sama
+Kolejną cechą, która jest jedną z najsilniejszych tego języka, jest metaprogramowanie. Nie tyle sama
 możliwość, co raczej przystępność i prostota jego użycia. Framework \emph{Ruby on Rails}
 korzysta bardzo często z jego dobrodziejstw, dając nam tzw. ,,magię railsów'', czyli
 między innymi dynamiczne findery, niemalże bezdeklaratywne asocjacje czy szereg innych
-metod o których więcej w kolejnym podrozdziale.\\
-Ogólnie rzecz biorąc język \emph{Ruby} wraz ze swoimi otwartymi klasami, stwarza
+metod, o których więcej w kolejnym podrozdziale.\\
+Ogólnie rzecz biorąc język \emph{Ruby} wraz ze swoimi otwartymi klasami stwarza
 programiście przestrzeń, w której może się skupić wyłącznie na postawionym problemie, nie
 martwiąc się o przeszkody techniczne, takie jak dostęp do modyfikacji metod z zewnętrznych
 bibliotek czy rozszerzanie klas o nowe funkcjonalności. Sposób pisania jest intuicyjny,
 działa tu zasada najmniejszego zaskoczenia. Często, powstające nowe biblioteki (gemy), trzymają
-się kilku ustalonych konwencji, dzięki czemu zgłębiając nowe funkcjonalności, odnajdujemy
-duże podobieństwa do już dobrze znanych nam metod, choćby z biblioteki standardowej.
+się kilku ustalonych konwencji, dzięki czemu zgłębiając nowe funkcjonalności, programista
+odnajduje duże podobieństwa do już dobrze znanych mu metod, choćby z biblioteki standardowej.
 
 
 \section{Ruby on Rails}
 Twórcą frameworka \emph{Ruby on Rails} jest David Heinemeier Hansson. Powstał on w 2003
 roku, obecnie rozwijany cały czas przez społeczność użytkowników i czuwającą nad
-spójnością kodu tzw. \emph{Core Team}. Jest to produkt wolnego
-oprogramowania\footnote{Open source (ang.)}, wypuszczony na licencji
-\emph{MIT}.\footnote{Licencja powstała w Massachusetts Institute of Technology}\\
+spójnością kodu tzw. \emph{Core Team}. Jest wolnym oprogramowaniem\footnote{Open source (ang.)},
+stworzonym na licencji \emph{MIT}.\footnote{Licencja powstała w Massachusetts Institute of Technology}\\
 Framework jest kompletnym narzędziem do tworzenia aplikacji internetowych z wykorzystaniem
 bazy danych. Opiera się na wzorcu projektowym model-widok-kontroler\footnote{MVC -- Model View
 Controller (ang.)} i w całości jest napisany w języku \emph{Ruby}.
@@ -314,11 +313,11 @@ metod, upraszczając w ten sposób strukturę kodu.
 Po wygenerowaniu szkieletu projektu, dostajemy drzewo katalogów, które między innymi
 odzwierciedlają wykorzystanie wzorca \emph{MVC}. Pliki odpowiedzialne za interakcję z
 bazą danych oraz główną logikę aplikacji znajdują się w katalogu \texttt{models}. Część
-generująca widoki, czyli dokumenty \emph{HTML} również mają swoje określone miejsce w
+z wygenerowanymi widokami, czyli dokumentami \emph{HTML} również ma swoje określone miejsce w
 katalogu \texttt{views}, natomiast część obsługująca akcje użytkownika przesyłane do serwera
-oraz łącząca ze sobą poprzednio wymienione komponenty, jak nie trudno się domyślić, leży w
-katalogu \texttt{controllers}. Wszystko to zapewnia nam odpowiednią separację kodu, dzięki
-czemu modyfikacje poszczególnych elementów, nie powinny wpływać na siebie.
+oraz łącząca ze sobą poprzednio wymienione komponenty, można znaleźć w
+katalogu \texttt{controllers}. Wszystko to zapewnia odpowiednią separację kodu, dzięki
+czemu modyfikacje poszczególnych elementów nie powinny wpływać na siebie.
 
 
 \subsection{Gemy}
