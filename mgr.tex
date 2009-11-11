@@ -7,12 +7,11 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{amsfonts}
-%\usepackage{amsmath}
 \usepackage{float}
 \usepackage{tocloft}
 \usepackage{subfig}
 \usepackage{fancyhdr}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 
 \input{pygments}
 
@@ -20,12 +19,7 @@
 
 \fancypagestyle{plain}{\fancyfoot{}\fancyhead{}\renewcommand{\headrulewidth}{0pt}}
 
-% \newcommand{\listingcaption}[1]{
-  % \refstepcounter{listing}
-  % \par\noindent\listingcaption{#1}
-  % \addcontentsline{lst}{listing}{\protect\numberline{\thelisting} #1}\par
-% }
-%\cftsetindents{listing}{1.5em}{2.5em}
+% \cftsetindents{listing}{1.5em}{2.5em}
 
 \newcommand{\listlistings}{Spis listingów}
 \newlistof[chapter]{listing}{lst}{\listlistings}
@@ -79,7 +73,7 @@
 
 \cleardoublepage
 \chapter{Wstęp}
-Tendencje dzisiejszych aplikacji internetowych kierują się ku rozwiązywaniu problemów ze
+Ewolucja aplikacji internetowych kieruje się ku rozwiązywaniu problemów ze
 ściśle określonych dziedzin. Skupiają się na postawionym, pojedynczym zadaniu, starając
 się jak najlepiej zaspokoić oczekiwania internautów. Wszelkie ogólne portale, które
 rzekomo dają szeroki zasięg zastosowań, coraz częściej nie sprawdzają się w
@@ -943,7 +937,7 @@ biblioteki \emph{Authlogic} opisanej na stronie~\pageref{sec:authlogic}. Jest to
 nadrzędna, po której za pomocą mechanizmu \emph{STI}\footnote{STI -- Single Table
 Inheritance (ang.)}, dziedziczą modele \emph{Teacher} oraz \emph{Student}. Oznacza to, że
 istnieje tylko jedna tabela w bazie danych, odnosząca się zarówno do studenta jak i
-nauczyciela, informacja o typie obiektu jest przechowywana w kolumnie \texttt{type} jako
+nauczyciela. Informacja o typie obiektu jest przechowywana w kolumnie \texttt{type} jako
 \emph{String}. Sposób zapisu został przedstawiony na listingu nr~\ref{listing:sti}.
 
 \begin{listing}
@@ -972,7 +966,7 @@ jednym~z:
 
 
 Mamy również możliwość tagowania każdego pytania, przez co sortowanie i odnalezienie
-właściwego powinno być łatwiejsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
+szukanego obiektu powinno być łatwiejsze. Mechanizm został oparty o bibliotekę \emph{Acts as taggable
 on} opisaną na stronie~\pageref{sec:acts_as_taggable_on}.
 
 
@@ -982,7 +976,7 @@ nr~\ref{listing:max-points} przedstawia ciało tejże metody.
 
 \begin{listing}
   \input{listing/max_points}
-  \listingcaption{Metoda obliczająca maksymalną ilość punktów możliwą do zdobycia dla konkretnego pytania}
+  \listingcaption{Metoda obliczająca maksymalną liczbę punktów możliwą do zdobycia dla konkretnego pytania}
   \label{listing:max-points}
 \end{listing}
 
@@ -1014,8 +1008,8 @@ które sam utworzył. Cały formularz składa się z następujących pól:
 \end{itemize}
 
 
-Ostatnie pole jest opcjonalne, pozwala nam na wyznaczenie z ilu pytań będzie się składała
-próba podejścia do testu. Jeśli jest mniejsza niż ilość wybranych ogółem, to pytania będą
+Ostatnie pole jest opcjonalne, pozwala na wyznaczenie z ilu pytań będzie się składała
+próba podejścia do testu. Jeśli jest mniejsza niż liczba wybranych ogółem, to pytania będą
 losowane do danej wartości spośród całej puli.\\
 Usuwanie egzaminów jest możliwe tylko jeśli nie zostało jeszcze utworzone podejście dla
 studenta. Poza informacją w panelu o tym fakcie, model jest zabezpieczony metodą
@@ -1036,9 +1030,9 @@ pytaniach i zsumowaniu wartości zwracanych przez metodę wywołaną na obiektac
 klasy \emph{TeacherQuestion}, która została opisana w poprzednim podrozdziale.
 
 \subsection{Egzamin}
-Model \emph{Exam} łączy ten przygotowany przez nauczyciela (o którym można myśleć jako
+Model \emph{Exam} łączy egzamin przygotowany przez nauczyciela (o którym można myśleć jako
 o szablonie, który jest taki sam dla wszystkich) z konkretnym studentem, dla którego są
-generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym ze stanów:
+generowane pytania i ich kolejność. Obiekt musi znajdować się w jednym z poniższych stanów:
 
 \begin{itemize}
   \item{przygotowany}
@@ -1067,8 +1061,8 @@ stronie~\pageref{sec:acts_as_list}. Obiekt posiada dwa stany:
 
 Pozwala to rozróżnić, na które pytanie student już odpowiedział. Po utworzeniu rekordu, są
 generowane odpowiedzi, których kolejność również jest losowana. Przy próbie aktualizacji
-rekordu przez studenta, sprawdzamy czy egzamin nie powinien się zakończyć. Jeśli tak,
-do rekordu nie są wprowadzane zmiany (odpowiedź studenta nie zostaje uznana). Kod został
+rekordu przez studenta, sprawdzamy czy egzamin nie powinien się zakończyć. Jeśli dostępny czas
+został przekroczony do rekordu nie są wprowadzane zmiany (odpowiedź studenta nie zostaje uznana). Kod został
 przedstawiony na listingu nr~\ref{listing:manage-exam-and-answers}.
 
 \begin{listing}
@@ -1084,8 +1078,8 @@ tablica identyfikatorów wybranych odpowiedzi albo wpisany tekst.
 
 \subsection{Odpowiedź}
 Model \emph{Answer} jest pośrednikiem pomiędzy pierwotną formą odpowiedzi, a tą udzieloną
-przez studenta. W rekordzie jest przechowywana informacja o zaznaczeniu, w przypadku pytań
-jednokrotnego i wielokrotnego wyboru albo tekst przy pytaniu porównującym do wzorca. Przed
+przez studenta. W rekordzie jest przechowywana informacja o zaznaczeniu w przypadku pytań
+jednokrotnego i wielokrotnego wyboru albo wpisany tekst przy pytaniu porównującym do wzorca. Przed
 zapisem aktualizujemy kolumnę odpowiednią wartością. Sposób implementacji został
 przedstawiony na listingu nr~\ref{listing:calculate-points}.
 
@@ -1096,8 +1090,8 @@ przedstawiony na listingu nr~\ref{listing:calculate-points}.
 \end{listing}
 
 
-Jeśli wartością pola \texttt{value} jest ,,true'', oznacza to że została ona wybrana przez studenta, w
-takim przypadku przepisujemy wartość punktową zdefiniowaną przez nauczyciela, w przeciwnym
+Jeśli wartością pola \texttt{value} jest ,,true'' oznacza to, że została ona wybrana przez
+studenta. W takim przypadku przepisujemy wartość punktową zdefiniowaną przez nauczyciela, w przeciwnym
 razie wpisujemy 0. Jeśli pytanie było typu porównanie do wzorca, za pomocą odległości
 Levenshteina sprawdzamy czy oba napisy są odpowiednio podobne i znów, analogicznie
 uzupełniamy wartość punktową.
@@ -1178,15 +1172,15 @@ dziedzin w obrębie wykonywanego projektu. Główną zasadą jest powstrzymywani
 umieszczania elementów stylów w kodzie strony. Odpowiedzialność za to przejmują kaskadowe
 arkusze stylów (\emph{CSS}), które poprzez klasy oraz identyfikatory odnoszą się do
 poszczególnych fragmentów strony. Zalecane jest również dostosowywanie się do przyjętych
-zwyczajów, takich jak podział dokumentu na sekcje: nagłówek, nawigacja, stopka, etc.
-Zwłaszcza że w wersji 5 języka \emph{HTML} będą miały one swoje własne znaczniki,
+zwyczajów, takich jak podział dokumentu na sekcje: nagłówek, nawigacja, stopka,
+szczególnie że w wersji 5 języka \emph{HTML} będą miały one swoje własne znaczniki,
 odpowiednio: \texttt{header}, \texttt{nav}, \texttt{footer} \cite{html5}.
 
 
 Częstym rozwiązaniem jest zatem skorzystanie z gotowych szablonów, które przeważnie oferują
 estetyczny, kolorystycznie spójny interfejs. Dla potrzeb aplikacji, schemat oraz zestaw
 barw został zaczerpnięty z szablonu autorstwa Tylera Halla, wydanego na licencji
-\emph{MIT} \cite{yui-app-theme}. Został on przystosowany do użytku z narzędziami
+\emph{MIT} \cite{yui-app-theme}. Został on przystosowany do pracy z narzędziami
 \emph{Compass} oraz \emph{Sass} opisanymi dokładniej na stronie \pageref{sec:compass}.
 Ciało dokumentu zostało podzielone na 24 kolumny, które stanowią punkt odniesienia dla
 wyrównań, marginesów oraz wypełnień pojedynczych elementów. Typografia jest ustawiana
@@ -1205,7 +1199,7 @@ grafika. Wyodrębnione zostały następujące fragmenty:
 \end{itemize}
 
 
-Reużywalność kodu jest zwłaszcza widoczna przy wykorzystaniu modułu zaokrąglającego
+Ponowne wykorzystanie kodu jest zwłaszcza widoczne przy używaniu modułu zaokrąglającego
 brzegi. Wystarczy że w obrębie pliku \texttt{sass}, w którym chcemy dołączyć tę
 funkcjonalność, zaimportujemy dany szablon, a wygenerowany \emph{CSS} będzie zawierał
 pożądane przez nas style. Na ilustracji nr~\ref{fig:layout} znajduje się zrzut ekranu
@@ -1238,7 +1232,7 @@ funkcją skrótu \emph{SHA1}\footnote{SHA -- Secure Hash Algorithm (ang.)}
 dziesięciokrotnie, co ma utrudnić odszyfrowanie hasła z postaci samego skrótu.\\
 Gem ten również zapewnia nam wszystkie niezbędne walidacje, takie jak poprawność składni
 wprowadzanego adresu e-mailowego oraz loginu, zgodność hasła z potwierdzeniem, czy
-unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing:authlogic}.
+unikalność istotnych atrybutów. Przykład użycia został przedstawiony na listingu nr~\ref{listing:authlogic}.
 
 \begin{listing}
   \input{listing/authlogic}
@@ -1249,18 +1243,18 @@ unikalność istotnych atrybutów. Przykład użycia na listingu nr~\ref{listing
 
 W aplikacji sesja nauczyciela i studenta jest zrealizowana za pomocą jednego modelu, co
 oznacza, że nie ma rozróżnienia pomiędzy sposobem logowania do serwisu. Po zalogowaniu
-jednak, jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
+jednak jest rozpoznawany typ użytkownika i na tej podstawie jest wyświetlany panel z menu
 dla odpowiedniej osoby oraz sprawdzane są prawa dostępu do poszczególnych podstron.
 
 \subsection{Acts as list}\label{sec:acts_as_list}
-\emph{Acts as list} umożliwia nam dołączenie do modelu funkcjonalność listy, czyli
+\emph{Acts as list} umożliwia dołączenie do modelu funkcję listy, czyli
 usystematyzowanie kolejności występowania poszczególnych rekordów. Idea ta została
 wykorzystana w aplikacji przy tworzeniu pytań i dostępnych odpowiedzi w danym teście.
-Dla każdego studenta, z puli dostępnych pytań, jest losowana kolejność pojawienia się ich w
+Dla każdego studenta z puli dostępnych pytań jest losowana kolejność pojawienia się ich w
 teście, która jest zapisywana w bazie danych. Dzięki temu dla każdej nowej próby podejścia
 do testu, czyli również dla poszczególnych studentów, kolejność ta jest różna.
-Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru, jest losowana
-kolejność wystąpienia odpowiedzi.
+Analogicznie, przy pytaniach wielokrotnego lub jednokrotnego wyboru jest losowane miejsce
+wystąpienia odpowiedzi.
 
 \subsection{Acts as taggable on}\label{sec:acts_as_taggable_on}
 \emph{Acts as taggable on} jest gemem, który łączy w sobie kilka poprzednio utworzonych
@@ -1269,7 +1263,8 @@ nas rekordów. Tagi mogą być tworzone w różnym kontekście, co oznacza możl
 ich nie tylko po tworzonych, konkretnych nazwach, ale też w ujęciu poszczególnych
 atrybutów. Możliwe jest również określenie właściciela poszczególnych tagów, dzięki czemu
 tworzone rekordy nie muszą być globalne, a widoczne tylko dla autora.\\
-Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging-questions}.
+Przykład wykorzystania mechanizmu tagowania został przedstawiony na
+listingu nr~\ref{listing:tagging-questions}.
 
 \begin{listing}
   \input{listing/tagging_questions}
@@ -1279,7 +1274,7 @@ Przykład wykorzystania mechanizmu tagowania na listingu nr~\ref{listing:tagging
 
 
 W aplikacji tagowanie zostało wykorzystane w klasie \texttt{TeacherQuestion}, tak aby
-każdy nauczyciel miał wygodny mechanizm określania dziedziny tworzonego przez siebie
+każdy nauczyciel mógł w wygodny sposób określić dziedzinę tworzonego przez siebie
 pytania. W analogiczny sposób tagi zostały dodane do modelu \texttt{Student}, aby móc
 łatwo przydzielić ich do odpowiednich grup. Na listingu nr~\ref{listing:tagging-users}
 kontekstem tagowania są grupy, a właścicielem nauczyciel.
@@ -1314,12 +1309,12 @@ Przykład szablonu znajduje się na listingu nr~\ref{listing:prawn}.
 \subsection{Paperclip}\label{sec:paperclip}
 \emph{Paperclip} jest gemem, który obsługuje ładowanie oraz obróbkę plików wysyłanych na
 serwer z poziomu użytkownika. Jest zintegrowany z biblioteką \emph{ActiveRecord}, dzięki
-czemu użycie nie różni się zbytnio od dobrze znanych nam konwencji. Do działania wymaga
+czemu użycie nie różni się zbytnio od dobrze znanych konwencji. Do działania wymaga
 jedynie zainstalowanej w systemie biblioteki \emph{ImageMagick}, poprzez którą są tworzone
 miniaturki czy innego rodzaju konwersje na plikach graficznych. Dostajemy również zestaw
 walidatorów, które mogą określać typ przesyłanego pliku oraz jego wielkość.\\
 W aplikacji gem ten został wykorzystany przy załączaniu ilustracji do pytań oraz odpowiedzi.
-Sposób użycia na listingu nr~\ref{listing:paperclip}.
+Sposób użycia został przedstawiony na listingu nr~\ref{listing:paperclip}.
 
 \begin{listing}
   \input{listing/paperclip}
@@ -1329,7 +1324,7 @@ Sposób użycia na listingu nr~\ref{listing:paperclip}.
 
 
 W podanym przykładzie model \texttt{Picture} korzysta z metody \texttt{has\_attached\_file}
-dostarczonej przez \emph{Paperclipa}. Przed zapisaniem, ilustracja będzie poddana obróbce
+dostarczonej przez \emph{Paperclipa}. Przed zapisaniem ilustracja będzie poddana obróbce
 i zgodnie z kodem, wersja oryginalna zostanie przekształcona do wielkości 250 pikseli
 jeśli nie jest mniejsza oraz zostanie utworzona miniaturka o proporcjonalnych
 wielkościach, nie większych niż 50 pikseli. Możemy również zdefiniować ścieżkę, pod jaką
@@ -1356,7 +1351,7 @@ Napotykamy jednak na problem przy definiowaniu ścieżek, które są mapowane na
 odpowiednie akcje. Okazuje się bowiem, że musielibyśmy przy każdym wewnętrznym odsyłaczu,
 mapować dodatkowo parametr odpowiedzialny za informację o języku. Z pomocą jednak
 przychodzi gem \emph{Routing filter}, który pozwala na używanie powyżej opisanego
-mechanizmu bez przejmowania się o konfigurację ścieżek. Działa na zasadzie przechwycenia
+mechanizmu bez przejmowania się problemem dodatkowej konfiguracji ścieżek. Działa na zasadzie przechwycenia
 pełnego adresu \emph{URL} przed odwołaniem się do kontrolera, sparsowaniu go, aż w końcu
 po wykonaniu logiki oraz przekierowaniu, ,,doklejeniu'' usuniętego wcześniej parametru.
 Twórcą gema jest Sven Fuchs, który jest również głównym autorem modułu internacjonalizacji
@@ -1365,7 +1360,7 @@ w \emph{Ruby on Rails}.
 \subsection{Formtastic}
 \emph{Formtastic} jest narzędziem, który rozbudowuje domyślny mechanizm konstruowania
 formularzy w railsach, dostarczając prostszy interfejs, na rzecz zdefiniowanej przez
-autora struktury oraz klas \emph{CSS}. Biblioteka ta, na podstawie asocjacji deklarowanych
+autora struktury oraz klas \emph{CSS}. Biblioteka ta na podstawie asocjacji deklarowanych
 w klasach, potrafi odnaleźć odpowiednią kolekcję istniejących obiektów, przy polu wyboru
 formularza. Etykiety opisujące wprowadzane dane korzystają z lokalizowanych nazw atrybutów
 poszczególnych modeli. Typ wyświetlonego pola formularza jest rozpoznawany na podstawie
@@ -1375,14 +1370,14 @@ nr~\ref{listing:formtastic}.
 
 \begin{listing}
   \input{listing/formtastic}
-  \listingcaption{Wykorzystanie gema upraszczającego konstruowanie formularzy}
+  \listingcaption{Wykorzystanie gema ułatwiającego konstruowanie formularzy}
   \label{listing:formtastic}
 \end{listing}
 
 
 Tworzymy nowy egzamin, pierwszym polem jest nazwa, którą wprowadzamy poprzez wpisanie
 tekstu -- domyślny sposób dla kolumn typu \emph{String}. Następnie wpisujemy liczbę pytań,
-która jednak nie jest pozycją wymaganą, przez co będzie otoczoną inną klasą \emph{CSS}.
+która jednak nie jest pozycją wymaganą, przez co będzie otoczona inną klasą \emph{CSS}.
 Do daty rozpoczęcia, przekazujemy parametr, który ustala pierwszą z możliwych dat do
 wyboru (w naszym przypadku jest to rok obecny). Do pola czasu trwania przekazujemy
 wskazówkę, która wyświetli się pod wprowadzaną wartością, \emph{Formtastic} automatycznie
@@ -1392,11 +1387,11 @@ eksplicite, domyślnie byłyby wyświetlone wszystkie istniejące rekordy w bazi
 \texttt{Question}.
 
 \subsection{State machine}\label{sec:state_machine}
-Maszyna stanowa pozwala nam wprowadzić do obiektu pojęcie stanu w jakim obecnie się
+Maszyna stanowa pozwala wprowadzić do obiektu pojęcie stanu w jakim obecnie się
 znajduje oraz zdefiniować dostępne, czasem warunkowe, przejścia do innych stanów. Kolumna
 w bazie danych, odpowiedzialna za tę informację, jest typu \emph{String}, przez co
 zyskuje na czytelności. Tworzone metody pomocnicze są jednocześnie opisem pełnionych
-funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
+funkcji. Przykładowa implementacja została przedstawiona na listingu nr~\ref{listing:state-machine}.
 
 \begin{listing}
   \input{listing/state_machine}
@@ -1408,11 +1403,11 @@ funkcji. Przykładowa implementacja na listingu nr~\ref{listing:state-machine}.
 Egzamin może znajdować się w trzech stanach: \texttt{prepared}, \texttt{started} oraz
 \texttt{finished}, pomiędzy którymi możemy się przemieszczać za pomocą zdefiniowanych
 przejść. Dodatkowo przy próbie przejścia \texttt{start} oraz \texttt{try\_finish}
-sprawdzamy warunki, jeśli zwrócą fałsz, obiekty pozostaną w swoim poprzednim stanie.
+sprawdzamy czy mogą one zaistnieć. Jeśli zwrócą fałsz, obiekty pozostaną w swoim poprzednim stanie.
 Możemy również uruchomić dodatkową logikę za pomocą wywołań podobnych do tych dostępnych w
 \emph{ActiveRecord}, tyle że opierających się na przejściach. I tak przy wystartowaniu
 testu wywołujemy metodę, która ustawia aktualną datę i czas w atrybucie rekordu,
-analogicznie rzecz się ma przy zakończeniu testu.\\
+analogiczny mechanizm jest uruchamiany przy zakończeniu testu.\\
 Przykładowa interakcja z maszyną stanową przy tak zdefiniowanej strukturze może wyglądać
 jak na listingu nr~\ref{listing:state-machine-transitions}.
 
@@ -1429,7 +1424,7 @@ Schemat stanów oraz przejść między nimi znajduje się rysunku nr~\ref{fig:st
   \begin{center}
     \includegraphics[width=0.3\linewidth]{images/state_machine.pdf}
   \end{center}
-  \caption{Maszyna stanowa egzaminu}
+  \caption{Diagram stanów i przejść egzaminu}
   \label{fig:state_machine}
 \end{figure}
 
@@ -1470,7 +1465,7 @@ Mając obliczoną odległość pomiędzy wzorcem a odpowiedzią, mierzymy długo
 dzielimy przez 6, jeśli wynik jest większy bądź równy od odległości, uznajemy odpowiedź
 za poprawną. Liczba 6 została zaczerpnięta z polskiej wersji portalu NerdQuiz \cite{nerdquiz},
 gdzie zastosowany jest podobny mechanizm oceny. Autorem kodu implementującego algorytm jest
-Erik Veenstra \cite{veenstra}. Został on jednak przystosowany do polskich znaków oraz
+Erik Veenstra \cite{veenstra}. Kod został jednak przystosowany do polskich znaków oraz
 problemów z kodowaniem w różnych wersjach \emph{Rubiego}\footnote{Problem został dokładniej
 omówiony na stronie~\pageref{sec:ruby-versions}}. Aktualny kod znajduje się w pliku
 \texttt{lib/levenshtein.rb}.
@@ -1498,13 +1493,13 @@ ciągiem bajtów, przez co np. polskie litery były traktowane jako ,,dłuższe'
 standardowe mieszczące się w kodzie \emph{ASCII}\footnote{ASCII -- American Standard Code
 for Information Interchange (ang.) -- 7-bitowy kod reprezentujący litery z alfabetu
 angielskiego, cyfry, znaki przestankowe oraz kilka symboli}. Naturalnie powodowało to wiele
-niedogodności, framework \emph{Ruby on Rails} wprowadził własne metody, które eliminowały
+niedogodności. We frameworku \emph{Ruby on Rails} zostały wprowadzone metody, które eliminowały
 ten problem, jednak nadal trzeba było pamiętać o używaniu ich eksplicite. Biblioteka
 \emph{ActiveSupport} dostarcza \texttt{mb\_chars}, która wywołana na obiekcie typu
 \texttt{String}, zwraca jego reprezentację w \emph{Unikodzie}\footnote{Unicode --
 zestaw znaków, który w założeniu ma obejmować wszystkie dostępne pisma na świecie}. W
 wersji 1.9 wszystkie znaki są interpretowane natywnie, dlatego znikają problemy związane z
-ilością bajtów w jakiej jest zapisany dany znak, jednak pojawiają się nowe, dotyczące
+liczbą bajtów w jakiej jest zapisany dany znak, jednak pojawiają się nowe, dotyczące
 ustawiania odpowiedniego kodowania. Listing nr~\ref{listing:mb-chars} przedstawia
 wynik operacji na różnych wersjach języka \emph{Ruby}.
 
@@ -1539,7 +1534,7 @@ rozszerzenie lub modyfikację klas o metody bez zmiany kodu źródłowego}.
 W języku \emph{Ruby} jest to szczególnie proste dzięki otwartym klasom. Również w ten
 sposób został rozwiązany problem uruchomienia aplikacji na wersji 1.8.6, która nie
 posiada kilku metod używanych w kodzie. Listing nr~\ref{listing:monkey-patching}
-przedstawia rozszerzenie klasy \emph{Array} o metodę \texttt{shuffle} w przypadku gdy nie
+przedstawia rozszerzenie klasy \emph{Array} o metodę \texttt{shuffle}, w przypadku gdy nie
 jest ona zdefiniowana w bibliotece standardowej.
 
 \begin{listing}
@@ -1565,23 +1560,23 @@ nr~\ref{listing:rvm}.
 
 
 W chwili przełączenia jest ściągany i kompilowany kod źródłowy pożądanej wersji.
-Instalowany jest on do katalogu domowego, a każda wersja posiada swój zestaw gemów.
+Instalowany jest on do katalogu domowego użytkownika, a każda wersja posiada swój zestaw gemów.
 
 \cleardoublepage
 \chapter{Podsumowanie}
-W dzisiejszych czasach na popularności zyskują projekty tworzone na otwartych licencjach,
+W dzisiejszych czasach na popularności zyskują projekty tworzone na wolnych licencjach,
 gdzie każdy może wnieść coś od siebie do istniejącego kodu. Główną siłą takiego
 podejścia jest zaangażowanie społeczności, która przecież jest końcowym odbiorcą, w
 poprawę jakości oraz rozwój nowych funkcji. Zawsze też mamy możliwość modyfikacji i
-dostosowania kodu do swoich indywidualnych potrzeb, co sprawia że wszelkie dostępne
+dostosowania kodu do indywidualnych potrzeb, co sprawia że wszelkie dostępne
 narzędzia stają się niezwykle elastyczne. Przykładem na dzień dzisiejszy, potwierdzającym
 powyższe rozważania, niech będzie statystyka udostępniona przez portal
 \emph{Gemcutter}\footnote{Gemcutter -- od 25 października 2009 roku oficjalny hosting gemów,
 dostępny również pod adresem \url{http://rubygems.org}} \cite{gemcutter}, która mówi o
-7016 ogólnodostępnych gemach.
+7405 ogólnodostępnych gemach.
 
 
-Niniejsza praca również została stworzona na otwartej licencji.
+Niniejsza praca również została stworzona na wolnej licencji.
 Repozytorium z kodem aplikacji znajduje się na wspominanym już wcześniej
 GitHubie\footnote{Adres repozytorium to \url{http://github.com/morgoth/quiz}} i jest dostępne
 publicznie. Licencja \emph{GNU GPL} nie tylko pozwala, ale wręcz zachęca do współpracy,
@@ -1597,7 +1592,7 @@ nawigacji po stronie jest intuicyjny i zrozumiały dla nowego użytkownika.
 
 Kod aplikacji jest utrzymany w konwencjach przyjętych we frameworku \emph{Ruby on Rails},
 dzięki czemu zrozumienie go i ewentualny przyszły rozwój przez innych programistów nie
-powinien być trudny. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
+powinny być trudne. Wszystkie modele, odpowiedzialne za główną logikę aplikacji, są pokryte
 testami jednostkowymi, co przy obecnych standardach jest fundamentem każdego projektu.
 Dodatkowo, najważniejsze funkcje są testowane za pomocą tzw. testów integracyjnych, które
 zapewniają spójność i poprawną współpracę poszczególnych elementów.
