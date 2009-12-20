@@ -1,0 +1,8 @@
+texlive
+texlive-lang-polish
+texlive-latex-extra
+
+python-pygments
+http://github.com/biern/pygmentHighliters
+
+dia
